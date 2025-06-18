@@ -1,0 +1,54 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "homeLoans": "Prêts immobiliers",
+    "creditCards": "Cartes de crédit",
+    "carLoans": "Prêt automobile",
+    "bankAccounts": "Comptes bancaires",
+    "login": "Connexion",
+    "brandName": "Banque Woodburn"
+  },
+  "home": {
+    "hero": {
+      "title": "Une banque qui vous met en premier",
+      "subtitle": "Simple, transparente et conçue pour vos besoins",
+      "cta": "Ouvrir un compte"
+    },
+    "features": {
+      "title": "Pourquoi nous choisir",
+      "subtitle": "Découvrez une banque conçue autour de votre vie",
+      "cards": [
+        {
+          "title": "Banque en ligne 24/7",
+          "description": "Accédez à vos comptes à tout moment, n'importe où, avec notre plateforme sécurisée"
+        },
+        {
+          "title": "Application mobile",
+          "description": "Gérez vos finances en déplacement avec notre application primée"
+        },
+        {
+          "title": "Support personnalisé",
+          "description": "Obtenez de l'aide quand vous en avez besoin grâce à notre équipe dédiée"
+        }
+      ]
+    },
+    "services": {
+      "title": "Nos services",
+      "subtitle": "Des solutions financières complètes pour chaque besoin",
+      "items": [
+        {
+          "title": "Banque personnelle",
+          "description": "Des comptes courants aux comptes d'épargne, nous avons ce qu'il vous faut"
+        },
+        {
+          "title": "Prêts hypothécaires",
+          "description": "Trouvez le prêt immobilier adapté à vos besoins"
+        },
+        {
+          "title": "Investissements",
+          "description": "Planifiez votre avenir avec nos services d'investissement"
+        }
+      ]
+    }
+  }
+}

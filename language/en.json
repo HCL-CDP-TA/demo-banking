@@ -1,0 +1,740 @@
+{
+  "navigation": {
+    "homeLoans": "Home Loans",
+    "creditCards": "Credit Cards",
+    "carLoans": "Auto Loans",
+    "login": "Login",
+    "themeHeader": "Select Brand",
+    "themeTooltip": "Change Brand",
+    "localeHeader": "Select Locale",
+    "localeTooltip": "Change Locale",
+    "settings": "Settings"
+  },
+  "home": {
+    "hero": {
+      "title": "Banking Built on <highlight>Trust & Expertise</highlight>",
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community.",
+      "cta": "Start Banking Today",
+      "imageUrl": "/home-hero.jpg"
+    },
+    "trustNumbers": {
+      "items": {
+        "item1": {
+          "title": "50+",
+          "description": "Years of Service"
+        },
+        "item2": {
+          "title": "$2.5B+",
+          "description": "Assets Under Management"
+        },
+        "item3": {
+          "title": "10M+",
+          "description": "Satisfied Customers"
+        },
+        "item4": {
+          "title": "FDIC",
+          "description": "Insured Institution"
+        }
+      }
+    },
+    "products": {
+      "title": "Comprehensive Financial Solutions",
+      "subtitle": "From everyday banking to major life investments, we provide the expertise and personalized service you deserve.",
+      "items": {
+        "item1": {
+          "title": "Home Loans",
+          "description": "Competitive rates and expert guidance for your home purchase",
+          "icon": "Home",
+          "link": "/home-loans",
+          "features": {
+            "feature1": "Rates from 6.25% APR",
+            "feature2": "Fast pre-approval process",
+            "feature3": "Local lending expertise"
+          }
+        },
+        "item2": {
+          "title": "Credit Cards",
+          "description": "Reward programs with no annual fees and fraud protection",
+          "icon": "CreditCard",
+          "link": "/credit-cards",
+          "features": {
+            "feature1": "Up to 3% cash back",
+            "feature2": "No annual fees",
+            "feature3": "24/7 fraud monitoring"
+          }
+        },
+        "item3": {
+          "title": "Auto Loans",
+          "description": "Flexible financing for your daily drive",
+          "icon": "Car",
+          "link": "/car-loans",
+          "features": {
+            "feature1": "Rates from 8.99% APR",
+            "feature2": "Quick approval process",
+            "feature3": "No prepayment penalties"
+          }
+        }
+      }
+    },
+    "trustIndicators": {
+      "title": "Why Woodburn Bank?",
+      "subtitle": "Built on a foundation of trust, stability, and community commitment",
+      "items": {
+        "item1": {
+          "title": "Security First",
+          "description": "FDIC insured deposits, advanced encryption, and comprehensive fraud protection keep your money and information secure.",
+          "icon": "Shield"
+        },
+        "item2": {
+          "title": "Personal Service",
+          "description": "Dedicated relationship managers who know your name and understand your financial goals and aspirations.",
+          "icon": "Users"
+        },
+        "item3": {
+          "title": "Community Focused",
+          "description": "Locally owned and operated, we reinvest in our community and support local businesses and families.",
+          "icon": "Award"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Experience Better Banking?",
+      "subtitle": "Join thousands of satisfied customers who trust us with their financial future.",
+      "buttons": {
+        "text1": "Open an Account",
+        "variant1": "default",
+        "link1": "#",
+        "text2": "Speak to a Specialist",
+        "variant2": "secondary",
+        "link2": "#"
+      }
+    }
+  },
+
+  "creditCardsPage": {
+    "hero": {
+      "title": "Credit Cards That Reward You",
+      "subTitle": "Earn more on every purchase with no annual fees, comprehensive benefits, and the security you expect from a trusted financial institution.",
+      "cta": "Compare Cards",
+      "imageUrl": "/credit-card-hero.jpg"
+    },
+    "cards": {
+      "title": "Find Your Perfect Credit Card",
+      "subTitle": "Choose from our selection of reward cards designed for your lifestyle and spending habits",
+      "card1": {
+        "title": "Woodburn Rewards Card",
+        "description": "Earn points on every purchase with no annual fee",
+        "badge": "Most Popular",
+        "rate1": "2x",
+        "rate1Description": "Points on dining & travel",
+        "rate2": "1x",
+        "rate2Description": "On all other purchases",
+        "features": {
+          "feature1": "No annual fee",
+          "feature2": "$0 fraud liability",
+          "feature3": "0% intro APR for 12 months",
+          "feature4": "Flexible redemption options"
+        },
+        "cta": "Apply Now"
+      },
+      "card2": {
+        "title": "Woodburn Travel Card",
+        "description": "Earn miles on every purchase with no foreign transaction fees",
+        "badge": "Best for Travelers",
+        "rate1": "3x",
+        "rate1Description": "Miles on travel & dining",
+        "rate2": "1x",
+        "rate2Description": "On all other purchases",
+        "features": {
+          "feature1": "No annual fee",
+          "feature2": "$0 fraud liability",
+          "feature3": "0% intro APR for 12 months",
+          "feature4": "Travel insurance included"
+        },
+        "cta": "Apply Now"
+      },
+      "card3": {
+        "title": "Woodburn Business Card",
+        "description": "Designed for small business owners with cash back on every purchase",
+        "badge": "Best for Business",
+        "rate1": "1.5%",
+        "rate1Description": "Cash back on all purchases",
+        "rate2": "0%",
+        "rate2Description": "No foreign transaction fees",
+        "features": {
+          "feature1": "No annual fee",
+          "feature2": "$0 fraud liability",
+          "feature3": "Expense tracking tools",
+          "feature4": "Employee cards at no extra cost"
+        },
+        "cta": "Apply Now"
+      }
+    },
+    "benefits": {
+      "title": "Premium Credit Card Benefits",
+      "subTitle": "All Woodburn Bank credit cards come with comprehensive protection and valuable benefits",
+      "items": {
+        "item1": {
+          "icon": "Shield",
+          "title": "Fraud Protection",
+          "description": "$0 fraud liability and 24/7 monitoring with instant alerts for suspicious activity"
+        },
+        "item2": {
+          "icon": "Star",
+          "title": "Credit Score Tracking",
+          "description": "Free monthly credit score updates and personalized improvement tips"
+        },
+        "item3": {
+          "icon": "Gift",
+          "title": "Rewards Program",
+          "description": "Points and cash back never expire with flexible redemption options"
+        },
+        "item4": {
+          "icon": "Percent",
+          "title": "Intro APR",
+          "description": "0% intro APR on purchases and balance transfers for qualified applicants"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Earning Rewards?",
+      "description": "Apply online in minutes and get an instant decision with our secure application process",
+      "applyButton": "Apply for a Card",
+      "compareButton": "Compare All Cards"
+    }
+  },
+  "homeLoansPage": {
+    "hero": {
+      "title": "Find Your Dream Home with Ease",
+      "subTitle": "Explore flexible home loan options tailored to your needs. Competitive rates, fast approvals, and trusted service.",
+      "button": "Get Started",
+      "imageUrl": "/home-loan-hero.jpg"
+    },
+    "calculator": {
+      "title": "Home Loan Payment Calculator",
+      "description": "Estimate your payments and find the best loan option for your budget.",
+      "cardTitle": "Calculate Your Loan",
+      "loanAmount": {
+        "label": "Loan Amount",
+        "default": "300000",
+        "min": "100000",
+        "max": "10000000",
+        "step": "10000",
+        "currency": "USD",
+        "locale": "en-US"
+      },
+      "interestRate": {
+        "label": "Interest Rate",
+        "default": "7",
+        "min": "1",
+        "max": "12",
+        "step": "0.05"
+      },
+      "loanTerm": {
+        "label": "Loan Term",
+        "default": "25",
+        "min": "5",
+        "max": "30",
+        "step": "1",
+        "years": "Years"
+      },
+      "paymentFrequency": {
+        "visible": "true",
+        "label": "Payment Frequency",
+        "monthly": "Monthly",
+        "fortnightly": "Biweekly",
+        "weekly": "Weekly",
+        "default": "monthly"
+      },
+
+      "submitButton": "Calculate Payments",
+      "resultTitle": "Estimated Payments",
+      "resultDescription": "Based on your selections, these are approximate values",
+      "resultDisclaimer": "Disclaimer: This is an estimate and may vary based on additional factors."
+    },
+    "readyToApply": {
+      "title": "Ready to Apply?",
+      "subTitle": "Start your application online and get pre-approved in as little as 24 hours. Our secure process is fast, easy, and completely confidential.",
+      "applyButton": "Apply Online Now",
+      "feature1": "No application fees",
+      "feature2": "Secure Process",
+      "preferExpert": "Prefer to speak with someone?",
+      "speakButton": "Speak to an Expert"
+    },
+    "loanTypes": {
+      "title": "Explore Loan Types",
+      "description": "Choose the loan type that fits your needs and goals.",
+      "items": {
+        "item1": {
+          "title": "Conventional Loan",
+          "description": "Ideal for borrowers with strong credit.",
+          "icon": "House",
+          "features": {
+            "feature1": "Low interest rates",
+            "feature2": "Flexible terms",
+            "feature3": "No private mortgage insurance",
+            "feature4": "Available for primary and secondary homes"
+          }
+        },
+        "item2": {
+          "title": "FHA Loan",
+          "description": "Perfect for first-time home buyers.",
+          "icon": "House",
+          "features": {
+            "feature1": "Low down payment options",
+            "feature2": "Easier qualification",
+            "feature3": "Government-backed security",
+            "feature4": "Competitive interest rates"
+          }
+        },
+        "item3": {
+          "title": "VA Loan",
+          "description": "Exclusive benefits for veterans.",
+          "icon": "House",
+          "features": {
+            "feature1": "No down payment required",
+            "feature2": "No private mortgage insurance",
+            "feature3": "Low closing costs",
+            "feature4": "Flexible credit requirements"
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Take the Next Step?",
+      "description": "Apply online or speak with a loan expert today to get started.",
+      "applyButton": "Apply Now",
+      "speakButton": "Speak to an Expert"
+    }
+  },
+  "carLoansPage": {
+    "hero": {
+      "title": "Drive Your Dream Car",
+      "subTitle": "Flexible auto loans with competitive rates and personalized service. Get pre-approved in minutes.",
+      "cta": "Get pre-approved",
+      "imageUrl": "/car-loan-hero.jpg"
+    },
+    "calculator": {
+      "title": "Auto Loan Payment Calculator",
+      "subTitle": "Calculate your repayments and see how much car you can afford with our easy-to-use auto loan calculator.",
+      "cardTitle": "Calculate Your Repayments",
+      "currency": "USD",
+      "locale": "en-US",
+      "max": "Max",
+      "vehiclePrice": {
+        "label": "Vehicle Price",
+        "default": "35000",
+        "min": "1000",
+        "max": "100000",
+        "step": "500"
+      },
+      "deposit": {
+        "label": "Down Payment",
+        "defaultPercentage": "40",
+        "minPercentage": "10",
+        "maxPercentage": "80",
+        "step": "1000"
+      },
+      "loanTerm": {
+        "label": "Loan Term",
+        "default": "36",
+        "min": "6",
+        "max": "72",
+        "step": "6",
+        "years": "Months"
+      },
+      "paymentFrequency": {
+        "visible": "true",
+        "label": "Payment Frequency",
+        "monthly": "Monthly",
+        "fortnightly": "Biweekly",
+        "weekly": "Weekly",
+        "default": "monthly"
+      },
+      "vehicleType": {
+        "label": "Vehicle Type",
+        "new": "New Vehicle",
+        "used": "Used Vehicle",
+        "refinance": "Refinance Existing Loan",
+        "default": "new"
+      },
+      "balloonPayment": {
+        "visible": "true",
+        "label": "Balloon Payment",
+        "defaultPercentage": "0",
+        "minPercentage": "0",
+        "maxPercentage": "40",
+        "step": "1000",
+        "paymentMessage": "Plus a balloon payment of "
+      },
+      "submitButton": "Calculate Payments",
+      "resultTitle": "Estimated Payments",
+      "installments": "installments",
+      "totalCost": "Total Cost",
+      "APR": "APR",
+      "resultDescription": "Based on your selections, the estimated interest rate is ",
+      "resultDisclaimer": "Disclaimer: This is an estimate and may vary based on additional factors."
+    },
+    "readyToApply": {
+      "title": "Ready to Apply?",
+      "subTitle": "Start your application online and get pre-approved in as little as 24 hours. Our secure process is fast, easy, and completely confidential.",
+      "stats": {
+        "stat1": {
+          "title": "2 min",
+          "subTitle": "Application"
+        },
+        "stat2": {
+          "title": "24 hrs",
+          "subTitle": "Approval"
+        },
+        "stat3": {
+          "title": "4.49%",
+          "subTitle": "Starting APR"
+        }
+      },
+      "benefits": {
+        "title": "Application Benefits",
+        "feature1": "No impact to credit score for rate check",
+        "feature2": "Pre-approval valid for 60 days",
+        "feature3": "Shop at any dealer with confidence",
+        "feature4": "Dedicated loan specialist support"
+      },
+      "reviews": {
+        "rating": "4.9/5 Customer Rating",
+        "quote": "Fast approval and great rates. The process was so easy!",
+        "author": "Sarah T., Happy Customer"
+      },
+      "documents": {
+        "title": "What You'll Need",
+        "item1": "Valid ID (Driver's License or Passport)",
+        "item2": "Proof of Income (Pay Stubs or Tax Returns)",
+        "item3": "Vehicle Information (VIN, Make, Model)"
+      },
+      "applyButton": "Apply Online Now",
+      "footer": "Secure application • No hidden fees • Local decision making"
+    }
+  },
+  "carLoanApplicationPage": {
+    "loading": "Loading your application...",
+    "header": {
+      "title": "Auto Loan Application",
+      "step": "Step",
+      "of": "of"
+    },
+    "navigation": {
+      "back": "Back",
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit Application",
+      "submitting": "Submitting..."
+    },
+    "steps": {
+      "step1": {
+        "title": "Personal & Address Information",
+        "description": "Tell us about yourself and where you live"
+      },
+      "step2": {
+        "title": "Employment & Financial Details",
+        "description": "Your employment and financial situation"
+      },
+      "step3": {
+        "title": "Vehicle & Loan Information",
+        "description": "Details about the vehicle and loan"
+      },
+      "step4": {
+        "title": "Review & Submit",
+        "description": "Review your information and submit your application"
+      }
+    },
+    "personal": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "dateOfBirth": "Date of Birth",
+      "ssn": "Social Security Number",
+      "ssnPlaceholder": "XXX-XX-XXXX",
+      "driversLicense": "Driver's License Number",
+      "driversLicenseState": "License State",
+      "driversLicenseStatePlaceholder": "CA"
+    },
+    "address": {
+      "title": "Current Address",
+      "streetAddress": "Street Address",
+      "streetAddressPlaceholder": "123 Main Street",
+      "city": "City",
+      "state": "State",
+      "zipCode": "ZIP Code",
+      "yearsAtAddress": "Years at Address",
+      "monthsAtAddress": "Additional Months",
+      "monthsAtAddressPlaceholder": "0-11",
+      "housingStatus": "Housing Status",
+      "housingStatusPlaceholder": "Select status",
+      "housingStatusOptions": {
+        "own": "Own",
+        "rent": "Rent",
+        "liveWithFamily": "Live with Family",
+        "other": "Other"
+      }
+    },
+    "employment": {
+      "status": "Employment Status",
+      "statusPlaceholder": "Select employment status",
+      "statusOptions": {
+        "employed": "Employed",
+        "selfEmployed": "Self-Employed",
+        "retired": "Retired",
+        "unemployed": "Unemployed",
+        "student": "Student",
+        "military": "Military"
+      },
+      "employer": "Employer Name",
+      "jobTitle": "Job Title",
+      "yearsAtJob": "Years at Current Job",
+      "monthsAtJob": "Additional Months",
+      "monthsAtJobPlaceholder": "0-11",
+      "workPhone": "Work Phone"
+    },
+    "financial": {
+      "annualIncome": "Annual Income",
+      "annualIncomePlaceholder": "65000",
+      "otherIncome": "Other Monthly Income",
+      "otherIncomePlaceholder": "0",
+      "monthlyRent": "Monthly Housing Payment",
+      "monthlyRentPlaceholder": "1200",
+      "monthlyDebts": "Monthly Debt Payments",
+      "monthlyDebtsPlaceholder": "400",
+      "creditScore": "Estimated Credit Score",
+      "creditScorePlaceholder": "Select range",
+      "creditScoreOptions": {
+        "excellent": "Excellent (750+)",
+        "good": "Good (700-749)",
+        "fair": "Fair (650-699)",
+        "poor": "Poor (Below 650)"
+      }
+    },
+    "coApplicant": {
+      "addCoApplicant": "Add a co-applicant to this application",
+      "title": "Co-Applicant Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "ssn": "SSN",
+      "ssnPlaceholder": "XXX-XX-XXXX",
+      "annualIncome": "Annual Income"
+    },
+    "vehicle": {
+      "type": "Vehicle Type",
+      "typePlaceholder": "Select vehicle type",
+      "typeOptions": {
+        "new": "New Vehicle",
+        "used": "Used Vehicle",
+        "certified": "Certified Pre-Owned",
+        "refinance": "Refinance Existing Loan"
+      },
+      "year": "Year",
+      "yearPlaceholder": "2024",
+      "make": "Make",
+      "makePlaceholder": "Toyota",
+      "model": "Model",
+      "modelPlaceholder": "Camry",
+      "mileage": "Mileage (if used)",
+      "mileagePlaceholder": "25000",
+      "price": "Vehicle Price",
+      "pricePlaceholder": "32000"
+    },
+    "loan": {
+      "downPayment": "Down Payment",
+      "downPaymentPlaceholder": "5000",
+      "tradeInValue": "Trade-In Value",
+      "tradeInValuePlaceholder": "8000",
+      "amount": "Loan Amount Needed",
+      "amountPlaceholder": "19000",
+      "term": "Preferred Loan Term",
+      "termPlaceholder": "Select loan term",
+      "termOptions": {
+        "months36": "36 Months",
+        "months48": "48 Months",
+        "months60": "60 Months",
+        "months72": "72 Months",
+        "months84": "84 Months"
+      }
+    },
+    "dealer": {
+      "title": "Dealer Information (if applicable)",
+      "name": "Dealer Name",
+      "namePlaceholder": "ABC Auto Sales",
+      "city": "Dealer City"
+    },
+    "review": {
+      "alert": "Please review your information and agree to the terms below to submit your application.",
+      "additionalInfo": "Additional Information (Optional)",
+      "additionalInfoPlaceholder": "Any additional information about your application..."
+    },
+    "agreements": {
+      "terms": "I agree to the Terms and Conditions and Privacy Policy. I understand that this application does not guarantee loan approval.",
+      "credit": "I authorize Woodburn Bank to obtain my credit report and verify the information provided in this application.",
+      "contact": "I agree to be contacted by Woodburn Bank regarding this application via phone, email, or text message."
+    },
+    "errors": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailRequired": "Email is required",
+      "phoneRequired": "Phone number is required",
+      "dateOfBirthRequired": "Date of birth is required",
+      "ssnRequired": "SSN is required",
+      "driversLicenseRequired": "Driver's license is required",
+      "employmentStatusRequired": "Employment status is required",
+      "annualIncomeRequired": "Annual income is required",
+      "vehicleTypeRequired": "Vehicle type is required",
+      "vehiclePriceRequired": "Vehicle price is required",
+      "loanAmountRequired": "Loan amount is required",
+      "agreeToTermsRequired": "You must agree to the terms",
+      "agreeToCreditRequired": "You must agree to the credit check"
+    }
+  },
+
+  "CarLoanApplicationSubmittedPage": {
+    "successHeader": {
+      "title": "Application Submitted Successfully!",
+      "description": "Thank you for choosing Woodburn Bank for your auto financing needs.",
+      "applicationIdPrefix": "Application ID:"
+    },
+    "nextSteps": {
+      "title": "What Happens Next?",
+      "description": "Here's your path to getting behind the wheel",
+      "within1HourCard": {
+        "title": "Within 1 Hour",
+        "content": "You'll receive an instant pre-approval decision or a request for additional information."
+      },
+      "sameDayCard": {
+        "title": "Same Day",
+        "content": "If approved, you'll receive your pre-approval letter and can start shopping with confidence."
+      },
+      "atPurchaseCard": {
+        "title": "At Purchase",
+        "content": "Bring your pre-approval to any dealer and we'll handle the final paperwork and funding."
+      }
+    },
+    "preApprovalBenefits": {
+      "title": "Your Pre-Approval Benefits",
+      "description": "Shop with confidence knowing you're already approved",
+      "benefitsList": [
+        "Shop at any dealer with confidence",
+        "Know your exact monthly payment",
+        "Negotiate as a cash buyer",
+        "Pre-approval valid for 60 days",
+        "Fast funding at purchase",
+        "Dedicated loan specialist support"
+      ]
+    },
+    "contactInfo": {
+      "title": "Need Help or Have Questions?",
+      "description": "Our auto loan specialists are here to help",
+      "callUs": {
+        "title": "Call Us",
+        "number": "1-800-WOODBURN",
+        "hours": "Mon-Fri 8AM-7PM, Sat 9AM-3PM"
+      },
+      "emailUs": {
+        "title": "Email Us",
+        "address": "autoloans@woodburnbank.com",
+        "response_time": "We respond within 2 hours"
+      }
+    },
+    "importantReminders": {
+      "title": "Important Reminders",
+      "remindersList": [
+        "Your pre-approval is valid for 60 days from today",
+        "Avoid making major credit changes during this period",
+        "Bring your pre-approval letter when shopping for vehicles",
+        "Contact us immediately when you find your vehicle"
+      ]
+    },
+    "actionButtons": {
+      "returnHome": "Return to Home",
+      "learnMoreAutoLoans": "Learn More About Auto Loans"
+    }
+  },
+
+  "homeLoanSubmittedPage": {
+    "header": {
+      "title": "Application Submitted Successfully!",
+      "subtitle": "Thank you for applying for a home loan with Woodburn Bank.",
+      "applicationId": "Application ID: {id}"
+    },
+
+    "nextSteps": {
+      "title": "What happens next?",
+      "description": "Here's what you can expect in the coming days:",
+      "cards": [
+        {
+          "title": "Within 24 Hours",
+          "description": "You'll receive a confirmation email with your application details and next steps."
+        },
+        {
+          "title": "Within 2-3 Days",
+          "description": "A loan officer will contact you to discuss your application and may request additional documents."
+        },
+        {
+          "title": "Within 5-7 Days",
+          "description": "You'll receive a preliminary decision on your loan application."
+        }
+      ]
+    },
+
+    "contact": {
+      "title": "Need help?",
+      "description": "Our loan specialists are here to answer any questions you may have.",
+      "call": {
+        "title": "Call us",
+        "number": "(555) 123-4567",
+        "hours": "Monday-Friday, 8am-6pm EST"
+      },
+      "email": {
+        "title": "Email us",
+        "address": "homeloans@woodburnbank.com",
+        "responseTime": "Typically responds within 1 business day"
+      }
+    },
+
+    "importantInfo": {
+      "title": "Important Information",
+      "tips": [
+        "Your application is not yet approved. Final approval is subject to underwriting review.",
+        "You may be asked to provide additional documentation to verify your information.",
+        "Interest rates are subject to change until your loan is locked in.",
+        "All loan approvals are conditional and subject to final verification."
+      ]
+    },
+
+    "buttons": {
+      "home": "Return to Home",
+      "moreInfo": "Learn More About Home Loans"
+    }
+  },
+
+  "footer": {
+    "description": "Your trusted financial partner for over 50 years. We provide comprehensive banking solutions tailored to your needs with exceptional customer service and competitive rates.",
+    "phone": "1-800-WOODBURN",
+    "email": "info@woodburnbank.com",
+    "sections": {
+      "products": {
+        "title": "Products",
+        "homeLoans": "Home Loans",
+        "creditCards": "Credit Cards",
+        "carLoans": "Auto Loans",
+        "bankAccounts": "Bank Accounts"
+      },
+      "support": {
+        "title": "Support",
+        "contact": "Contact Us",
+        "help": "Help Center",
+        "security": "Security",
+        "privacy": "Privacy Policy"
+      }
+    },
+    "copyright": "© 2025 Woodburn Bank Inc. All rights reserved."
+  }
+}

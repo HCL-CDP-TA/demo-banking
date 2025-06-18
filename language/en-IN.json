@@ -1,0 +1,39 @@
+{
+  "home": {
+    "navigation": {
+      "carLoans": "Car Loans"
+    },
+    "hero": {
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community.",
+      "cta": "Start Banking Today"
+    },
+    "trustNumbers": {
+      "items": {
+        "item2": {
+          "title": "₹15,000 Cr+"
+        },
+        "item3": {
+          "title": "500k+"
+        }
+      }
+    },
+    "products": {
+      "items": {
+        "item3": {
+          "title": "Car Loans"
+        }
+      }
+    }
+  },
+  "footer": {
+    "phone": "+91 22 12345678",
+    "email": "info@woodburnbank.in",
+    "sections": {
+      "products": {
+        "carLoans": "Car Loans"
+      }
+    },
+
+    "copyright": "© 2025 Woodburn Bank Limited"
+  }
+}

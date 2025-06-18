@@ -1,0 +1,45 @@
+{
+  "navigation": {
+    "homeLoans": "Mortgages",
+    "carLoans": "Car Loans"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
+    },
+    "trustNumbers": {
+      "items": {
+        "item2": {
+          "title": "£2.5B+",
+          "description": "Assets Under Management"
+        },
+        "item4": {
+          "title": "FCA",
+          "description": "Regulated Institution"
+        }
+      }
+    },
+    "products": {
+      "subtitle": "From everyday banking to major life investments, we provide the expertise and personalised service you deserve.",
+      "items": {
+        "item1": {
+          "title": "Mortgages"
+        },
+        "item3": {
+          "title": "Car Loans"
+        }
+      }
+    }
+  },
+  "footer": {
+    "phone": "0800-123456",
+    "email": "info@woodburnbank.co.uk",
+    "sections": {
+      "products": {
+        "homeLoans": "Mortgages",
+        "carLoans": "Car Loans"
+      }
+    },
+    "copyright": "© 2025 Woodburn Bank PLC. All rights reserved. "
+  }
+}

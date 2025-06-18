@@ -1,0 +1,520 @@
+import { User, FileText, Car, CheckCircle } from "lucide-react"
+
+export const formConfig = {
+  translationNamespace: "carLoanApplicationPage",
+  header: {
+    titleKey: "header.title",
+    stepKey: "header.step",
+    ofKey: "header.of",
+  },
+  review: {
+    alertKey: "review.alert",
+    additionalInfoKey: "review.additionalInfo",
+    additionalInfoPlaceholderKey: "review.additionalInfoPlaceholder",
+  },
+  initialFormData: {
+    // Personal Information
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    dateOfBirth: "",
+    ssn: "",
+    driversLicense: "",
+    driversLicenseState: "",
+
+    // Address Information
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    yearsAtAddress: "",
+    monthsAtAddress: "",
+    housingStatus: "",
+    monthlyRent: "",
+
+    // Employment Information
+    employmentStatus: "",
+    employer: "",
+    jobTitle: "",
+    workPhone: "",
+    yearsAtJob: "",
+    monthsAtJob: "",
+    annualIncome: "",
+    otherIncome: "",
+
+    // Financial Information
+    monthlyDebts: "",
+    checkingBalance: "",
+    savingsBalance: "",
+    creditScore: "",
+
+    // Vehicle Information
+    vehicleType: "",
+    vehicleYear: "",
+    vehicleMake: "",
+    vehicleModel: "",
+    vehicleMileage: "",
+    vehiclePrice: "",
+    downPayment: "",
+    tradeInValue: "",
+    dealerName: "",
+    dealerCity: "",
+
+    // Loan Information
+    loanAmount: "",
+    loanTerm: "",
+
+    // Co-applicant Information
+    hasCoApplicant: false,
+    coFirstName: "",
+    coLastName: "",
+    coEmail: "",
+    coPhone: "",
+    coSSN: "",
+    coAnnualIncome: "",
+
+    // Additional Information
+    additionalInfo: "",
+
+    // Agreements
+    agreeToTerms: false,
+    agreeToCredit: false,
+    agreeToContact: false,
+  },
+  steps: [
+    {
+      id: 1,
+      titleKey: "steps.step1.title",
+      descriptionKey: "steps.step1.description",
+      icon: User,
+      sections: [
+        {
+          titleKey: "personal.title",
+          fields: [
+            {
+              id: "firstName",
+              type: "text",
+              labelKey: "personal.firstName",
+              required: true,
+              gridCols: 2,
+            },
+            {
+              id: "lastName",
+              type: "text",
+              labelKey: "personal.lastName",
+              required: true,
+              gridCols: 2,
+            },
+            {
+              id: "email",
+              type: "email",
+              labelKey: "personal.email",
+              required: true,
+              gridCols: 2,
+            },
+            {
+              id: "phone",
+              type: "tel",
+              labelKey: "personal.phone",
+              required: true,
+              gridCols: 2,
+            },
+            {
+              id: "dateOfBirth",
+              type: "date",
+              labelKey: "personal.dateOfBirth",
+              required: true,
+              gridCols: 2,
+            },
+            {
+              id: "ssn",
+              type: "text",
+              labelKey: "personal.ssn",
+              required: true,
+              placeholderKey: "personal.ssnPlaceholder",
+              gridCols: 2,
+            },
+            {
+              id: "driversLicense",
+              type: "text",
+              labelKey: "personal.driversLicense",
+              required: true,
+              gridCols: 2,
+            },
+            {
+              id: "driversLicenseState",
+              type: "text",
+              labelKey: "personal.driversLicenseState",
+              placeholderKey: "personal.driversLicenseStatePlaceholder",
+              gridCols: 2,
+            },
+          ],
+        },
+        {
+          titleKey: "address.title",
+          fields: [
+            {
+              id: "address",
+              type: "text",
+              labelKey: "address.streetAddress",
+              placeholderKey: "address.streetAddressPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "city",
+              type: "text",
+              labelKey: "address.city",
+              gridCols: 1,
+            },
+            {
+              id: "state",
+              type: "text",
+              labelKey: "address.state",
+              gridCols: 1,
+            },
+            {
+              id: "zipCode",
+              type: "text",
+              labelKey: "address.zipCode",
+              gridCols: 1,
+            },
+            {
+              id: "yearsAtAddress",
+              type: "number",
+              labelKey: "address.yearsAtAddress",
+              gridCols: 1,
+            },
+            {
+              id: "monthsAtAddress",
+              type: "number",
+              labelKey: "address.monthsAtAddress",
+              placeholderKey: "address.monthsAtAddressPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "housingStatus",
+              type: "select",
+              labelKey: "address.housingStatus",
+              placeholderKey: "address.housingStatusPlaceholder",
+              options: [
+                { value: "own", labelKey: "address.housingStatusOptions.own" },
+                { value: "rent", labelKey: "address.housingStatusOptions.rent" },
+                { value: "live-with-family", labelKey: "address.housingStatusOptions.liveWithFamily" },
+                { value: "other", labelKey: "address.housingStatusOptions.other" },
+              ],
+              gridCols: 1,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 2,
+      titleKey: "steps.step2.title",
+      descriptionKey: "steps.step2.description",
+      icon: FileText,
+      sections: [
+        {
+          titleKey: "employment.title",
+          fields: [
+            {
+              id: "employmentStatus",
+              type: "select",
+              labelKey: "employment.status",
+              required: true,
+              placeholderKey: "employment.statusPlaceholder",
+              options: [
+                { value: "employed", labelKey: "employment.statusOptions.employed" },
+                { value: "self-employed", labelKey: "employment.statusOptions.selfEmployed" },
+                { value: "retired", labelKey: "employment.statusOptions.retired" },
+                { value: "unemployed", labelKey: "employment.statusOptions.unemployed" },
+                { value: "student", labelKey: "employment.statusOptions.student" },
+                { value: "military", labelKey: "employment.statusOptions.military" },
+              ],
+              gridCols: 1,
+            },
+            {
+              id: "employer",
+              type: "text",
+              labelKey: "employment.employer",
+              gridCols: 2,
+            },
+            {
+              id: "jobTitle",
+              type: "text",
+              labelKey: "employment.jobTitle",
+              gridCols: 2,
+            },
+            {
+              id: "yearsAtJob",
+              type: "number",
+              labelKey: "employment.yearsAtJob",
+              gridCols: 1,
+            },
+            {
+              id: "monthsAtJob",
+              type: "number",
+              labelKey: "employment.monthsAtJob",
+              placeholderKey: "employment.monthsAtJobPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "workPhone",
+              type: "tel",
+              labelKey: "employment.workPhone",
+              gridCols: 1,
+            },
+            {
+              id: "annualIncome",
+              type: "number",
+              labelKey: "financial.annualIncome",
+              required: true,
+              placeholderKey: "financial.annualIncomePlaceholder",
+              gridCols: 2,
+            },
+            {
+              id: "otherIncome",
+              type: "number",
+              labelKey: "financial.otherIncome",
+              placeholderKey: "financial.otherIncomePlaceholder",
+              gridCols: 2,
+            },
+          ],
+        },
+        {
+          titleKey: "financial.title",
+          fields: [
+            {
+              id: "monthlyRent",
+              type: "number",
+              labelKey: "financial.monthlyRent",
+              placeholderKey: "financial.monthlyRentPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "monthlyDebts",
+              type: "number",
+              labelKey: "financial.monthlyDebts",
+              placeholderKey: "financial.monthlyDebtsPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "creditScore",
+              type: "select",
+              labelKey: "financial.creditScore",
+              placeholderKey: "financial.creditScorePlaceholder",
+              options: [
+                { value: "excellent", labelKey: "financial.creditScoreOptions.excellent" },
+                { value: "good", labelKey: "financial.creditScoreOptions.good" },
+                { value: "fair", labelKey: "financial.creditScoreOptions.fair" },
+                { value: "poor", labelKey: "financial.creditScoreOptions.poor" },
+              ],
+              gridCols: 1,
+            },
+          ],
+        },
+        {
+          titleKey: "coApplicant.title",
+          fields: [
+            {
+              id: "hasCoApplicant",
+              type: "checkbox",
+              labelKey: "coApplicant.addCoApplicant",
+              gridCols: 1,
+            },
+          ],
+          conditionalFields: {
+            hasCoApplicant: [
+              {
+                id: "coFirstName",
+                type: "text",
+                labelKey: "coApplicant.firstName",
+                gridCols: 2,
+              },
+              {
+                id: "coLastName",
+                type: "text",
+                labelKey: "coApplicant.lastName",
+                gridCols: 2,
+              },
+              {
+                id: "coEmail",
+                type: "email",
+                labelKey: "coApplicant.email",
+                gridCols: 2,
+              },
+              {
+                id: "coPhone",
+                type: "tel",
+                labelKey: "coApplicant.phone",
+                gridCols: 2,
+              },
+              {
+                id: "coSSN",
+                type: "text",
+                labelKey: "coApplicant.ssn",
+                placeholderKey: "coApplicant.ssnPlaceholder",
+                gridCols: 2,
+              },
+              {
+                id: "coAnnualIncome",
+                type: "number",
+                labelKey: "coApplicant.annualIncome",
+                gridCols: 2,
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 3,
+      titleKey: "steps.step3.title",
+      descriptionKey: "steps.step3.description",
+      icon: Car,
+      sections: [
+        {
+          titleKey: "vehicle.title",
+          fields: [
+            {
+              id: "vehicleType",
+              type: "select",
+              labelKey: "vehicle.type",
+              required: true,
+              placeholderKey: "vehicle.typePlaceholder",
+              options: [
+                { value: "new", labelKey: "vehicle.typeOptions.new" },
+                { value: "used", labelKey: "vehicle.typeOptions.used" },
+                { value: "certified", labelKey: "vehicle.typeOptions.certified" },
+                { value: "refinance", labelKey: "vehicle.typeOptions.refinance" },
+              ],
+              gridCols: 1,
+            },
+            {
+              id: "vehicleYear",
+              type: "number",
+              labelKey: "vehicle.year",
+              placeholderKey: "vehicle.yearPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "vehicleMake",
+              type: "text",
+              labelKey: "vehicle.make",
+              placeholderKey: "vehicle.makePlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "vehicleModel",
+              type: "text",
+              labelKey: "vehicle.model",
+              placeholderKey: "vehicle.modelPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "vehicleMileage",
+              type: "number",
+              labelKey: "vehicle.mileage",
+              placeholderKey: "vehicle.mileagePlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "vehiclePrice",
+              type: "number",
+              labelKey: "vehicle.price",
+              required: true,
+              placeholderKey: "vehicle.pricePlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "downPayment",
+              type: "number",
+              labelKey: "loan.downPayment",
+              placeholderKey: "loan.downPaymentPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "tradeInValue",
+              type: "number",
+              labelKey: "loan.tradeInValue",
+              placeholderKey: "loan.tradeInValuePlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "loanAmount",
+              type: "number",
+              labelKey: "loan.amount",
+              required: true,
+              placeholderKey: "loan.amountPlaceholder",
+              gridCols: 1,
+            },
+            {
+              id: "loanTerm",
+              type: "select",
+              labelKey: "loan.term",
+              placeholderKey: "loan.termPlaceholder",
+              options: [
+                { value: "36", labelKey: "loan.termOptions.months36" },
+                { value: "48", labelKey: "loan.termOptions.months48" },
+                { value: "60", labelKey: "loan.termOptions.months60" },
+                { value: "72", labelKey: "loan.termOptions.months72" },
+                { value: "84", labelKey: "loan.termOptions.months84" },
+              ],
+              gridCols: 1,
+            },
+          ],
+        },
+        {
+          titleKey: "dealer.title",
+          fields: [
+            {
+              id: "dealerName",
+              type: "text",
+              labelKey: "dealer.name",
+              placeholderKey: "dealer.namePlaceholder",
+              gridCols: 2,
+            },
+            {
+              id: "dealerCity",
+              type: "text",
+              labelKey: "dealer.city",
+              gridCols: 2,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 4,
+      titleKey: "steps.step4.title",
+      descriptionKey: "steps.step4.description",
+      icon: CheckCircle,
+      sections: [],
+    },
+  ],
+  navigation: {
+    backKey: "navigation.back",
+    previousKey: "navigation.previous",
+    nextKey: "navigation.next",
+    submitKey: "navigation.submit",
+    submittingKey: "navigation.submitting",
+  },
+  agreements: [
+    {
+      id: "agreeToTerms",
+      labelKey: "agreements.terms",
+      required: true,
+    },
+    {
+      id: "agreeToCredit",
+      labelKey: "agreements.credit",
+      required: true,
+    },
+    {
+      id: "agreeToContact",
+      labelKey: "agreements.contact",
+      required: false,
+    },
+  ],
+}

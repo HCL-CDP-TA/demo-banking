@@ -1,0 +1,46 @@
+{
+  "navigation": {
+    "carLoans": "Car Loans"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community.",
+      "cta": "Start Banking Today"
+    },
+    "trustNumbers": {
+      "items": {
+        "item4": {
+          "title": "APRA",
+          "description": "Regulated Institution"
+        }
+      }
+    },
+    "products": {
+      "subtitle": "From everyday banking to major life investments, we provide the expertise and personalised service you deserve.",
+      "items": {
+        "item3": {
+          "title": "Car Loans"
+        }
+      }
+    },
+    "trustIndicators": {
+      "items": {
+        "item1": {
+          "description": "FCS insured deposits, advanced encryption, and comprehensive fraud protection keep your money and information secure."
+        }
+      }
+    }
+  },
+  "footer": {
+    "phone": "1800 123456",
+    "email": "info@woodburnbank.com.au",
+    "sections": {
+      "products": {
+        "homeLoans": "Mortgages",
+        "carLoans": "Car Loans"
+      }
+    },
+
+    "copyright": "© 2025 Woodburn Bank Limited ABN 12 345 678 900 AFSL and Australian Credit Licence 123456"
+  }
+}
