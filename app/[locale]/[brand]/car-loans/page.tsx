@@ -3,28 +3,18 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  Calculator,
-  TrendingDown,
-  CheckCircle,
-  Shield,
-  Users,
-  Zap,
-  FileText,
-  Star,
-  ArrowRight,
-  Car,
-} from "lucide-react"
+import { Calculator, CheckCircle, FileText, Star, ArrowRight, Car } from "lucide-react"
 import Hero from "@/components/Hero"
 import { useTranslations } from "next-intl"
 import { Slider } from "@/components/ui/slider"
 import Link from "next/link"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function CarLoansPage() {
-  const t = useTranslations("carLoansPage")
+  const { brand, getPageNamespace } = useSiteContext()
+  const t = useTranslations(getPageNamespace())
   const [interestShown, setInterestShown] = useState(false)
   const [selectedLoanType, setSelectedLoanType] = useState<string | null>(null)
 
@@ -151,9 +141,9 @@ export default function CarLoansPage() {
     setInterestShown(true)
 
     // Track customer interaction for CDP
-    const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     localStorage.setItem(
-      "woodburn_customer",
+      `${brand.key}_customer_data`,
       JSON.stringify({
         ...customerData,
         carLoanInterest: {
@@ -171,9 +161,9 @@ export default function CarLoansPage() {
     setSelectedLoanType(loanType)
 
     // Track customer interaction for CDP
-    const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     localStorage.setItem(
-      "woodburn_customer",
+      `${brand.key}_customer_data`,
       JSON.stringify({
         ...customerData,
         carLoanTypeInterest: {
@@ -489,11 +479,7 @@ export default function CarLoansPage() {
 
             <div className="h-full flex flex-col">
               {/* Banner Section - Placeholder for RTP */}
-              <div
-                className="mb-6 relative rounded-2xl overflow-hidden bg-cover bg-center bg-no-repeat min-h-[400px] flex items-center"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')`,
-                }}>
+              <div className="mb-6 relative rounded-2xl overflow-hidden bg-center bg-no-repeat bg-cover min-h-[400px] flex items-center bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')]">
                 <div className="relative z-10 p-8 text-white">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Auto Loans?</h2>
                   <p className="text-lg md:text-xl mb-8 text-slate-200 leading-relaxed">

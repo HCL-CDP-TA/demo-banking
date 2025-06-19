@@ -7,18 +7,20 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Home, Clock, Phone, Mail, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function HomeLoanApplicationSubmittedPage() {
-  const t = useTranslations("homeLoanSubmittedPage")
+  const { brand, getPageNamespace } = useSiteContext()
+  const t = useTranslations(getPageNamespace())
   const router = useRouter()
   const [applicationId, setApplicationId] = useState("")
 
   useEffect(() => {
-    const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     if (customerData.homeLoanApplication?.applicationId) {
       setApplicationId(customerData.homeLoanApplication.applicationId)
     } else {
-      router.push(".//home-loans")
+      // router.push(".//home-loans")
     }
   }, [router])
 

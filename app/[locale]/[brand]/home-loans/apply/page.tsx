@@ -13,6 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Home, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
+import { useSiteContext } from "@/lib/SiteContext"
 
 // Initial form state
 const initialFormData = {
@@ -67,10 +68,14 @@ const initialFormData = {
   agreeToTerms: false,
   agreeToCredit: false,
   agreeToContact: false,
+
+  submittedAt: "",
+  applicationId: "",
 }
 
 export default function HomeLoanApplicationPage() {
-  const t = useTranslations("homeLoanApplicationPage")
+  const { brand, getPageNamespace } = useSiteContext()
+  const t = useTranslations(getPageNamespace())
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -78,11 +83,27 @@ export default function HomeLoanApplicationPage() {
   const [formData, setFormData] = useState(initialFormData)
   const [isLoading, setIsLoading] = useState(true)
 
+  // Function to save data to localStorage
+  const saveFormData = (dataToSave: typeof initialFormData) => {
+    try {
+      const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+      localStorage.setItem(
+        `${brand.key}_customer_data`,
+        JSON.stringify({
+          ...customerData,
+          homeLoanApplication: dataToSave,
+        }),
+      )
+    } catch (error) {
+      console.error("Failed to save application data to localStorage:", error)
+    }
+  }
+
   // Load saved data from localStorage on component mount
   useEffect(() => {
     const loadSavedData = () => {
       try {
-        const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+        const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
         if (customerData.homeLoanApplication) {
           // Merge saved data with initial form data
           setFormData(prev => ({
@@ -102,7 +123,7 @@ export default function HomeLoanApplicationPage() {
     }
 
     loadSavedData()
-  }, [])
+  }, []) // Empty dependency array means this runs once on mount
 
   const totalSteps = 4
   const progress = (currentStep / totalSteps) * 100
@@ -155,6 +176,7 @@ export default function HomeLoanApplicationPage() {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
+      saveFormData(formData) // Save data when going to the next step
       setCurrentStep(prev => Math.min(prev + 1, totalSteps))
     }
   }
@@ -170,19 +192,12 @@ export default function HomeLoanApplicationPage() {
 
     // Simulate form submission
     setTimeout(() => {
-      // Store application data for CDP tracking
-      const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
-      localStorage.setItem(
-        "woodburn_customer",
-        JSON.stringify({
-          ...customerData,
-          homeLoanApplication: {
-            ...formData,
-            submittedAt: new Date().toISOString(),
-            applicationId: `HL${Date.now()}`,
-          },
-        }),
-      )
+      saveFormData({
+        // Save final data on submit
+        ...formData,
+        submittedAt: new Date().toISOString(),
+        applicationId: `HL${Date.now()}`,
+      })
 
       setIsSubmitting(false)
       router.push("./application-submitted")

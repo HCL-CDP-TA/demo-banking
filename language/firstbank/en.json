@@ -1,8 +1,83 @@
 {
+  "loginModal": {
+    "title": "Welcome to First Bank"
+  },
   "home": {
     "hero": {
-      "title": "Banking First <highlight>Trust & Expertise</highlight>",
       "subtitle": "For over five decades, <highlight>First Bank</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community."
+    },
+    "products": {
+      "items": {
+        "item1": {
+          "title": "Home Loans"
+        },
+        "item3": {
+          "title": "Auto Loans"
+        }
+      }
+    },
+    "trustIndicators": {
+      "title": "Why First Bank?"
+    },
+    "cta": {
+      "title": "Ready to Experience Better Banking?"
     }
+  },
+  "credit-cards": {
+    "cards": {
+      "card1": {
+        "title": "First Bank Rewards Card"
+      },
+      "card2": {
+        "title": "First Bank Travel Card"
+      },
+      "card3": {
+        "title": "First Bank Business Card"
+      }
+    },
+    "benefits": {
+      "subTitle": "All First Bank credit cards come with comprehensive protection and valuable benefits"
+    }
+  },
+  "home-loans": {
+    "hero": {
+      "title": "Find Your Dream Home with Ease",
+      "subTitle": "Explore flexible home loan options tailored to your needs. Competitive rates, fast approvals, and trusted service."
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "subtitle": "Thank you for applying for a home loan with First Bank."
+    },
+    "contact": {
+      "call": {
+        "number": "(888) 987-6543"
+      },
+      "email": {
+        "address": "homeloans@firstbank.com"
+      }
+    }
+  },
+  "car-loans": {
+    "hero": {
+      "subTitle": "Flexible financing for your daily drive"
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "description": "Thank you for choosing First Bank for your auto financing needs."
+    },
+    "contactInfo": {
+      "callUs": {
+        "number": "1-800-FIRSTBANK"
+      },
+      "emailUs": {
+        "address": "autoloans@firstbank.com"
+      }
+    }
+  },
+  "footer": {
+    "phone": "1-800-FIRSTBANK",
+    "email": "info@firstbank.com"
   }
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,7 @@ import { FormFieldRenderer } from "./FormFieldRenderer"
 import { Label } from "./ui/label"
 import { Textarea } from "./ui/textarea"
 import { Checkbox } from "./ui/checkbox"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export function GenericFormStepper({
   config,
@@ -33,12 +34,13 @@ export function GenericFormStepper({
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState<Record<string, any>>(initialFormData)
   const [isLoading, setIsLoading] = useState(true)
+  const { brand } = useSiteContext()
 
   // Load saved data from localStorage
   useEffect(() => {
     const loadSavedData = () => {
       try {
-        const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+        const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
         if (customerData[storageKey]) {
           setFormData(prev => ({
             ...prev,
@@ -106,9 +108,9 @@ export function GenericFormStepper({
     setIsSubmitting(true)
 
     setTimeout(() => {
-      const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+      const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
       localStorage.setItem(
-        "woodburn_customer",
+        `${brand.key}_customer_data`,
         JSON.stringify({
           ...customerData,
           [storageKey]: {

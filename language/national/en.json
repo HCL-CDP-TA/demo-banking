@@ -1,8 +1,95 @@
 {
+  "loginModal": {
+    "title": "Welcome to National Bank"
+  },
   "home": {
     "hero": {
-      "title": "Banking First <highlight>Trust & Expertise</highlight>",
       "subtitle": "For over five decades, <highlight>National Bank</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community."
+    },
+    "products": {
+      "items": {
+        "item1": {
+          "title": "Flexible Home Loans",
+          "description": "Tailored financing solutions to help you own your dream home.",
+          "features": {
+            "feature1": "Competitive variable rates",
+            "feature2": "Fixed-rate options available",
+            "feature3": "Personalized guidance"
+          }
+        },
+        "item3": {
+          "title": "Affordable Auto Loans",
+          "description": "Get behind the wheel faster with our easy and affordable car financing.",
+          "features": {
+            "feature1": "Low fixed rates",
+            "feature2": "Flexible repayment terms",
+            "feature3": "Quick approval"
+          }
+        }
+      }
+    },
+    "trustIndicators": {
+      "title": "Why National Bank?"
+    },
+    "cta": {
+      "title": "Ready to Experience Better Banking?"
     }
+  },
+  "credit-cards": {
+    "cards": {
+      "card1": {
+        "title": "National Bank Rewards Card"
+      },
+      "card2": {
+        "title": "National Bank Travel Card"
+      },
+      "card3": {
+        "title": "National Bank Business Card"
+      }
+    },
+    "benefits": {
+      "subTitle": "All National Bank credit cards come with comprehensive protection and valuable benefits"
+    }
+  },
+  "home-loans": {
+    "hero": {
+      "title": "Find Your Dream Home with Ease",
+      "subTitle": "Explore flexible home loan options tailored to your needs. Competitive rates, fast approvals, and trusted service."
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "subtitle": "Thank you for applying for a home loan with National Bank."
+    },
+    "contact": {
+      "call": {
+        "number": "(800) 555-1212"
+      },
+      "email": {
+        "address": "homeloans@nationalbank.com"
+      }
+    }
+  },
+  "car-loans": {
+    "hero": {
+      "subTitle": "Flexible financing for your daily drive"
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "description": "Thank you for choosing National Bank for your auto financing needs."
+    },
+    "contactInfo": {
+      "callUs": {
+        "number": "1-800-NATIONAL"
+      },
+      "emailUs": {
+        "address": "autoloans@nationalbank.com"
+      }
+    }
+  },
+  "footer": {
+    "phone": "1-800-NATIONAL",
+    "email": "info@nationalbank.com"
   }
 }

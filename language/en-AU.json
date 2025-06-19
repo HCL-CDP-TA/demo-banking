@@ -1,46 +1,276 @@
 {
   "navigation": {
-    "carLoans": "Car Loans"
+    "carLoans": "Car Loans",
+    "login": "Log in"
+  },
+  "loginModal": {
+    "title": "Welcome to Woodburn Bank Pty Ltd",
+    "tabs": {
+      "login": "Log in"
+    },
+    "placeholders": {
+      "phone": "(02) 1234 5678"
+    }
   },
   "home": {
     "hero": {
-      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community.",
-      "cta": "Start Banking Today"
+      "subtitle": "For over five decades, <highlight>Woodburn Bank Pty Ltd</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
     },
     "trustNumbers": {
       "items": {
-        "item4": {
-          "title": "APRA",
-          "description": "Regulated Institution"
+        "item2": {
+          "description": "Assets Under Management",
+          "title": "A$2.5B+"
         }
       }
     },
     "products": {
-      "subtitle": "From everyday banking to major life investments, we provide the expertise and personalised service you deserve.",
       "items": {
+        "item1": {
+          "features": {
+            "feature1": "Rates from 6.25% Comparison Rate"
+          },
+          "title": "Home Loans"
+        },
         "item3": {
+          "features": {
+            "feature1": "Rates from 8.99% Comparison Rate"
+          },
           "title": "Car Loans"
         }
       }
     },
     "trustIndicators": {
+      "subtitle": "Built on a foundation of trust, stability, and community commitment",
+      "title": "Why Woodburn Bank Pty Ltd?",
       "items": {
-        "item1": {
-          "description": "FCS insured deposits, advanced encryption, and comprehensive fraud protection keep your money and information secure."
+        "item2": {
+          "title": "Personalised Service"
         }
       }
     }
   },
+  "credit-cards": {
+    "benefits": {
+      "subTitle": "All Woodburn Bank Pty Ltd credit cards come with comprehensive protection and valuable benefits"
+    }
+  },
+  "home-loans": {
+    "calculator": {
+      "loanAmount": {
+        "currency": "AUD",
+        "locale": "en-AU"
+      }
+    },
+    "loanTypes": {
+      "items": {
+        "item1": {
+          "title": "Standard Variable Rate Loan",
+          "description": "Ideal for borrowers seeking flexibility.",
+          "features": {
+            "feature3": "Offset account available",
+            "feature4": "Available for owner-occupiers and investors"
+          }
+        },
+        "item2": {
+          "title": "Fixed Rate Loan",
+          "description": "Perfect for budgeting certainty.",
+          "features": {
+            "feature1": "Fixed interest rate for set period",
+            "feature2": "Predictable repayments",
+            "feature3": "Protection from rate increases",
+            "feature4": "Peace of mind"
+          }
+        },
+        "item3": {
+          "title": "Interest-Only Loan",
+          "description": "Exclusive benefits for investors or those managing cash flow.",
+          "features": {
+            "feature1": "Lower initial repayments",
+            "feature2": "Focus on capital growth",
+            "feature3": "Flexible repayment options",
+            "feature4": "Suitable for investment properties"
+          }
+        }
+      }
+    }
+  },
+  "home-loans/apply": {
+    "title": "Home Loan Application",
+    "form": {
+      "ssn": {
+        "label": "Tax File Number (TFN)",
+        "placeholder": "XXX XXX XXX"
+      },
+      "monthlyRent": {
+        "placeholder": "1200"
+      },
+      "checkingBalance": {
+        "label": "Cheque Account Balance"
+      },
+      "retirementBalance": {
+        "label": "Superannuation Balance"
+      },
+      "downPayment": {
+        "label": "Desired Deposit"
+      },
+      "propertyType": {
+        "options": {
+          "condo": "Apartment",
+          "singleFamily": "House",
+          "multiFamily": "Multi-Unit Dwelling"
+        }
+      },
+      "propertyAddress": {
+        "city": "Suburb/City",
+        "state": "State/Territory",
+        "zip": "Postcode"
+      }
+    },
+    "agreements": {
+      "terms": "I agree to Woodburn Bank Pty Ltd's Terms and Conditions and Privacy Policy.",
+      "credit": "I authorise Woodburn Bank Pty Ltd to obtain my credit report for this application."
+    },
+    "errors": {
+      "ssnRequired": "Tax File Number is required.",
+      "downPaymentRequired": "Deposit is required."
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "subtitle": "Thank you for applying for your home loan with Woodburn Bank Pty Ltd."
+    },
+    "contact": {
+      "call": {
+        "hours": "Mon-Fri 8AM-6PM AEST",
+        "number": "1800 123 456"
+      },
+      "email": {
+        "address": "homeloans@woodburnbank.com.au"
+      }
+    }
+  },
+  "car-loans": {
+    "hero": {
+      "subTitle": "Flexible car loans with competitive rates and personalised service. Get pre-approved in minutes.",
+      "cta": "Get pre-approved"
+    },
+    "calculator": {
+      "currency": "AUD",
+      "locale": "en-AU",
+      "APR": "Comparison Rate",
+      "subTitle": "Calculate your repayments and see how much car you can afford with our easy-to-use car loan calculator.",
+      "cardTitle": "Calculate Your Repayments",
+      "balloonPayment": {
+        "visible": "true"
+      }
+    },
+    "readyToApply": {
+      "subTitle": "Start your online application and get pre-approved in as little as 24 hours. Our secure process is fast, easy, and completely confidential.",
+      "stats": {
+        "stat3": {
+          "subTitle": "Starting Comparison Rate"
+        }
+      },
+      "benefits": {
+        "feature2": "Pre-approval valid for 60 days",
+        "feature3": "Shop at any dealer with confidence",
+        "feature4": "Dedicated loan specialist support"
+      }
+    }
+  },
+  "car-loans/apply": {
+    "header": {
+      "title": "Car Loan Application"
+    },
+    "personal": {
+      "ssn": {
+        "label": "Tax File Number (TFN)",
+        "placeholder": "XXX XXX XXX"
+      },
+      "driversLicenseState": {
+        "placeholder": "NSW"
+      }
+    },
+    "address": {
+      "city": "Suburb/City",
+      "state": "State/Territory",
+      "zipCode": "Postcode"
+    },
+    "financial": {
+      "creditScoreOptions": {
+        "fair": "Fair (650-699)"
+      }
+    },
+    "coApplicant": {
+      "ssn": {
+        "label": "Tax File Number (TFN)",
+        "placeholder": "XXX XXX XXX"
+      }
+    },
+    "vehicle": {
+      "mileage": "Kilometres (if used)"
+    },
+    "loan": {
+      "downPayment": "Deposit"
+    },
+    "agreements": {
+      "terms": "I agree to Woodburn Bank Pty Ltd's Terms and Conditions and Privacy Policy. I understand that this application does not guarantee loan approval.",
+      "credit": "I authorise Woodburn Bank Pty Ltd to obtain my credit report and verify information provided in this application."
+    },
+    "errors": {
+      "ssnRequired": "Tax File Number is required.",
+      "driversLicenseRequired": "Driver's Licence number is required.",
+      "loanAmountRequired": "Loan amount is required.",
+      "downPaymentRequired": "Deposit is required."
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "description": "Thank you for choosing Woodburn Bank Pty Ltd for your car financing needs."
+    },
+    "preApprovalBenefits": {
+      "benefitsList": [
+        "Shop at any dealer with confidence",
+        "Know your exact monthly repayment",
+        "Negotiate as a cash buyer",
+        "Pre-approval valid for 60 days",
+        "Fast funding at purchase",
+        "Dedicated loan specialist support"
+      ]
+    },
+    "contactInfo": {
+      "callUs": {
+        "number": "1800 WOODBURN"
+      },
+      "emailUs": {
+        "address": "autoloans@woodburnbank.com.au"
+      }
+    },
+    "importantReminders": {
+      "remindersList": [
+        "Your pre-approval is valid for 60 days from today",
+        "Avoid making major credit changes during this period",
+        "Bring your pre-approval letter when shopping for vehicles",
+        "Contact us immediately when you find your vehicle"
+      ]
+    },
+    "actionButtons": {
+      "learnMoreAutoLoans": "Learn More About Car Loans"
+    }
+  },
   "footer": {
-    "phone": "1800 123456",
+    "phone": "1800 WOODBURN",
     "email": "info@woodburnbank.com.au",
     "sections": {
       "products": {
-        "homeLoans": "Mortgages",
-        "carLoans": "Car Loans"
+        "carLoans": "Car Loans",
+        "homeLoans": "Home Loans"
+      },
+      "support": {
+        "help": "Help Centre"
       }
     },
-
-    "copyright": "© 2025 Woodburn Bank Limited ABN 12 345 678 900 AFSL and Australian Credit Licence 123456"
+    "copyright": "© 2025 Woodburn Bank Pty Ltd. All rights reserved."
   }
 }

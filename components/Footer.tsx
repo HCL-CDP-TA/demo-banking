@@ -1,10 +1,11 @@
 "use client"
-import Link from "next/link"
 import { Landmark, Phone, Mail } from "lucide-react"
 import { useTranslations } from "next-intl"
 import NavLink from "./common/NavLink"
+import { useSiteContext } from "@/lib/SiteContext"
 
 const Footer = () => {
+  const { brand, locale } = useSiteContext()
   const t = useTranslations("footer")
 
   return (
@@ -12,10 +13,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
+
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Landmark className="h-8 w-8 text-green-400" />
-              <span className="text-xl font-bold">Woodburn Bank</span>
+              <brand.icon className="h-8 w-8 text-[var(--primary)]" />
+              <span className="text-2xl font-bold">{brand.label}</span>
             </div>
             <p className="text-slate-300 mb-4 leading-relaxed">{t("description")}</p>
             <div className="flex flex-col space-y-2">

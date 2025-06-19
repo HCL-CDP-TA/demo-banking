@@ -1,12 +1,12 @@
 {
-  "name": "banking-industry",
+  "name": "demo-banking",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "docker-rebuild": "docker stop demo-banking || true && docker rm demo-banking || true && docker rmi demo-banking:latest || true && docker image prune -f && docker build -t demo-banking . && docker run --name demo-banking -d -p 3100:3000 demo-banking"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.3.2",
@@ -21,27 +21,33 @@
     "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-tooltip": "^1.2.7",
+    "better-sqlite3": "^11.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "deepmerge": "^4.3.1",
+    "fs": "^0.0.1-security",
     "html-react-parser": "^5.2.5",
     "lucide-react": "^0.515.0",
     "next": "15.3.3",
     "next-intl": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sqlite3": "^5.1.7",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.12",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5"
   }
