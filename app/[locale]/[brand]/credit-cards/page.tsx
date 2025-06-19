@@ -6,19 +6,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle } from "lucide-react"
 import { useTranslations } from "next-intl"
 import Hero from "@/components/Hero"
-import getIcon from "@/lib/getIcon"
+import { getIcon } from "@/lib/brandLocaleUtils"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function CreditCardsPage() {
-  const t = useTranslations("creditCardsPage")
+  const { brand, getPageNamespace } = useSiteContext()
+  const t = useTranslations(getPageNamespace())
   const [selectedCard, setSelectedCard] = useState<string | null>(null)
 
   const handleCardInterest = (cardType: string) => {
     setSelectedCard(cardType)
 
     // Track customer interaction for CDP
-    const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     localStorage.setItem(
-      "woodburn_customer",
+      `${brand.key}_customer_data`,
       JSON.stringify({
         ...customerData,
         creditCardInterest: {

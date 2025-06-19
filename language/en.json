@@ -4,11 +4,49 @@
     "creditCards": "Credit Cards",
     "carLoans": "Auto Loans",
     "login": "Login",
+    "logout": "Logout",
     "themeHeader": "Select Brand",
     "themeTooltip": "Change Brand",
     "localeHeader": "Select Locale",
     "localeTooltip": "Change Locale",
     "settings": "Settings"
+  },
+  "loginModal": {
+    "title": "Welcome to Woodburn Bank",
+    "description": "Sign in to your account or create a new one to get started",
+    "tabs": {
+      "login": "Sign In",
+      "register": "Create Account"
+    },
+    "fields": {
+      "email": "Email Address",
+      "password": "Password",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "email": "Enter your email",
+      "password": "Enter your password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "phone": "(555) 123-4567",
+      "confirmPassword": "Confirm your password"
+    },
+    "buttons": {
+      "signIn": "Sign In",
+      "signingIn": "Signing In...",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account..."
+    },
+    "links": {
+      "forgotPassword": "Forgot your password?"
+    },
+    "errors": {
+      "missingCredentials": "Please enter both email and password",
+      "passwordMismatch": "Passwords do not match"
+    }
   },
   "home": {
     "hero": {
@@ -110,8 +148,7 @@
       }
     }
   },
-
-  "creditCardsPage": {
+  "credit-cards": {
     "hero": {
       "title": "Credit Cards That Reward You",
       "subTitle": "Earn more on every purchase with no annual fees, comprehensive benefits, and the security you expect from a trusted financial institution.",
@@ -203,7 +240,7 @@
       "compareButton": "Compare All Cards"
     }
   },
-  "homeLoansPage": {
+  "home-loans": {
     "hero": {
       "title": "Find Your Dream Home with Ease",
       "subTitle": "Explore flexible home loan options tailored to your needs. Competitive rates, fast approvals, and trusted service.",
@@ -307,7 +344,255 @@
       "speakButton": "Speak to an Expert"
     }
   },
-  "carLoansPage": {
+  "home-loans/apply": {
+    "loading": "Loading application data...",
+    "backButton": "Back",
+    "title": "Home Loan Application",
+    "stepIndicator": "Step {current} of {total}",
+    "steps": {
+      "personalInfo": {
+        "title": "Personal Information",
+        "description": "Tell us about yourself."
+      },
+      "employmentInfo": {
+        "title": "Employment & Financial Information",
+        "description": "Details about your job and finances."
+      },
+      "loanInfo": {
+        "title": "Loan & Property Information",
+        "description": "Tell us about the loan and property you're interested in."
+      },
+      "review": {
+        "title": "Review & Submit",
+        "description": "Please review your application and agree to the terms."
+      }
+    },
+    "form": {
+      "firstName": {
+        "label": "First Name"
+      },
+      "lastName": {
+        "label": "Last Name"
+      },
+      "email": {
+        "label": "Email"
+      },
+      "phone": {
+        "label": "Phone Number"
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth"
+      },
+      "ssn": {
+        "label": "Social Security Number",
+        "placeholder": "XXX-XX-XXXX"
+      },
+      "maritalStatus": {
+        "label": "Marital Status",
+        "placeholder": "Select your marital status",
+        "options": {
+          "single": "Single",
+          "married": "Married",
+          "divorced": "Divorced",
+          "widowed": "Widowed"
+        }
+      },
+      "dependents": {
+        "label": "Number of Dependents"
+      },
+      "employmentStatus": {
+        "label": "Employment Status",
+        "placeholder": "Select your employment status",
+        "options": {
+          "employed": "Employed",
+          "selfEmployed": "Self-Employed",
+          "retired": "Retired",
+          "unemployed": "Unemployed",
+          "student": "Student"
+        }
+      },
+      "employer": {
+        "label": "Employer Name"
+      },
+      "jobTitle": {
+        "label": "Job Title"
+      },
+      "yearsAtJob": {
+        "label": "Years at Current Job"
+      },
+      "monthsAtJob": {
+        "label": "Months at Current Job",
+        "placeholder": "0"
+      },
+      "workPhone": {
+        "label": "Work Phone"
+      },
+      "annualIncome": {
+        "label": "Gross Annual Income"
+      },
+      "otherIncome": {
+        "label": "Other Monthly Income"
+      },
+      "monthlyRent": {
+        "label": "Monthly Housing Payment (Rent/Mortgage)"
+      },
+      "monthlyDebts": {
+        "label": "Total Monthly Debts (excl. housing)"
+      },
+      "checkingBalance": {
+        "label": "Checking Account Balance"
+      },
+      "savingsBalance": {
+        "label": "Savings Account Balance"
+      },
+      "retirementBalance": {
+        "label": "Retirement Account Balance"
+      },
+      "loanAmount": {
+        "label": "Desired Loan Amount"
+      },
+      "downPayment": {
+        "label": "Desired Down Payment"
+      },
+      "propertyType": {
+        "label": "Property Type",
+        "placeholder": "Select a property type",
+        "options": {
+          "singleFamily": "Single Family Home",
+          "condo": "Condominium",
+          "townhouse": "Townhouse",
+          "multiFamily": "Multi-Family Home",
+          "manufactured": "Manufactured Home"
+        }
+      },
+      "propertyUse": {
+        "label": "Property Use",
+        "placeholder": "Select property use",
+        "options": {
+          "primary": "Primary Residence",
+          "secondary": "Secondary Home",
+          "investment": "Investment Property"
+        }
+      },
+      "loanPurpose": {
+        "label": "Loan Purpose",
+        "placeholder": "Select loan purpose",
+        "options": {
+          "purchase": "Purchase",
+          "refinance": "Refinance",
+          "cashOut": "Cash-out Refinance",
+          "construction": "Construction"
+        }
+      },
+      "propertyAddress": {
+        "sectionTitle": "Property Address (if known)",
+        "street": "Street Address",
+        "streetPlaceholder": "123 Main St",
+        "city": "City",
+        "state": "State",
+        "zip": "Zip Code"
+      },
+      "hasRealtor": {
+        "label": "Are you working with a realtor?"
+      },
+      "realtorName": {
+        "label": "Realtor Name"
+      },
+      "realtorPhone": {
+        "label": "Realtor Phone"
+      },
+      "additionalInfo": {
+        "label": "Additional Information or Questions",
+        "placeholder": "Is there anything else you'd like us to know?"
+      }
+    },
+    "agreements": {
+      "terms": "I agree to the Terms and Conditions and Privacy Policy of Woodburn Bank.",
+      "credit": "I authorize Woodburn Bank to obtain my credit report for this application.",
+      "contact": "I agree to be contacted by Woodburn Bank regarding my application."
+    },
+    "review": {
+      "alert": "Please review all the information carefully before submitting. Make sure all required fields are filled out correctly."
+    },
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit Application",
+      "submitting": "Submitting..."
+    },
+    "errors": {
+      "firstNameRequired": "First Name is required.",
+      "lastNameRequired": "Last Name is required.",
+      "emailRequired": "Email is required.",
+      "phoneRequired": "Phone Number is required.",
+      "dateOfBirthRequired": "Date of Birth is required.",
+      "ssnRequired": "SSN is required.",
+      "employmentStatusRequired": "Employment Status is required.",
+      "annualIncomeRequired": "Annual Income is required.",
+      "loanAmountRequired": "Loan Amount is required.",
+      "downPaymentRequired": "Down Payment is required.",
+      "propertyTypeRequired": "Property Type is required.",
+      "agreeToTermsRequired": "You must agree to the Terms and Conditions.",
+      "agreeToCreditRequired": "You must authorize a credit report."
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "title": "Application Submitted Successfully!",
+      "subtitle": "Thank you for applying for a home loan with Woodburn Bank.",
+      "applicationId": "Application ID: {id}"
+    },
+
+    "nextSteps": {
+      "title": "What happens next?",
+      "description": "Here's what you can expect in the coming days:",
+      "cards": [
+        {
+          "title": "Within 24 Hours",
+          "description": "You'll receive a confirmation email with your application details and next steps."
+        },
+        {
+          "title": "Within 2-3 Days",
+          "description": "A loan officer will contact you to discuss your application and may request additional documents."
+        },
+        {
+          "title": "Within 5-7 Days",
+          "description": "You'll receive a preliminary decision on your loan application."
+        }
+      ]
+    },
+
+    "contact": {
+      "title": "Need help?",
+      "description": "Our loan specialists are here to answer any questions you may have.",
+      "call": {
+        "title": "Call us",
+        "number": "(555) 123-4567",
+        "hours": "Monday-Friday, 8am-6pm EST"
+      },
+      "email": {
+        "title": "Email us",
+        "address": "homeloans@woodburnbank.com",
+        "responseTime": "Typically responds within 1 business day"
+      }
+    },
+
+    "importantInfo": {
+      "title": "Important Information",
+      "tips": [
+        "Your application is not yet approved. Final approval is subject to underwriting review.",
+        "You may be asked to provide additional documentation to verify your information.",
+        "Interest rates are subject to change until your loan is locked in.",
+        "All loan approvals are conditional and subject to final verification."
+      ]
+    },
+
+    "buttons": {
+      "home": "Return to Home",
+      "moreInfo": "Learn More About Home Loans"
+    }
+  },
+  "car-loans": {
     "hero": {
       "title": "Drive Your Dream Car",
       "subTitle": "Flexible auto loans with competitive rates and personalized service. Get pre-approved in minutes.",
@@ -359,7 +644,7 @@
         "default": "new"
       },
       "balloonPayment": {
-        "visible": "true",
+        "visible": "false",
         "label": "Balloon Payment",
         "defaultPercentage": "0",
         "minPercentage": "0",
@@ -414,7 +699,7 @@
       "footer": "Secure application • No hidden fees • Local decision making"
     }
   },
-  "carLoanApplicationPage": {
+  "car-loans/apply": {
     "loading": "Loading your application...",
     "header": {
       "title": "Auto Loan Application",
@@ -594,8 +879,7 @@
       "agreeToCreditRequired": "You must agree to the credit check"
     }
   },
-
-  "CarLoanApplicationSubmittedPage": {
+  "car-loans/application-submitted": {
     "successHeader": {
       "title": "Application Submitted Successfully!",
       "description": "Thank you for choosing Woodburn Bank for your auto financing needs.",
@@ -657,64 +941,6 @@
       "learnMoreAutoLoans": "Learn More About Auto Loans"
     }
   },
-
-  "homeLoanSubmittedPage": {
-    "header": {
-      "title": "Application Submitted Successfully!",
-      "subtitle": "Thank you for applying for a home loan with Woodburn Bank.",
-      "applicationId": "Application ID: {id}"
-    },
-
-    "nextSteps": {
-      "title": "What happens next?",
-      "description": "Here's what you can expect in the coming days:",
-      "cards": [
-        {
-          "title": "Within 24 Hours",
-          "description": "You'll receive a confirmation email with your application details and next steps."
-        },
-        {
-          "title": "Within 2-3 Days",
-          "description": "A loan officer will contact you to discuss your application and may request additional documents."
-        },
-        {
-          "title": "Within 5-7 Days",
-          "description": "You'll receive a preliminary decision on your loan application."
-        }
-      ]
-    },
-
-    "contact": {
-      "title": "Need help?",
-      "description": "Our loan specialists are here to answer any questions you may have.",
-      "call": {
-        "title": "Call us",
-        "number": "(555) 123-4567",
-        "hours": "Monday-Friday, 8am-6pm EST"
-      },
-      "email": {
-        "title": "Email us",
-        "address": "homeloans@woodburnbank.com",
-        "responseTime": "Typically responds within 1 business day"
-      }
-    },
-
-    "importantInfo": {
-      "title": "Important Information",
-      "tips": [
-        "Your application is not yet approved. Final approval is subject to underwriting review.",
-        "You may be asked to provide additional documentation to verify your information.",
-        "Interest rates are subject to change until your loan is locked in.",
-        "All loan approvals are conditional and subject to final verification."
-      ]
-    },
-
-    "buttons": {
-      "home": "Return to Home",
-      "moreInfo": "Learn More About Home Loans"
-    }
-  },
-
   "footer": {
     "description": "Your trusted financial partner for over 50 years. We provide comprehensive banking solutions tailored to your needs with exceptional customer service and competitive rates.",
     "phone": "1-800-WOODBURN",

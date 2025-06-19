@@ -10,6 +10,7 @@ const supportedLocales: SupportedLocale[] = [
   { code: "en-US", label: "English (US)", fallbacks: ["en"], visible: true },
   { code: "en-GB", label: "English (UK)", fallbacks: ["en"], visible: true },
   { code: "en-AU", label: "English (AU)", fallbacks: ["en"], visible: true },
+  { code: "en-CA", label: "English (Canada)", fallbacks: ["en"], visible: true },
   { code: "en-IN", label: "English (India)", fallbacks: ["en"], visible: true },
   { code: "fr", label: "Français", fallbacks: ["en"], visible: true },
   { code: "fr-CA", label: "Français (Canada)", fallbacks: ["fr", "en"], visible: true },

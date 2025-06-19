@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -18,7 +18,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
-import { Settings, User, Bell, Shield, CreditCard, Globe, Save, RefreshCw, UserCog } from "lucide-react"
+import { Settings, User, Bell, Shield, Globe, Save, RefreshCw, UserCog } from "lucide-react"
+import { useSiteContext } from "@/lib/SiteContext"
 
 interface SettingsModalProps {
   children: React.ReactNode
@@ -27,6 +28,7 @@ interface SettingsModalProps {
 export default function SettingsModal({ children }: SettingsModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
+  const { brand } = useSiteContext()
 
   // Settings state
   const [settings, setSettings] = useState({
@@ -67,18 +69,32 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     timezone: "America/New_York",
   })
 
+  useEffect(() => {
+    // Load customer data from local storage if it exists
+    const storedCustomerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+    if (storedCustomerData?.loginData) {
+      setSettings(prev => ({
+        ...prev,
+        firstName: storedCustomerData.loginData.firstName || "",
+        lastName: storedCustomerData.loginData.lastName || "",
+        email: storedCustomerData.loginData.email || "",
+        phone: storedCustomerData.loginData.phone || "",
+      }))
+    }
+  }, [brand.key])
+
   const handleSave = async () => {
     setIsSaving(true)
 
     // Simulate saving process
     setTimeout(() => {
       // Save to localStorage for demo purposes
-      localStorage.setItem("woodburn_settings", JSON.stringify(settings))
+      localStorage.setItem(`${brand.key}_settings`, JSON.stringify(settings))
 
       // Track settings change for CDP
-      const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+      const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
       localStorage.setItem(
-        "woodburn_customer",
+        `${brand.key}_customer_data`,
         JSON.stringify({
           ...customerData,
           settingsUpdated: {

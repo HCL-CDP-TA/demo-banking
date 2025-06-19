@@ -11,7 +11,7 @@ export async function generateStaticParams() {
   return supportedBrands.flatMap(brand =>
     supportedLocales.map(locale => ({
       locale: locale.code,
-      brand: brand.value,
+      brand: brand.key,
     })),
   )
 }

@@ -4,7 +4,7 @@ import { supportedLocales } from "./i18n/locales"
 import { supportedBrands } from "./i18n/brands"
 
 const DEFAULT_LOCALE = "en-US"
-const DEFAULT_BRAND = supportedBrands[0].value
+const DEFAULT_BRAND = supportedBrands[0].key
 
 // Create the intl middleware
 const intlMiddleware = createIntlMiddleware({
@@ -17,7 +17,7 @@ const intlMiddleware = createIntlMiddleware({
 // Custom middleware function
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
-  const [_, locale, brand, ...rest] = pathname.split("/")
+  const [_, locale, brandName, ...rest] = pathname.split("/")
   const path = rest.join("/")
 
   // Handle redirects
@@ -25,13 +25,13 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/${DEFAULT_LOCALE}/${DEFAULT_BRAND}`, request.url))
   }
 
-  if (!brand) {
+  if (!brandName) {
     return NextResponse.redirect(new URL(`/${locale}/${DEFAULT_BRAND}/${path}`, request.url))
   }
 
-  const isValidBrand = supportedBrands.some(supportedBrand => supportedBrand.value === brand)
+  const isValidBrand = supportedBrands.some(supportedBrand => supportedBrand.key === brandName)
   if (!isValidBrand) {
-    return NextResponse.redirect(new URL(`/${locale}/${DEFAULT_BRAND}/${brand}/${path}`, request.url))
+    return NextResponse.redirect(new URL(`/${locale}/${DEFAULT_BRAND}/${brandName}/${path}`, request.url))
   }
 
   // Continue with intl middleware

@@ -1,26 +1,27 @@
 {
   "navigation": {
     "homeLoans": "Mortgages",
-    "carLoans": "Car Loans"
+    "carLoans": "Car Loans",
+    "login": "Log in"
+  },
+  "loginModal": {
+    "title": "Welcome to Woodburn Bank plc",
+    "tabs": {
+      "login": "Log in"
+    }
   },
   "home": {
     "hero": {
-      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
+      "subtitle": "For over five decades, <highlight>Woodburn Bank plc</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
     },
     "trustNumbers": {
       "items": {
         "item2": {
-          "title": "£2.5B+",
-          "description": "Assets Under Management"
-        },
-        "item4": {
-          "title": "FCA",
-          "description": "Regulated Institution"
+          "title": "£2.5B+"
         }
       }
     },
     "products": {
-      "subtitle": "From everyday banking to major life investments, we provide the expertise and personalised service you deserve.",
       "items": {
         "item1": {
           "title": "Mortgages"
@@ -29,17 +30,158 @@
           "title": "Car Loans"
         }
       }
+    },
+    "trustIndicators": {
+      "items": {
+        "item2": {
+          "title": "Personalised Service"
+        }
+      }
+    }
+  },
+  "credit-cards": {
+    "benefits": {
+      "subTitle": "All Woodburn Bank plc credit cards come with comprehensive protection and valuable benefits"
+    }
+  },
+  "home-loans": {
+    "hero": {
+      "subTitle": "Explore flexible mortgage options tailored to your needs. Competitive rates, fast approvals, and trusted service."
+    },
+    "calculator": {
+      "title": "Mortgage Payment Calculator",
+      "cardTitle": "Calculate Your Mortgage",
+      "loanAmount": {
+        "currency": "GBP",
+        "locale": "en-GB"
+      }
+    },
+    "cta": {
+      "description": "Apply online or speak with a mortgage expert today to get started."
+    },
+    "title": "Mortgage Application"
+  },
+  "home-loans/apply": {
+    "title": "Mortgage Application",
+    "form": {
+      "downPayment": {
+        "label": "Desired Deposit"
+      },
+      "propertyType": {
+        "options": {
+          "condo": "Apartment"
+        }
+      }
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "subtitle": "Thank you for applying for a mortgage with Woodburn Bank plc."
+    },
+    "contact": {
+      "call": {
+        "number": "0800 012 3456",
+        "hours": "Monday-Friday, 8am-6pm GMT"
+      },
+      "email": {
+        "address": "mortgages@woodburnbank.co.uk"
+      }
+    },
+    "buttons": {
+      "moreInfo": "Learn More About Mortgages"
+    }
+  },
+  "car-loans": {
+    "hero": {
+      "subTitle": "Flexible car loans with competitive rates and personalised service. Get pre-approved in minutes."
+    },
+    "calculator": {
+      "subTitle": "Calculate your repayments and see how much car you can afford with our easy-to-use car loan calculator.",
+      "cardTitle": "Calculate Your Repayments",
+      "currency": "GBP",
+      "locale": "en-GB",
+      "deposit": {
+        "label": "Deposit"
+      }
+    },
+    "readyToApply": {
+      "subTitle": "Start your application online and get pre-approved in as little as 24 hours. Our secure process is fast, easy, and completely confidential.",
+      "benefits": {
+        "feature2": "Pre-approval valid for 60 days",
+        "feature3": "Shop at any dealer with confidence",
+        "feature4": "Dedicated loan specialist support"
+      }
+    }
+  },
+  "car-loans/apply": {
+    "header": {
+      "title": "Car Loan Application"
+    },
+    "vehicle": {
+      "typeOptions": {
+        "certified": "Certified Pre-Owned"
+      },
+      "mileage": "Mileage (if used)",
+      "price": "Vehicle Price"
+    },
+    "loan": {
+      "downPayment": "Deposit",
+      "tradeInValue": "Part-Exchange Value"
+    },
+    "agreements": {
+      "terms": "I agree to Woodburn Bank plc's Terms and Conditions and Privacy Policy. I understand that this application does not guarantee loan approval.",
+      "credit": "I authorise Woodburn Bank plc to obtain my credit report and verify information provided in this application."
+    },
+    "errors": {
+      "downPaymentRequired": "Deposit is required."
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "description": "Thank you for choosing Woodburn Bank plc for your car financing needs."
+    },
+    "preApprovalBenefits": {
+      "benefitsList": [
+        "Shop at any dealer with confidence",
+        "Know your exact monthly payment",
+        "Negotiate as a cash buyer",
+        "Pre-approval valid for 60 days",
+        "Fast funding at purchase",
+        "Dedicated loan specialist support"
+      ]
+    },
+    "contactInfo": {
+      "callUs": {
+        "number": "0800 0WOODBURN"
+      },
+      "emailUs": {
+        "address": "carloans@woodburnbank.co.uk"
+      }
+    },
+    "importantReminders": {
+      "remindersList": [
+        "Your pre-approval is valid for 60 days from today",
+        "Avoid making major credit changes during this period",
+        "Bring your pre-approval letter when shopping for vehicles",
+        "Contact us immediately when you find your vehicle"
+      ]
+    },
+    "actionButtons": {
+      "learnMoreAutoLoans": "Learn More About Car Loans"
     }
   },
   "footer": {
-    "phone": "0800-123456",
+    "phone": "0800 0WOODBURN",
     "email": "info@woodburnbank.co.uk",
     "sections": {
       "products": {
-        "homeLoans": "Mortgages",
-        "carLoans": "Car Loans"
+        "carLoans": "Car Loans",
+        "homeLoans": "Mortgages"
+      },
+      "support": {
+        "help": "Help Centre"
       }
     },
-    "copyright": "© 2025 Woodburn Bank PLC. All rights reserved. "
+    "copyright": "© 2025 Woodburn Bank plc. All rights reserved."
   }
 }

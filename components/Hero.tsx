@@ -15,17 +15,11 @@ type HeroProps = {
 const Hero = ({ title, subTitle, cta, imageUrl }: HeroProps) => {
   return (
     <section className="relative min-h-[30vh]">
-      <Image src={imageUrl} alt="Hero background" fill priority className="object-cover" quality={100} />
+      <Image src={imageUrl} alt="" fill priority className="object-cover" quality={100} />
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-900/30" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold tracking-tight text-primary-foreground sm:text-6xl text-center max-w-3xl">
           {title}
-          {/* {parse(title, {
-            replace: (domNode) => {
-              if (domNode.name === ' highlight') {
-                return <span className="text-green-400">{domToReact(domNode.children)}</span>;
-              }
-          })} */}
         </h1>
         <p className="text-xl md:text-2xl my-8 text-slate-200 max-w-3xl mx-auto text-center">{subTitle}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

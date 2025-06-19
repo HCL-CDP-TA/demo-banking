@@ -1,6 +1,5 @@
 "use client"
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -11,31 +10,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { BriefcaseBusiness, Globe, Settings } from "lucide-react"
-import { useTheme } from "@/lib/theme-context"
+import { useSiteContext } from "@/lib/SiteContext"
 import { supportedLocales } from "@/i18n/locales"
 import { supportedBrands } from "@/i18n/brands"
 import { useTranslations } from "next-intl"
 import SettingsModal from "./SettingsModal"
 
 export default function NavControls() {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
   const t = useTranslations("navigation")
 
-  const { theme, locale, setTheme, setLocale } = useTheme()
+  const { brand, locale, setBrand, setLocale, getFullPath } = useSiteContext()
 
   const switchLocale = (newLocale: string) => {
-    const segments = pathname.split("/")
-    if (supportedLocales.some(l => l.code === segments[1])) {
-      segments[1] = newLocale
-    } else {
-      segments.splice(1, 0, newLocale)
-    }
-    const newPath = segments.join("/") || "/"
-    const query = searchParams.toString()
     setLocale(newLocale)
-    router.replace(query ? `${newPath}?${query}` : newPath)
+  }
+
+  const switchBrand = (newBrand: string) => {
+    setBrand(newBrand)
   }
 
   return (
@@ -58,16 +49,16 @@ export default function NavControls() {
           {supportedBrands.map(brandOption => {
             return (
               <DropdownMenuItem
-                key={brandOption.value}
-                onClick={() => setTheme(brandOption.value)}
+                key={brandOption.key}
+                onClick={() => switchBrand(brandOption.key)}
                 className={`cursor-pointer p-2 group ${
-                  theme === brandOption.value
+                  brand.key === brandOption.key
                     ? "bg-accent text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                     : "hover:bg-primary hover:text-primary-foreground"
                 }`}>
                 <brandOption.icon
                   className={`mr-2 h-4 w-4 ${
-                    theme === brandOption.value
+                    brand.key === brandOption.key
                       ? "text-primary-foreground"
                       : "text-current group-hover:text-primary-foreground"
                   }`}
@@ -101,7 +92,7 @@ export default function NavControls() {
                 key={supportedLocale.code}
                 onClick={() => switchLocale(supportedLocale.code)}
                 className={`cursor-pointer p-2 group ${
-                  locale === supportedLocale.code
+                  locale.code === supportedLocale.code
                     ? "bg-accent text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                     : "hover:bg-primary hover:text-primary-foreground"
                 }`}>

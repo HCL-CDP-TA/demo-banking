@@ -1,15 +1,15 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Users, Award, CheckCircle, LucideIcon, ChevronsRight } from "lucide-react"
+import { Shield, Users, Award, CheckCircle, LucideIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import Hero from "@/components/Hero"
-import getIcon from "@/lib/getIcon"
+import { getIcon } from "@/lib/brandLocaleUtils"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function HomePage() {
-  const t = useTranslations("home")
-
+  const t = useTranslations(useSiteContext().getPageNamespace())
   interface Product {
     title: string
     description: string
@@ -63,17 +63,6 @@ export default function HomePage() {
         t("products.items.item3.features.feature3"),
       ],
     },
-    // {
-    //   title: t("products.items.item4.title"),
-    //   description: t("products.items.item4.description"),
-    //   icon: getIcon(t("products.items.item4.icon")),
-    //   link: "/bank-accounts",
-    //   features: [
-    //     t("products.items.item4.features.feature1"),
-    //     t("products.items.item4.features.feature2"),
-    //     t("products.items.item4.features.feature3"),
-    //   ],
-    // },
   ]
 
   const trustNumbers: TrustNumbers[] = [
@@ -133,8 +122,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             {trustNumbers.map((number, index) => (
               <div key={index} className="flex flex-col items-center">
-                <div className="text-3xl font-bold text-slate-700 mb-1">{number.title}</div>
-                <div className="text-sm text-slate-600">{number.description}</div>
+                <div className="text-3xl font-bold mb-1">{number.title}</div>
+                <div className="text-sm">{number.description}</div>
               </div>
             ))}
           </div>

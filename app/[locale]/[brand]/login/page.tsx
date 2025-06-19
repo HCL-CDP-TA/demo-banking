@@ -11,12 +11,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Shield, User, Lock } from "lucide-react"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   })
+  const { brand } = useSiteContext()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
@@ -31,7 +33,7 @@ export default function LoginPage() {
       if (formData.email && formData.password) {
         // Store customer data for CDP tracking
         localStorage.setItem(
-          "woodburn_customer",
+          `${brand.key}_customer_data`,
           JSON.stringify({
             email: formData.email,
             loginTime: new Date().toISOString(),

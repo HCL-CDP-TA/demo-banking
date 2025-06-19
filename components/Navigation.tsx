@@ -1,10 +1,8 @@
 "use client"
 
-import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { Landmark, Menu, User, X } from "lucide-react"
-import { supportedBrands } from "@/i18n/brands"
-import { useState } from "react"
+import { Menu, User, X } from "lucide-react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import LoginModal from "./LoginModal"
 import { Button } from "./ui/button"
@@ -12,26 +10,47 @@ import { cn } from "@/lib/utils"
 import NavLink from "./common/NavLink"
 import NavControls from "./NavControls"
 
+import { useSiteContext } from "@/lib/SiteContext"
+
 const Navigation = () => {
-  const pathname = usePathname()
   const t = useTranslations("navigation")
+  const { brand, getFullPath } = useSiteContext()
 
-  // Extract brand from URL path
-  const [_, currentLocale, currentBrand] = pathname.split("/")
-  const brand = supportedBrands.find(brand => brand.value === currentBrand) || supportedBrands[0]
-  const Icon = brand.icon || Landmark
-
-  // Update navigation to include dynamic paths
   const navigation = [
-    { name: t("homeLoans"), href: `/${currentLocale}/${currentBrand}/home-loans` },
-    { name: t("creditCards"), href: `/${currentLocale}/${currentBrand}/credit-cards` },
-    { name: t("carLoans"), href: `/${currentLocale}/${currentBrand}/car-loans` },
+    { name: t("homeLoans"), href: getFullPath("/home-loans") },
+    { name: t("creditCards"), href: getFullPath("/credit-cards") },
+    { name: t("carLoans"), href: getFullPath("/car-loans") },
   ]
 
-  // Update logo link to maintain brand and locale
-  const homeLink = `/${currentLocale}/${currentBrand}`
-
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // Function to check login status
+  const checkLoginStatus = () => {
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+    setIsLoggedIn(!!customerData?.loginData?.email)
+  }
+
+  // Check login status on component mount
+  useEffect(() => {
+    checkLoginStatus()
+  }, [brand.key])
+
+  const handleLogout = () => {
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+
+    // Remove only the loginData property
+    if (customerData?.loginData) {
+      delete customerData.loginData
+      localStorage.setItem(`${brand.key}_customer_data`, JSON.stringify(customerData))
+    }
+
+    setIsLoggedIn(false) // Update state immediately
+  }
+
+  const handleLogin = () => {
+    checkLoginStatus() // Re-check login status after login
+  }
 
   return (
     <nav className="bg-[var(--secondary)] shadow-sm sticky top-0 z-50 ">
@@ -39,8 +58,8 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href={homeLink} className="flex items-center space-x-2">
-              <Icon className="h-8 w-8 text-[var(--primary)]" />
+            <Link href={getFullPath("/")} className="flex items-center space-x-2">
+              <brand.icon className="h-8 w-8 text-[var(--primary)]" />
               <span className="text-2xl font-bold text-[var(--secondary-foreground)]">{brand.label}</span>
             </Link>
           </div>
@@ -56,15 +75,22 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Controls and Login */}
+          {/* Controls and Login/Logout */}
           <div className="hidden md:flex items-center space-x-4">
             <NavControls />
-            <LoginModal>
-              <Button variant="default" className="cursor-pointer">
+            {isLoggedIn ? (
+              <Button variant="default" className="cursor-pointer" onClick={handleLogout}>
                 <User className="h-4 w-4 mr-2 cursor-pointer" />
-                {t("login")}
+                {t("logout")}
               </Button>
-            </LoginModal>
+            ) : (
+              <LoginModal onLogin={() => setIsLoggedIn(true)}>
+                <Button variant="default" className="cursor-pointer">
+                  <User className="h-4 w-4 mr-2 cursor-pointer" />
+                  {t("login")}
+                </Button>
+              </LoginModal>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -91,12 +117,19 @@ const Navigation = () => {
               </Link>
             ))}
             <div className="pt-4">
-              <LoginModal>
-                <Button className="w-full pointer-cursor">
+              {isLoggedIn ? (
+                <Button className="w-full pointer-cursor" onClick={handleLogout}>
                   <User className="h-4 w-4 mr-2" />
-                  {t("login")}
+                  {t("logout")}
                 </Button>
-              </LoginModal>
+              ) : (
+                <LoginModal onLogin={handleLogin}>
+                  <Button className="w-full pointer-cursor">
+                    <User className="h-4 w-4 mr-2" />
+                    {t("login")}
+                  </Button>
+                </LoginModal>
+              )}
             </div>
           </div>
         </div>
@@ -104,4 +137,5 @@ const Navigation = () => {
     </nav>
   )
 }
+
 export default Navigation

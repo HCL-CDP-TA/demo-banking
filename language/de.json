@@ -1,0 +1,970 @@
+{
+  "navigation": {
+    "homeLoans": "Hypothekendarlehen",
+    "creditCards": "Kreditkarten",
+    "carLoans": "Autokredite",
+    "login": "Anmelden",
+    "themeHeader": "Marke auswählen",
+    "themeTooltip": "Marke wechseln",
+    "localeHeader": "Sprache auswählen",
+    "localeTooltip": "Sprache wechseln",
+    "settings": "Einstellungen"
+  },
+  "loginModal": {
+    "title": "Willkommen bei der Woodburn Bank",
+    "description": "Melden Sie sich bei Ihrem Konto an oder erstellen Sie ein neues, um loszulegen",
+    "tabs": {
+      "login": "Anmelden",
+      "register": "Konto erstellen"
+    },
+    "fields": {
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "phone": "Telefonnummer",
+      "confirmPassword": "Passwort bestätigen"
+    },
+    "placeholders": {
+      "email": "Geben Sie Ihre E-Mail-Adresse ein",
+      "password": "Geben Sie Ihr Passwort ein",
+      "firstName": "Max",
+      "lastName": "Mustermann",
+      "phone": "(0123) 4567890",
+      "confirmPassword": "Bestätigen Sie Ihr Passwort"
+    },
+    "buttons": {
+      "signIn": "Anmelden",
+      "signingIn": "Anmeldung läuft...",
+      "createAccount": "Konto erstellen",
+      "creatingAccount": "Konto wird erstellt..."
+    },
+    "links": {
+      "forgotPassword": "Passwort vergessen?"
+    },
+    "errors": {
+      "missingCredentials": "Bitte E-Mail-Adresse und Passwort eingeben",
+      "passwordMismatch": "Passwörter stimmen nicht überein"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Bank basierend auf <highlight>Vertrauen und Expertise</highlight>",
+      "subtitle": "Seit über fünf Jahrzehnten bietet die <highlight>Woodburn Bank</highlight> zuverlässige Finanzlösungen mit persönlichem Service und unerschütterlichem Engagement für unsere Gemeinschaft.",
+      "cta": "Beginnen Sie noch heute mit der Verwaltung Ihrer Finanzen",
+      "imageUrl": "/home-hero.jpg"
+    },
+    "trustNumbers": {
+      "items": {
+        "item1": {
+          "title": "50+",
+          "description": "Jahre Erfahrung"
+        },
+        "item2": {
+          "title": "2,5 Mrd. €+",
+          "description": "Verwaltetes Vermögen"
+        },
+        "item3": {
+          "title": "10 Mio.+",
+          "description": "Zufriedene Kunden"
+        },
+        "item4": {
+          "title": "Versichert",
+          "description": "Versichertes Institut"
+        }
+      }
+    },
+    "products": {
+      "title": "Umfassende Finanzlösungen",
+      "subtitle": "Vom täglichen Banking bis zu großen Investitionen bieten wir die Expertise und den persönlichen Service, den Sie verdienen.",
+      "items": {
+        "item1": {
+          "title": "Hypothekendarlehen",
+          "description": "Wettbewerbsfähige Zinssätze und fachkundige Beratung für Ihren Hauskauf",
+          "icon": "Home",
+          "link": "/home-loans",
+          "features": {
+            "feature1": "Zinsen ab 6,25 % effektiver Jahreszins",
+            "feature2": "Schneller Vorabgenehmigungsprozess",
+            "feature3": "Lokale Darlehensexpertise"
+          }
+        },
+        "item2": {
+          "title": "Kreditkarten",
+          "description": "Prämienprogramme ohne Jahresgebühren und Betrugsschutz",
+          "icon": "CreditCard",
+          "link": "/credit-cards",
+          "features": {
+            "feature1": "Bis zu 3 % Cashback",
+            "feature2": "Keine Jahresgebühren",
+            "feature3": "24/7 Betrugsüberwachung"
+          }
+        },
+        "item3": {
+          "title": "Autokredite",
+          "description": "Flexible Finanzierung für Ihr tägliches Pendeln",
+          "icon": "Car",
+          "link": "/car-loans",
+          "features": {
+            "feature1": "Zinsen ab 8,99 % effektiver Jahreszins",
+            "feature2": "Schneller Genehmigungsprozess",
+            "feature3": "Keine Vorfälligkeitsentschädigung"
+          }
+        }
+      }
+    },
+    "trustIndicators": {
+      "title": "Warum Woodburn Bank?",
+      "subtitle": "Auf Vertrauen, Stabilität und gesellschaftlichem Engagement aufgebaut",
+      "items": {
+        "item1": {
+          "icon": "Shield",
+          "title": "Sicherheit zuerst",
+          "description": "Versicherte Einlagen, fortschrittliche Verschlüsselung und umfassender Betrugsschutz zur Sicherung Ihres Geldes und Ihrer Informationen."
+        },
+        "item2": {
+          "icon": "Users",
+          "title": "Persönlicher Service",
+          "description": "Engagierte Kundenberater, die Ihren Namen kennen und Ihre finanziellen Ziele und Bestrebungen verstehen."
+        },
+        "item3": {
+          "icon": "Award",
+          "title": "Gemeinschaftsorientiert",
+          "description": "Lokal im Besitz und betrieben, reinvestieren wir in unsere Gemeinschaft und unterstützen lokale Unternehmen und Familien."
+        }
+      }
+    },
+    "cta": {
+      "title": "Bereit für ein besseres Bankerlebnis?",
+      "subtitle": "Schließen Sie sich Tausenden zufriedener Kunden an, die uns für ihre finanzielle Zukunft vertrauen.",
+      "buttons": {
+        "text1": "Konto eröffnen",
+        "variant1": "default",
+        "link1": "#",
+        "text2": "Mit einem Spezialisten sprechen",
+        "variant2": "secondary",
+        "link2": "#"
+      }
+    }
+  },
+  "credit-cards": {
+    "hero": {
+      "title": "Kreditkarten, die Sie belohnen",
+      "subTitle": "Verdienen Sie mehr bei jedem Einkauf ohne Jahresgebühren, mit umfassenden Vorteilen und der Sicherheit, die Sie von einem vertrauenswürdigen Finanzinstitut erwarten.",
+      "cta": "Karten vergleichen",
+      "imageUrl": "/credit-card-hero.jpg"
+    },
+    "cards": {
+      "title": "Finden Sie Ihre ideale Kreditkarte",
+      "subTitle": "Wählen Sie aus unserer Auswahl an Prämienkarten, die auf Ihren Lebensstil und Ihre Ausgabegewohnheiten zugeschnitten sind",
+      "card1": {
+        "title": "Woodburn Prämienkarte",
+        "description": "Sammeln Sie Punkte bei jedem Einkauf ohne Jahresgebühren",
+        "badge": "Am beliebtesten",
+        "rate1": "2x",
+        "rate1Description": "Punkte für Restaurants und Reisen",
+        "rate2": "1x",
+        "rate2Description": "Für alle anderen Einkäufe",
+        "features": {
+          "feature1": "Keine Jahresgebühren",
+          "feature2": "0 € Haftung bei Betrug",
+          "feature3": "0 % Einführungszinssatz für 12 Monate",
+          "feature4": "Flexible Einlösungsoptionen"
+        },
+        "cta": "Jetzt beantragen"
+      },
+      "card2": {
+        "title": "Woodburn Reisekarte",
+        "description": "Sammeln Sie Meilen bei jedem Einkauf ohne Fremdwährungsgebühren",
+        "badge": "Ideal für Reisende",
+        "rate1": "3x",
+        "rate1Description": "Meilen für Reisen und Restaurants",
+        "rate2": "1x",
+        "rate2Description": "Für alle anderen Einkäufe",
+        "features": {
+          "feature1": "Keine Jahresgebühren",
+          "feature2": "0 € Haftung bei Betrug",
+          "feature3": "0 % Einführungszinssatz für 12 Monate",
+          "feature4": "Inklusive Reiseversicherung"
+        },
+        "cta": "Jetzt beantragen"
+      },
+      "card3": {
+        "title": "Woodburn Business-Karte",
+        "description": "Entwickelt für Kleinunternehmer mit Cashback bei jedem Einkauf",
+        "badge": "Ideal für Unternehmen",
+        "rate1": "1,5%",
+        "rate1Description": "Cashback auf alle Einkäufe",
+        "rate2": "0%",
+        "rate2Description": "Keine Fremdwährungsgebühren",
+        "features": {
+          "feature1": "Keine Jahresgebühren",
+          "feature2": "0 € Haftung bei Betrug",
+          "feature3": "Tools zur Ausgabenverfolgung",
+          "feature4": "Mitarbeiterkarten ohne zusätzliche Kosten"
+        },
+        "cta": "Jetzt beantragen"
+      }
+    },
+    "benefits": {
+      "title": "Vorteile der Premium-Kreditkarten",
+      "subTitle": "Alle Kreditkarten der Woodburn Bank bieten umfassenden Schutz und wertvolle Vorteile",
+      "items": {
+        "item1": {
+          "icon": "Shield",
+          "title": "Betrugsschutz",
+          "description": "0 € Haftung bei Betrug und 24/7 Überwachung mit sofortigen Warnmeldungen bei verdächtigen Aktivitäten"
+        },
+        "item2": {
+          "icon": "Star",
+          "title": "Bonitätsscore-Tracking",
+          "description": "Kostenlose monatliche Bonitätsscore-Updates und personalisierte Tipps zur Verbesserung"
+        },
+        "item3": {
+          "icon": "Gift",
+          "title": "Prämienprogramm",
+          "description": "Punkte und Cashback verfallen nie mit flexiblen Einlösungsoptionen"
+        },
+        "item4": {
+          "icon": "Percent",
+          "title": "Einführungszinssatz",
+          "description": "0 % Einführungszinssatz für Einkäufe und Saldoübertragungen für qualifizierte Antragsteller"
+        }
+      }
+    },
+    "cta": {
+      "title": "Bereit, Prämien zu verdienen?",
+      "description": "Beantragen Sie online in wenigen Minuten und erhalten Sie eine sofortige Entscheidung mit unserem sicheren Antragsverfahren",
+      "applyButton": "Karte beantragen",
+      "compareButton": "Alle Karten vergleichen"
+    }
+  },
+  "home-loans": {
+    "hero": {
+      "title": "Finden Sie Ihr Traumhaus mit Leichtigkeit",
+      "subTitle": "Entdecken Sie flexible Hypothekendarlehensoptionen, die auf Ihre Bedürfnisse zugeschnitten sind. Wettbewerbsfähige Zinssätze, schnelle Genehmigungen und vertrauenswürdiger Service.",
+      "button": "Starten",
+      "imageUrl": "/home-loan-hero.jpg"
+    },
+    "calculator": {
+      "title": "Hypothekendarlehen-Rechner",
+      "description": "Schätzen Sie Ihre Zahlungen und finden Sie die beste Darlehensoption für Ihr Budget.",
+      "cardTitle": "Berechnen Sie Ihr Darlehen",
+      "loanAmount": {
+        "label": "Darlehensbetrag",
+        "default": "300000",
+        "min": "100000",
+        "max": "10000000",
+        "step": "10000",
+        "currency": "EUR",
+        "locale": "de-DE"
+      },
+      "interestRate": {
+        "label": "Zinssatz",
+        "default": "7",
+        "min": "1",
+        "max": "12",
+        "step": "0.05"
+      },
+      "loanTerm": {
+        "label": "Darlehenslaufzeit",
+        "default": "25",
+        "min": "5",
+        "max": "30",
+        "step": "1",
+        "years": "Jahre"
+      },
+      "paymentFrequency": {
+        "visible": "true",
+        "label": "Zahlungshäufigkeit",
+        "monthly": "Monatlich",
+        "fortnightly": "Zweiwöchentlich",
+        "weekly": "Wöchentlich",
+        "default": "monthly"
+      },
+      "submitButton": "Zahlungen berechnen",
+      "resultTitle": "Geschätzte Zahlungen",
+      "resultDescription": "Basierend auf Ihren Angaben sind dies ungefähre Werte",
+      "resultDisclaimer": "Hinweis: Dies ist eine Schätzung und kann je nach weiteren Faktoren variieren."
+    },
+    "readyToApply": {
+      "title": "Bereit zur Beantragung?",
+      "subTitle": "Beginnen Sie Ihre Online-Bewerbung und erhalten Sie eine Vorabgenehmigung in nur 24 Stunden. Unser sicherer Prozess ist schnell, einfach und absolut vertraulich.",
+      "applyButton": "Jetzt online beantragen",
+      "feature1": "Keine Antragsgebühren",
+      "feature2": "Sicherer Prozess",
+      "preferExpert": "Möchten Sie lieber mit jemandem sprechen?",
+      "speakButton": "Mit einem Experten sprechen"
+    },
+    "loanTypes": {
+      "title": "Darlehensarten entdecken",
+      "description": "Wählen Sie die Darlehensart, die Ihren Bedürfnissen und Zielen entspricht.",
+      "items": {
+        "item1": {
+          "title": "Konventionelles Darlehen",
+          "description": "Ideal für Kreditnehmer mit guter Bonität.",
+          "icon": "House",
+          "features": {
+            "feature1": "Niedrige Zinssätze",
+            "feature2": "Flexible Konditionen",
+            "feature3": "Keine private Hypothekenversicherung",
+            "feature4": "Verfügbar für Haupt- und Zweitwohnsitze"
+          }
+        },
+        "item2": {
+          "title": "FHA-Darlehen",
+          "description": "Perfekt für Erstkäufer von Eigenheimen.",
+          "icon": "House",
+          "features": {
+            "feature1": "Optionen für geringe Anzahlung",
+            "feature2": "Einfachere Qualifikation",
+            "feature3": "Staatlich garantierte Sicherheit",
+            "feature4": "Wettbewerbsfähige Zinssätze"
+          }
+        },
+        "item3": {
+          "title": "VA-Darlehen",
+          "description": "Exklusive Vorteile für Veteranen.",
+          "icon": "House",
+          "features": {
+            "feature1": "Keine Anzahlung erforderlich",
+            "feature2": "Keine private Hypothekenversicherung",
+            "feature3": "Niedrige Abschlusskosten",
+            "feature4": "Flexible Kreditvoraussetzungen"
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Bereit für den nächsten Schritt?",
+      "description": "Beantragen Sie online oder sprechen Sie noch heute mit einem Darlehensexperten, um loszulegen.",
+      "applyButton": "Jetzt beantragen",
+      "speakButton": "Mit einem Experten sprechen"
+    }
+  },
+  "home-loans/apply": {
+    "loading": "Antragsdaten werden geladen...",
+    "backButton": "Zurück",
+    "title": "Hypothekendarlehen-Antrag",
+    "stepIndicator": "Schritt {current} von {total}",
+    "steps": {
+      "personalInfo": {
+        "title": "Persönliche Informationen",
+        "description": "Erzählen Sie uns von sich."
+      },
+      "employmentInfo": {
+        "title": "Berufliche und finanzielle Informationen",
+        "description": "Details zu Ihrer Beschäftigung und Ihren Finanzen."
+      },
+      "loanInfo": {
+        "title": "Darlehens- und Immobilieninformationen",
+        "description": "Erzählen Sie uns von dem Darlehen und der Immobilie, an denen Sie interessiert sind."
+      },
+      "review": {
+        "title": "Überprüfung und Einreichung",
+        "description": "Bitte überprüfen Sie Ihre Bewerbung und akzeptieren Sie die Bedingungen."
+      }
+    },
+    "form": {
+      "firstName": {
+        "label": "Vorname"
+      },
+      "lastName": {
+        "label": "Nachname"
+      },
+      "email": {
+        "label": "E-Mail-Adresse"
+      },
+      "phone": {
+        "label": "Telefonnummer"
+      },
+      "dateOfBirth": {
+        "label": "Geburtsdatum"
+      },
+      "ssn": {
+        "label": "Sozialversicherungsnummer",
+        "placeholder": "XXX-XX-XXXX"
+      },
+      "maritalStatus": {
+        "label": "Familienstand",
+        "placeholder": "Wählen Sie Ihren Familienstand",
+        "options": {
+          "single": "Ledig",
+          "married": "Verheiratet",
+          "divorced": "Geschieden",
+          "widowed": "Verwitwet"
+        }
+      },
+      "dependents": {
+        "label": "Anzahl der Angehörigen"
+      },
+      "employmentStatus": {
+        "label": "Beschäftigungsstatus",
+        "placeholder": "Wählen Sie Ihren Beschäftigungsstatus",
+        "options": {
+          "employed": "Angestellt",
+          "selfEmployed": "Selbstständig",
+          "retired": "Rentner",
+          "unemployed": "Arbeitslos",
+          "student": "Student"
+        }
+      },
+      "employer": {
+        "label": "Name des Arbeitgebers"
+      },
+      "jobTitle": {
+        "label": "Berufsbezeichnung"
+      },
+      "yearsAtJob": {
+        "label": "Jahre in der aktuellen Anstellung"
+      },
+      "monthsAtJob": {
+        "label": "Monate in der aktuellen Anstellung",
+        "placeholder": "0"
+      },
+      "workPhone": {
+        "label": "Diensttelefon"
+      },
+      "annualIncome": {
+        "label": "Jährliches Bruttoeinkommen"
+      },
+      "otherIncome": {
+        "label": "Sonstiges monatliches Einkommen"
+      },
+      "monthlyRent": {
+        "label": "Monatliche Wohnkosten (Miete/Hypothek)"
+      },
+      "monthlyDebts": {
+        "label": "Gesamte monatliche Schulden (ohne Wohnkosten)"
+      },
+      "checkingBalance": {
+        "label": "Guthaben auf Girokonto"
+      },
+      "savingsBalance": {
+        "label": "Guthaben auf Sparkonto"
+      },
+      "retirementBalance": {
+        "label": "Guthaben auf Rentenkonto"
+      },
+      "loanAmount": {
+        "label": "Gewünschter Darlehensbetrag"
+      },
+      "downPayment": {
+        "label": "Gewünschte Anzahlung"
+      },
+      "propertyType": {
+        "label": "Immobilientyp",
+        "placeholder": "Wählen Sie einen Immobilientyp",
+        "options": {
+          "singleFamily": "Einfamilienhaus",
+          "condo": "Eigentumswohnung",
+          "townhouse": "Reihenhaus",
+          "multiFamily": "Mehrfamilienhaus",
+          "manufactured": "Fertighaus"
+        }
+      },
+      "propertyUse": {
+        "label": "Nutzung der Immobilie",
+        "placeholder": "Wählen Sie die Nutzung der Immobilie",
+        "options": {
+          "primary": "Hauptwohnsitz",
+          "secondary": "Zweitwohnsitz",
+          "investment": "Investitionsobjekt"
+        }
+      },
+      "loanPurpose": {
+        "label": "Darlehenszweck",
+        "placeholder": "Wählen Sie den Darlehenszweck",
+        "options": {
+          "purchase": "Kauf",
+          "refinance": "Umschuldung",
+          "cashOut": "Umschuldung mit Barauszahlung",
+          "construction": "Bau"
+        }
+      },
+      "propertyAddress": {
+        "sectionTitle": "Adresse der Immobilie (falls bekannt)",
+        "street": "Straße und Hausnummer",
+        "streetPlaceholder": "Hauptstraße 123",
+        "city": "Stadt",
+        "state": "Bundesland",
+        "zip": "Postleitzahl"
+      },
+      "hasRealtor": {
+        "label": "Arbeiten Sie mit einem Immobilienmakler zusammen?"
+      },
+      "realtorName": {
+        "label": "Name des Immobilienmaklers"
+      },
+      "realtorPhone": {
+        "label": "Telefonnummer des Immobilienmaklers"
+      },
+      "additionalInfo": {
+        "label": "Zusätzliche Informationen oder Fragen",
+        "placeholder": "Gibt es noch etwas, das Sie uns mitteilen möchten?"
+      }
+    },
+    "agreements": {
+      "terms": "Ich stimme den Allgemeinen Geschäftsbedingungen und der Datenschutzerklärung der Woodburn Bank zu.",
+      "credit": "Ich ermächtige die Woodburn Bank, meine Bonitätsauskunft für diesen Antrag einzuholen.",
+      "contact": "Ich bin damit einverstanden, von der Woodburn Bank bezüglich meines Antrags kontaktiert zu werden."
+    },
+    "review": {
+      "alert": "Bitte überprüfen Sie alle Informationen sorgfältig, bevor Sie sie absenden. Stellen Sie sicher, dass alle erforderlichen Felder korrekt ausgefüllt sind."
+    },
+    "buttons": {
+      "previous": "Zurück",
+      "next": "Weiter",
+      "submit": "Antrag absenden",
+      "submitting": "Wird gesendet..."
+    },
+    "errors": {
+      "firstNameRequired": "Vorname ist erforderlich.",
+      "lastNameRequired": "Nachname ist erforderlich.",
+      "emailRequired": "E-Mail-Adresse ist erforderlich.",
+      "phoneRequired": "Telefonnummer ist erforderlich.",
+      "dateOfBirthRequired": "Geburtsdatum ist erforderlich.",
+      "ssnRequired": "Sozialversicherungsnummer ist erforderlich.",
+      "employmentStatusRequired": "Beschäftigungsstatus ist erforderlich.",
+      "annualIncomeRequired": "Jährliches Einkommen ist erforderlich.",
+      "loanAmountRequired": "Darlehensbetrag ist erforderlich.",
+      "downPaymentRequired": "Anzahlung ist erforderlich.",
+      "propertyTypeRequired": "Immobilientyp ist erforderlich.",
+      "agreeToTermsRequired": "Sie müssen den Allgemeinen Geschäftsbedingungen zustimmen.",
+      "agreeToCreditRequired": "Sie müssen einer Bonitätsprüfung zustimmen."
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "title": "Antrag erfolgreich gesendet!",
+      "subtitle": "Vielen Dank für Ihren Hypothekendarlehensantrag bei der Woodburn Bank.",
+      "applicationId": "Antrags-ID: {id}"
+    },
+    "nextSteps": {
+      "title": "Was passiert als Nächstes?",
+      "description": "Das können Sie in den nächsten Tagen erwarten:",
+      "cards": [
+        {
+          "title": "Innerhalb von 24 Stunden",
+          "description": "Sie erhalten eine Bestätigungs-E-Mail mit Ihren Antragsdetails und den nächsten Schritten."
+        },
+        {
+          "title": "Innerhalb von 2-3 Tagen",
+          "description": "Ein Darlehensberater wird sich mit Ihnen in Verbindung setzen, um Ihren Antrag zu besprechen, und kann zusätzliche Unterlagen anfordern."
+        },
+        {
+          "title": "Innerhalb von 5-7 Tagen",
+          "description": "Sie erhalten eine vorläufige Entscheidung zu Ihrem Darlehensantrag."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Brauchen Sie Hilfe?",
+      "description": "Unsere Darlehensspezialisten beantworten gerne alle Ihre Fragen.",
+      "call": {
+        "title": "Rufen Sie uns an",
+        "number": "+49 800 1234567",
+        "hours": "Montag bis Freitag, 8-18 Uhr MEZ"
+      },
+      "email": {
+        "title": "Senden Sie uns eine E-Mail",
+        "address": "hypothekendarlehen@woodburnbank.de",
+        "responseTime": "Wir antworten in der Regel innerhalb von 1 Werktag"
+      }
+    },
+    "importantInfo": {
+      "title": "Wichtige Informationen",
+      "tips": [
+        "Ihr Antrag ist noch nicht genehmigt. Die endgültige Genehmigung unterliegt einer Underwriting-Prüfung.",
+        "Möglicherweise werden Sie aufgefordert, zusätzliche Unterlagen zur Überprüfung Ihrer Angaben einzureichen.",
+        "Die Zinssätze können sich ändern, bis Ihr Darlehen festgeschrieben ist.",
+        "Alle Darlehenszusagen sind bedingt und unterliegen einer abschließenden Überprüfung."
+      ]
+    },
+    "buttons": {
+      "home": "Zurück zur Startseite",
+      "moreInfo": "Mehr über Hypothekendarlehen erfahren"
+    }
+  },
+  "car-loans": {
+    "hero": {
+      "title": "Fahren Sie Ihr Traumauto",
+      "subTitle": "Flexible Autokredite mit wettbewerbsfähigen Zinssätzen und persönlichem Service. Erhalten Sie eine Vorabgenehmigung in wenigen Minuten.",
+      "cta": "Vorabgenehmigung erhalten",
+      "imageUrl": "/car-loan-hero.jpg"
+    },
+    "calculator": {
+      "title": "Autokredit-Rechner",
+      "subTitle": "Berechnen Sie Ihre Raten und sehen Sie, wie viel Auto Sie sich mit unserem benutzerfreundlichen Autokredit-Rechner leisten können.",
+      "cardTitle": "Berechnen Sie Ihre Raten",
+      "currency": "EUR",
+      "locale": "de-DE",
+      "max": "Max.",
+      "vehiclePrice": {
+        "label": "Fahrzeugpreis",
+        "default": "35000",
+        "min": "1000",
+        "max": "100000",
+        "step": "500"
+      },
+      "deposit": {
+        "label": "Anzahlung",
+        "defaultPercentage": "40",
+        "minPercentage": "10",
+        "maxPercentage": "80",
+        "step": "1000"
+      },
+      "loanTerm": {
+        "label": "Darlehenslaufzeit",
+        "default": "36",
+        "min": "6",
+        "max": "72",
+        "step": "6",
+        "years": "Monate"
+      },
+      "paymentFrequency": {
+        "visible": "true",
+        "label": "Zahlungshäufigkeit",
+        "monthly": "Monatlich",
+        "fortnightly": "Zweiwöchentlich",
+        "weekly": "Wöchentlich",
+        "default": "monthly"
+      },
+      "vehicleType": {
+        "label": "Fahrzeugtyp",
+        "new": "Neuwagen",
+        "used": "Gebrauchtwagen",
+        "refinance": "Bestehenden Kredit umschulden",
+        "default": "new"
+      },
+      "balloonPayment": {
+        "visible": "true",
+        "label": "Schlussrate",
+        "defaultPercentage": "0",
+        "minPercentage": "0",
+        "maxPercentage": "40",
+        "step": "1000",
+        "paymentMessage": "Zzgl. einer Schlussrate von "
+      },
+      "submitButton": "Zahlungen berechnen",
+      "resultTitle": "Geschätzte Zahlungen",
+      "installments": "Raten",
+      "totalCost": "Gesamtkosten",
+      "APR": "Effektiver Jahreszins",
+      "resultDescription": "Basierend auf Ihren Angaben beträgt der geschätzte Zinssatz ",
+      "resultDisclaimer": "Hinweis: Dies ist eine Schätzung und kann je nach weiteren Faktoren variieren."
+    },
+    "readyToApply": {
+      "title": "Bereit zur Beantragung?",
+      "subTitle": "Beginnen Sie Ihre Online-Bewerbung und erhalten Sie eine Vorabgenehmigung in nur 24 Stunden. Unser sicherer Prozess ist schnell, einfach und absolut vertraulich.",
+      "stats": {
+        "stat1": {
+          "title": "2 Min.",
+          "subTitle": "Antrag"
+        },
+        "stat2": {
+          "title": "24h",
+          "subTitle": "Genehmigung"
+        },
+        "stat3": {
+          "title": "4.49%",
+          "subTitle": "Start-Effektivzinssatz"
+        }
+      },
+      "benefits": {
+        "title": "Vorteile der Antragstellung",
+        "feature1": "Keine Auswirkung auf die Kreditwürdigkeit bei der Zinsprüfung",
+        "feature2": "Vorabgenehmigung 60 Tage gültig",
+        "feature3": "Kaufen Sie selbstbewusst bei jedem Händler",
+        "feature4": "Dedizierte Unterstützung durch einen Darlehensspezialisten"
+      },
+      "reviews": {
+        "rating": "4.9/5 Kundenbewertung",
+        "quote": "Schnelle Genehmigung und tolle Konditionen. Der Prozess war so einfach!",
+        "author": "Sarah T., Zufriedener Kunde"
+      },
+      "documents": {
+        "title": "Was Sie benötigen",
+        "item1": "Gültiger Ausweis (Führerschein oder Reisepass)",
+        "item2": "Einkommensnachweis (Gehaltsabrechnungen oder Steuererklärungen)",
+        "item3": "Fahrzeuginformationen (VIN, Marke, Modell)"
+      },
+      "applyButton": "Jetzt online beantragen",
+      "footer": "Sicherer Antrag • Keine versteckten Gebühren • Lokale Entscheidungsfindung"
+    }
+  },
+  "car-loans/apply": {
+    "loading": "Ihr Antrag wird geladen...",
+    "header": {
+      "title": "Autokredit-Antrag",
+      "step": "Schritt",
+      "of": "von"
+    },
+    "navigation": {
+      "back": "Zurück",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "submit": "Antrag absenden",
+      "submitting": "Wird gesendet..."
+    },
+    "steps": {
+      "step1": {
+        "title": "Persönliche Informationen und Adresse",
+        "description": "Erzählen Sie uns von sich und wo Sie wohnen"
+      },
+      "step2": {
+        "title": "Berufliche und finanzielle Details",
+        "description": "Ihre berufliche und finanzielle Situation"
+      },
+      "step3": {
+        "title": "Fahrzeug- und Darlehensinformationen",
+        "description": "Details zum Fahrzeug und zum Darlehen"
+      },
+      "step4": {
+        "title": "Überprüfung und Einreichung",
+        "description": "Überprüfen Sie Ihre Informationen und reichen Sie Ihren Antrag ein"
+      }
+    },
+    "personal": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer",
+      "dateOfBirth": "Geburtsdatum",
+      "ssn": "Sozialversicherungsnummer",
+      "ssnPlaceholder": "XXX-XX-XXXX",
+      "driversLicense": "Führerscheinnummer",
+      "driversLicenseState": "Bundesland des Führerscheins",
+      "driversLicenseStatePlaceholder": "BY"
+    },
+    "address": {
+      "title": "Aktuelle Adresse",
+      "streetAddress": "Straße und Hausnummer",
+      "streetAddressPlaceholder": "Hauptstraße 123",
+      "city": "Stadt",
+      "state": "Bundesland",
+      "zipCode": "Postleitzahl",
+      "yearsAtAddress": "Jahre an dieser Adresse",
+      "monthsAtAddress": "Zusätzliche Monate",
+      "monthsAtAddressPlaceholder": "0-11",
+      "housingStatus": "Wohnstatus",
+      "housingStatusPlaceholder": "Status auswählen",
+      "housingStatusOptions": {
+        "own": "Eigentümer",
+        "rent": "Mieter",
+        "liveWithFamily": "Lebt bei Familie",
+        "other": "Andere"
+      }
+    },
+    "employment": {
+      "status": "Beschäftigungsstatus",
+      "statusPlaceholder": "Wählen Sie den Beschäftigungsstatus",
+      "statusOptions": {
+        "employed": "Angestellt",
+        "selfEmployed": "Selbstständig",
+        "retired": "Rentner",
+        "unemployed": "Arbeitslos",
+        "student": "Student",
+        "military": "Militär"
+      }
+    },
+    "employer": {
+      "label": "Name des Arbeitgebers"
+    },
+    "jobTitle": {
+      "label": "Berufsbezeichnung"
+    },
+    "yearsAtJob": {
+      "label": "Jahre in der aktuellen Anstellung"
+    },
+    "monthsAtJob": {
+      "label": "Zusätzliche Monate",
+      "monthsAtJobPlaceholder": "0-11",
+      "workPhone": {
+        "label": "Diensttelefon"
+      }
+    },
+    "financial": {
+      "annualIncome": "Jährliches Einkommen",
+      "annualIncomePlaceholder": "65000",
+      "otherIncome": "Sonstiges monatliches Einkommen",
+      "otherIncomePlaceholder": "0",
+      "monthlyRent": "Monatliche Wohnkosten",
+      "monthlyRentPlaceholder": "1200",
+      "monthlyDebts": "Monatliche Schuldenzahlungen",
+      "monthlyDebtsPlaceholder": "400",
+      "creditScore": "Geschätzte Kreditwürdigkeit",
+      "creditScorePlaceholder": "Bereich auswählen",
+      "creditScoreOptions": {
+        "excellent": "Ausgezeichnet (750+)",
+        "good": "Gut (700-749)",
+        "fair": "Fair (650-699)",
+        "poor": "Schlecht (Unter 650)"
+      }
+    },
+    "coApplicant": {
+      "addCoApplicant": "Mitantragsteller zu diesem Antrag hinzufügen",
+      "title": "Informationen zum Mitantragsteller",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefon",
+      "ssn": "Sozialversicherungsnummer",
+      "ssnPlaceholder": "XXX-XX-XXXX",
+      "annualIncome": "Jährliches Einkommen"
+    },
+    "vehicle": {
+      "type": "Fahrzeugtyp",
+      "typePlaceholder": "Wählen Sie den Fahrzeugtyp",
+      "typeOptions": {
+        "new": "Neuwagen",
+        "used": "Gebrauchtwagen",
+        "certified": "Zertifizierter Gebrauchtwagen",
+        "refinance": "Bestehenden Kredit umschulden"
+      },
+      "year": "Baujahr",
+      "yearPlaceholder": "2024",
+      "make": "Marke",
+      "makePlaceholder": "Volkswagen",
+      "model": "Modell",
+      "modelPlaceholder": "Golf",
+      "mileage": "Kilometerstand (falls gebraucht)",
+      "mileagePlaceholder": "25000",
+      "price": "Fahrzeugpreis",
+      "pricePlaceholder": "32000"
+    },
+    "loan": {
+      "downPayment": "Anzahlung",
+      "downPaymentPlaceholder": "5000",
+      "tradeInValue": "Inzahlungnahmewert",
+      "tradeInValuePlaceholder": "8000",
+      "amount": "Benötigter Darlehensbetrag",
+      "amountPlaceholder": "19000",
+      "term": "Bevorzugte Darlehenslaufzeit",
+      "termPlaceholder": "Wählen Sie die Darlehenslaufzeit",
+      "termOptions": {
+        "months36": "36 Monate",
+        "months48": "48 Monate",
+        "months60": "60 Monate",
+        "months72": "72 Monate",
+        "months84": "84 Monate"
+      }
+    },
+    "dealer": {
+      "title": "Händlerinformationen (falls zutreffend)",
+      "name": "Name des Händlers",
+      "namePlaceholder": "Autohaus Muster",
+      "city": "Stadt des Händlers"
+    },
+    "review": {
+      "alert": "Bitte überprüfen Sie Ihre Informationen und akzeptieren Sie die untenstehenden Bedingungen, um Ihren Antrag einzureichen.",
+      "additionalInfo": "Zusätzliche Informationen (optional)",
+      "additionalInfoPlaceholder": "Zusätzliche Informationen zu Ihrem Antrag..."
+    },
+    "agreements": {
+      "terms": "Ich stimme den Allgemeinen Geschäftsbedingungen und der Datenschutzerklärung zu. Ich verstehe, dass dieser Antrag keine Darlehenszusage garantiert.",
+      "credit": "Ich ermächtige die Woodburn Bank, meine Bonitätsauskunft einzuholen und die in diesem Antrag gemachten Angaben zu überprüfen.",
+      "contact": "Ich bin damit einverstanden, von der Woodburn Bank bezüglich dieses Antrags per Telefon, E-Mail oder SMS kontaktiert zu werden."
+    },
+    "errors": {
+      "firstNameRequired": "Vorname ist erforderlich",
+      "lastNameRequired": "Nachname ist erforderlich",
+      "emailRequired": "E-Mail-Adresse ist erforderlich",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "dateOfBirthRequired": "Geburtsdatum ist erforderlich",
+      "ssnRequired": "Sozialversicherungsnummer ist erforderlich",
+      "driversLicenseRequired": "Führerscheinnummer ist erforderlich",
+      "employmentStatusRequired": "Beschäftigungsstatus ist erforderlich",
+      "annualIncomeRequired": "Jährliches Einkommen ist erforderlich",
+      "vehicleTypeRequired": "Fahrzeugtyp ist erforderlich",
+      "vehiclePriceRequired": "Fahrzeugpreis ist erforderlich",
+      "loanAmountRequired": "Darlehensbetrag ist erforderlich",
+      "agreeToTermsRequired": "Sie müssen den Bedingungen zustimmen",
+      "agreeToCreditRequired": "Sie müssen der Bonitätsprüfung zustimmen"
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "title": "Antrag erfolgreich gesendet!",
+      "description": "Vielen Dank, dass Sie sich für die Woodburn Bank für Ihre Autofinanzierung entschieden haben.",
+      "applicationIdPrefix": "Antrags-ID:"
+    },
+    "nextSteps": {
+      "title": "Was passiert als Nächstes?",
+      "description": "Hier ist Ihr Weg zum Lenkrad",
+      "within1HourCard": {
+        "title": "Innerhalb 1 Stunde",
+        "content": "Sie erhalten eine sofortige Vorabgenehmigungsentscheidung oder eine Anforderung zusätzlicher Informationen."
+      },
+      "sameDayCard": {
+        "title": "Noch am selben Tag",
+        "content": "Bei Genehmigung erhalten Sie Ihr Vorabgenehmigungsschreiben und können mit Zuversicht einkaufen gehen."
+      },
+      "atPurchaseCard": {
+        "title": "Beim Kauf",
+        "content": "Bringen Sie Ihre Vorabgenehmigung zu jedem Händler, und wir erledigen den endgültigen Papierkram und die Finanzierung."
+      }
+    },
+    "preApprovalBenefits": {
+      "title": "Ihre Vorteile der Vorabgenehmigung",
+      "description": "Kaufen Sie selbstbewusst ein, da Sie bereits genehmigt sind",
+      "benefitsList": [
+        "Kaufen Sie selbstbewusst bei jedem Händler",
+        "Kennen Sie Ihre genaue monatliche Rate",
+        "Verhandeln Sie als Barzahler",
+        "Vorabgenehmigung 60 Tage gültig",
+        "Schnelle Finanzierung beim Kauf",
+        "Dedizierte Unterstützung durch einen Darlehensspezialisten"
+      ]
+    },
+    "contactInfo": {
+      "title": "Benötigen Sie Hilfe oder haben Sie Fragen?",
+      "description": "Unsere Autokredit-Spezialisten helfen Ihnen gerne weiter",
+      "callUs": {
+        "title": "Rufen Sie uns an",
+        "number": "+49 800 WOODBURN",
+        "hours": "Mo-Fr 8-19 Uhr, Sa 9-15 Uhr"
+      },
+      "emailUs": {
+        "title": "Senden Sie uns eine E-Mail",
+        "address": "autokredit@woodburnbank.de",
+        "response_time": "Wir antworten innerhalb von 2 Stunden"
+      }
+    },
+    "importantReminders": {
+      "title": "Wichtige Erinnerungen",
+      "remindersList": [
+        "Ihre Vorabgenehmigung ist ab heute 60 Tage gültig",
+        "Vermeiden Sie in diesem Zeitraum größere Kreditänderungen",
+        "Bringen Sie Ihr Vorabgenehmigungsschreiben mit, wenn Sie nach Fahrzeugen suchen",
+        "Kontaktieren Sie uns sofort, wenn Sie Ihr Fahrzeug gefunden haben"
+      ]
+    },
+    "actionButtons": {
+      "returnHome": "Zurück zur Startseite",
+      "learnMoreAutoLoans": "Mehr über Autokredite erfahren"
+    }
+  },
+  "footer": {
+    "description": "Ihr vertrauenswürdiger Finanzpartner seit über 50 Jahren. Wir bieten umfassende Banklösungen, die auf Ihre Bedürfnisse zugeschnitten sind, mit außergewöhnlichem Kundenservice und wettbewerbsfähigen Zinssätzen.",
+    "phone": "+49 800 WOODBURN",
+    "email": "info@woodburnbank.de",
+    "sections": {
+      "products": {
+        "title": "Produkte",
+        "homeLoans": "Hypothekendarlehen",
+        "creditCards": "Kreditkarten",
+        "carLoans": "Autokredite",
+        "bankAccounts": "Bankkonten"
+      },
+      "support": {
+        "title": "Support",
+        "contact": "Kontaktieren Sie uns",
+        "help": "Hilfe-Center",
+        "security": "Sicherheit",
+        "privacy": "Datenschutzrichtlinie"
+      }
+    },
+    "copyright": "© 2025 Woodburn Bank. Alle Rechte vorbehalten."
+  }
+}

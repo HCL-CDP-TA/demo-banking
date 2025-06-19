@@ -1,54 +1,960 @@
 {
   "navigation": {
-    "home": "Accueil",
     "homeLoans": "Prêts immobiliers",
     "creditCards": "Cartes de crédit",
-    "carLoans": "Prêt automobile",
-    "bankAccounts": "Comptes bancaires",
+    "carLoans": "Prêts automobiles",
     "login": "Connexion",
-    "brandName": "Banque Woodburn"
+    "themeHeader": "Sélectionner la marque",
+    "themeTooltip": "Changer de marque",
+    "localeHeader": "Sélectionner la langue",
+    "localeTooltip": "Changer de langue",
+    "settings": "Paramètres"
+  },
+  "loginModal": {
+    "title": "Bienvenue à la Banque Woodburn",
+    "description": "Connectez-vous à votre compte ou créez-en un nouveau pour commencer",
+    "tabs": {
+      "login": "Connexion",
+      "register": "Créer un compte"
+    },
+    "fields": {
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "phone": "Numéro de téléphone",
+      "confirmPassword": "Confirmer le mot de passe"
+    },
+    "placeholders": {
+      "email": "Entrez votre e-mail",
+      "password": "Entrez votre mot de passe",
+      "firstName": "Jean",
+      "lastName": "Dupont",
+      "phone": "(555) 123-4567",
+      "confirmPassword": "Confirmez votre mot de passe"
+    },
+    "buttons": {
+      "signIn": "Se connecter",
+      "signingIn": "Connexion en cours...",
+      "createAccount": "Créer un compte",
+      "creatingAccount": "Création de compte..."
+    },
+    "links": {
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "errors": {
+      "missingCredentials": "Veuillez entrer l'e-mail et le mot de passe",
+      "passwordMismatch": "Les mots de passe ne correspondent pas"
+    }
   },
   "home": {
     "hero": {
-      "title": "Une banque qui vous met en premier",
-      "subtitle": "Simple, transparente et conçue pour vos besoins",
-      "cta": "Ouvrir un compte"
+      "title": "Banque fondée sur la <highlight>Confiance et l'Expertise</highlight>",
+      "subtitle": "Depuis plus de cinq décennies, la <highlight>Banque Woodburn</highlight> offre des solutions financières fiables avec un service personnalisé et un engagement indéfectible envers notre communauté.",
+      "cta": "Commencez à gérer vos finances dès aujourd'hui",
+      "imageUrl": "/home-hero.jpg"
     },
-    "features": {
-      "title": "Pourquoi nous choisir",
-      "subtitle": "Découvrez une banque conçue autour de votre vie",
+    "trustNumbers": {
+      "items": {
+        "item1": {
+          "title": "50+",
+          "description": "Ans de service"
+        },
+        "item2": {
+          "title": "2,5Md€+",
+          "description": "Actifs sous gestion"
+        },
+        "item3": {
+          "title": "10M+",
+          "description": "Clients satisfaits"
+        },
+        "item4": {
+          "title": "Assurance",
+          "description": "Établissement assuré"
+        }
+      }
+    },
+    "products": {
+      "title": "Solutions financières complètes",
+      "subtitle": "Des opérations bancaires quotidiennes aux investissements majeurs, nous offrons l'expertise et le service personnalisé que vous méritez.",
+      "items": {
+        "item1": {
+          "title": "Prêts immobiliers",
+          "description": "Des taux compétitifs et des conseils d'experts pour l'achat de votre maison",
+          "icon": "Home",
+          "link": "/home-loans",
+          "features": {
+            "feature1": "Taux à partir de 6,25 % TAEG",
+            "feature2": "Processus de pré-approbation rapide",
+            "feature3": "Expertise locale en matière de prêts"
+          }
+        },
+        "item2": {
+          "title": "Cartes de crédit",
+          "description": "Programmes de récompenses sans frais annuels et protection contre la fraude",
+          "icon": "CreditCard",
+          "link": "/credit-cards",
+          "features": {
+            "feature1": "Jusqu'à 3 % de remise en argent",
+            "feature2": "Pas de frais annuels",
+            "feature3": "Surveillance des fraudes 24h/24 et 7j/7"
+          }
+        },
+        "item3": {
+          "title": "Prêts automobiles",
+          "description": "Financement flexible pour votre trajet quotidien",
+          "icon": "Car",
+          "link": "/car-loans",
+          "features": {
+            "feature1": "Taux à partir de 8,99 % TAEG",
+            "feature2": "Processus d'approbation rapide",
+            "feature3": "Pas de pénalités de remboursement anticipé"
+          }
+        }
+      }
+    },
+    "trustIndicators": {
+      "title": "Pourquoi la Banque Woodburn ?",
+      "subtitle": "Bâtie sur une fondation de confiance, de stabilité et d'engagement communautaire",
+      "items": {
+        "item1": {
+          "title": "Sécurité avant tout",
+          "description": "Dépôts assurés, cryptage avancé et protection complète contre la fraude pour sécuriser votre argent et vos informations.",
+          "icon": "Shield"
+        },
+        "item2": {
+          "title": "Service personnalisé",
+          "description": "Des gestionnaires de relations dédiés qui connaissent votre nom et comprennent vos objectifs et aspirations financières.",
+          "icon": "Users"
+        },
+        "item3": {
+          "title": "Axée sur la communauté",
+          "description": "Propriété et exploitation locales, nous réinvestissons dans notre communauté et soutenons les entreprises et les familles locales.",
+          "icon": "Award"
+        }
+      }
+    },
+    "cta": {
+      "title": "Prêt à découvrir une meilleure expérience bancaire ?",
+      "subtitle": "Rejoignez des milliers de clients satisfaits qui nous font confiance pour leur avenir financier.",
+      "buttons": {
+        "text1": "Ouvrir un compte",
+        "variant1": "default",
+        "link1": "#",
+        "text2": "Parler à un spécialiste",
+        "variant2": "secondary",
+        "link2": "#"
+      }
+    }
+  },
+  "credit-cards": {
+    "hero": {
+      "title": "Des cartes de crédit qui vous récompensent",
+      "subTitle": "Gagnez plus sur chaque achat sans frais annuels, avec des avantages complets et la sécurité que vous attendez d'une institution financière de confiance.",
+      "cta": "Comparer les cartes",
+      "imageUrl": "/credit-card-hero.jpg"
+    },
+    "cards": {
+      "title": "Trouvez votre carte de crédit idéale",
+      "subTitle": "Choisissez parmi notre sélection de cartes de récompenses conçues pour votre style de vie et vos habitudes de dépenses",
+      "card1": {
+        "title": "Carte de récompenses Woodburn",
+        "description": "Gagnez des points sur chaque achat sans frais annuels",
+        "badge": "Le plus populaire",
+        "rate1": "2x",
+        "rate1Description": "Points sur les restaurants et les voyages",
+        "rate2": "1x",
+        "rate2Description": "Sur tous les autres achats",
+        "features": {
+          "feature1": "Pas de frais annuels",
+          "feature2": "Responsabilité de fraude de 0 €",
+          "feature3": "0 % de TAEG introductif pendant 12 mois",
+          "feature4": "Options de rachat flexibles"
+        },
+        "cta": "Demander maintenant"
+      },
+      "card2": {
+        "title": "Carte de voyage Woodburn",
+        "description": "Gagnez des miles sur chaque achat sans frais de transaction à l'étranger",
+        "badge": "Idéal pour les voyageurs",
+        "rate1": "3x",
+        "rate1Description": "Miles sur les voyages et les restaurants",
+        "rate2": "1x",
+        "rate2Description": "Sur tous les autres achats",
+        "features": {
+          "feature1": "Pas de frais annuels",
+          "feature2": "Responsabilité de fraude de 0 €",
+          "feature3": "0 % de TAEG introductif pendant 12 mois",
+          "feature4": "Assurance voyage incluse"
+        },
+        "cta": "Demander maintenant"
+      },
+      "card3": {
+        "title": "Carte affaires Woodburn",
+        "description": "Conçue pour les propriétaires de petites entreprises avec des remises en argent sur chaque achat",
+        "badge": "Idéal pour les entreprises",
+        "rate1": "1,5%",
+        "rate1Description": "Remise en argent sur tous les achats",
+        "rate2": "0%",
+        "rate2Description": "Pas de frais de transaction à l'étranger",
+        "features": {
+          "feature1": "Pas de frais annuels",
+          "feature2": "Responsabilité de fraude de 0 €",
+          "feature3": "Outils de suivi des dépenses",
+          "feature4": "Cartes d'employés sans frais supplémentaires"
+        },
+        "cta": "Demander maintenant"
+      }
+    },
+    "benefits": {
+      "title": "Avantages des cartes de crédit Premium",
+      "subTitle": "Toutes les cartes de crédit Banque Woodburn sont livrées avec une protection complète et des avantages précieux",
+      "items": {
+        "item1": {
+          "icon": "Shield",
+          "title": "Protection contre la fraude",
+          "description": "Responsabilité de fraude de 0 € et surveillance 24h/24 et 7j/7 avec alertes instantanées pour les activités suspectes"
+        },
+        "item2": {
+          "icon": "Star",
+          "title": "Suivi du score de crédit",
+          "description": "Mises à jour gratuites mensuelles du score de crédit et conseils personnalisés pour l'amélioration"
+        },
+        "item3": {
+          "icon": "Gift",
+          "title": "Programme de récompenses",
+          "description": "Les points et les remises en argent n'expirent jamais avec des options de rachat flexibles"
+        },
+        "item4": {
+          "icon": "Percent",
+          "title": "TAEG introductif",
+          "description": "0 % de TAEG introductif sur les achats et les transferts de solde pour les candidats qualifiés"
+        }
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer à gagner des récompenses ?",
+      "description": "Faites votre demande en ligne en quelques minutes et obtenez une décision instantanée grâce à notre processus de demande sécurisé",
+      "applyButton": "Demander une carte",
+      "compareButton": "Comparer toutes les cartes"
+    }
+  },
+  "home-loans": {
+    "hero": {
+      "title": "Trouvez la maison de vos rêves en toute simplicité",
+      "subTitle": "Découvrez des options de prêts immobiliers flexibles adaptées à vos besoins. Des taux compétitifs, des approbations rapides et un service de confiance.",
+      "button": "Commencer",
+      "imageUrl": "/home-loan-hero.jpg"
+    },
+    "calculator": {
+      "title": "Calculateur de paiements de prêts immobiliers",
+      "description": "Estimez vos paiements et trouvez la meilleure option de prêt pour votre budget.",
+      "cardTitle": "Calculez votre prêt",
+      "loanAmount": {
+        "label": "Montant du prêt",
+        "default": "300000",
+        "min": "100000",
+        "max": "10000000",
+        "step": "10000",
+        "currency": "EUR",
+        "locale": "fr-FR"
+      },
+      "interestRate": {
+        "label": "Taux d'intérêt",
+        "default": "7",
+        "min": "1",
+        "max": "12",
+        "step": "0.05"
+      },
+      "loanTerm": {
+        "label": "Durée du prêt",
+        "default": "25",
+        "min": "5",
+        "max": "30",
+        "step": "1",
+        "years": "Ans"
+      },
+      "paymentFrequency": {
+        "visible": "true",
+        "label": "Fréquence de paiement",
+        "monthly": "Mensuel",
+        "fortnightly": "Bimensuel",
+        "weekly": "Hebdomadaire",
+        "default": "monthly"
+      },
+      "submitButton": "Calculer les paiements",
+      "resultTitle": "Paiements estimés",
+      "resultDescription": "Basé sur vos sélections, ce sont des valeurs approximatives",
+      "resultDisclaimer": "Avertissement : Ceci est une estimation et peut varier en fonction de facteurs supplémentaires."
+    },
+    "readyToApply": {
+      "title": "Prêt à postuler ?",
+      "subTitle": "Commencez votre demande en ligne et obtenez une pré-approbation en aussi peu que 24 heures. Notre processus sécurisé est rapide, facile et entièrement confidentiel.",
+      "applyButton": "Postuler en ligne maintenant",
+      "feature1": "Pas de frais de dossier",
+      "feature2": "Processus sécurisé",
+      "preferExpert": "Vous préférez parler à quelqu'un ?",
+      "speakButton": "Parler à un expert"
+    },
+    "loanTypes": {
+      "title": "Découvrez les types de prêts",
+      "description": "Choisissez le type de prêt qui correspond à vos besoins et à vos objectifs.",
+      "items": {
+        "item1": {
+          "title": "Prêt conventionnel",
+          "description": "Idéal pour les emprunteurs avec un bon crédit.",
+          "icon": "House",
+          "features": {
+            "feature1": "Taux d'intérêt bas",
+            "feature2": "Conditions flexibles",
+            "feature3": "Pas d'assurance hypothécaire privée",
+            "feature4": "Disponible pour les résidences principales et secondaires"
+          }
+        },
+        "item2": {
+          "title": "Prêt FHA",
+          "description": "Parfait pour les primo-accédants.",
+          "icon": "House",
+          "features": {
+            "feature1": "Options de faible mise de fonds",
+            "feature2": "Qualification plus facile",
+            "feature3": "Sécurité garantie par le gouvernement",
+            "feature4": "Taux d'intérêt compétitifs"
+          }
+        },
+        "item3": {
+          "title": "Prêt VA",
+          "description": "Avantages exclusifs pour les vétérans.",
+          "icon": "House",
+          "features": {
+            "feature1": "Aucun acompte requis",
+            "feature2": "Pas d'assurance hypothécaire privée",
+            "feature3": "Frais de clôture faibles",
+            "feature4": "Exigences de crédit flexibles"
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Prêt à passer à l'étape suivante ?",
+      "description": "Faites une demande en ligne ou parlez à un expert en prêts dès aujourd'hui pour commencer.",
+      "applyButton": "Demander maintenant",
+      "speakButton": "Parler à un expert"
+    }
+  },
+  "home-loans/apply": {
+    "loading": "Chargement des données de la demande...",
+    "backButton": "Retour",
+    "title": "Demande de prêt immobilier",
+    "stepIndicator": "Étape {current} sur {total}",
+    "steps": {
+      "personalInfo": {
+        "title": "Informations personnelles",
+        "description": "Parlez-nous de vous."
+      },
+      "employmentInfo": {
+        "title": "Informations sur l'emploi et financières",
+        "description": "Détails sur votre emploi et vos finances."
+      },
+      "loanInfo": {
+        "title": "Informations sur le prêt et la propriété",
+        "description": "Parlez-nous du prêt et de la propriété qui vous intéressent."
+      },
+      "review": {
+        "title": "Révision et soumission",
+        "description": "Veuillez vérifier votre demande et accepter les conditions."
+      }
+    },
+    "form": {
+      "firstName": {
+        "label": "Prénom"
+      },
+      "lastName": {
+        "label": "Nom de famille"
+      },
+      "email": {
+        "label": "E-mail"
+      },
+      "phone": {
+        "label": "Numéro de téléphone"
+      },
+      "dateOfBirth": {
+        "label": "Date de naissance"
+      },
+      "ssn": {
+        "label": "Numéro de sécurité sociale",
+        "placeholder": "XXX-XX-XXXX"
+      },
+      "maritalStatus": {
+        "label": "État civil",
+        "placeholder": "Sélectionnez votre état civil",
+        "options": {
+          "single": "Célibataire",
+          "married": "Marié(e)",
+          "divorced": "Divorcé(e)",
+          "widowed": "Veuf(ve)"
+        }
+      },
+      "dependents": {
+        "label": "Nombre de personnes à charge"
+      },
+      "employmentStatus": {
+        "label": "Statut d'emploi",
+        "placeholder": "Sélectionnez votre statut d'emploi",
+        "options": {
+          "employed": "Employé",
+          "selfEmployed": "Travailleur indépendant",
+          "retired": "Retraité",
+          "unemployed": "Sans emploi",
+          "student": "Étudiant"
+        }
+      },
+      "employer": {
+        "label": "Nom de l'employeur"
+      },
+      "jobTitle": {
+        "label": "Titre du poste"
+      },
+      "yearsAtJob": {
+        "label": "Années à l'emploi actuel"
+      },
+      "monthsAtJob": {
+        "label": "Mois à l'emploi actuel",
+        "placeholder": "0"
+      },
+      "workPhone": {
+        "label": "Téléphone professionnel"
+      },
+      "annualIncome": {
+        "label": "Revenu annuel brut"
+      },
+      "otherIncome": {
+        "label": "Autres revenus mensuels"
+      },
+      "monthlyRent": {
+        "label": "Paiement mensuel du logement (Loyer/Prêt immobilier)"
+      },
+      "monthlyDebts": {
+        "label": "Total des dettes mensuelles (hors logement)"
+      },
+      "checkingBalance": {
+        "label": "Solde du compte courant"
+      },
+      "savingsBalance": {
+        "label": "Solde du compte d'épargne"
+      },
+      "retirementBalance": {
+        "label": "Solde du compte de retraite"
+      },
+      "loanAmount": {
+        "label": "Montant du prêt souhaité"
+      },
+      "downPayment": {
+        "label": "Acompte souhaité"
+      },
+      "propertyType": {
+        "label": "Type de propriété",
+        "placeholder": "Sélectionnez un type de propriété",
+        "options": {
+          "singleFamily": "Maison unifamiliale",
+          "condo": "Condominium",
+          "townhouse": "Maison de ville",
+          "multiFamily": "Immeuble multi-familial",
+          "manufactured": "Maison préfabriquée"
+        }
+      },
+      "propertyUse": {
+        "label": "Utilisation de la propriété",
+        "placeholder": "Sélectionnez l'utilisation de la propriété",
+        "options": {
+          "primary": "Résidence principale",
+          "secondary": "Résidence secondaire",
+          "investment": "Propriété d'investissement"
+        }
+      },
+      "loanPurpose": {
+        "label": "Objectif du prêt",
+        "placeholder": "Sélectionnez l'objectif du prêt",
+        "options": {
+          "purchase": "Achat",
+          "refinance": "Refinancement",
+          "cashOut": "Refinancement avec retrait de fonds",
+          "construction": "Construction"
+        }
+      },
+      "propertyAddress": {
+        "sectionTitle": "Adresse de la propriété (si connue)",
+        "street": "Numéro et rue",
+        "streetPlaceholder": "123 Rue Principale",
+        "city": "Ville",
+        "state": "État/Province",
+        "zip": "Code postal"
+      },
+      "hasRealtor": {
+        "label": "Travaillez-vous avec un agent immobilier ?"
+      },
+      "realtorName": {
+        "label": "Nom de l'agent immobilier"
+      },
+      "realtorPhone": {
+        "label": "Téléphone de l'agent immobilier"
+      },
+      "additionalInfo": {
+        "label": "Informations supplémentaires ou questions",
+        "placeholder": "Y a-t-il autre chose que vous aimeriez nous faire savoir ?"
+      }
+    },
+    "agreements": {
+      "terms": "J'accepte les Conditions générales et la Politique de confidentialité de la Banque Woodburn.",
+      "credit": "J'autorise la Banque Woodburn à obtenir mon rapport de crédit pour cette demande.",
+      "contact": "J'accepte d'être contacté par la Banque Woodburn concernant ma demande."
+    },
+    "review": {
+      "alert": "Veuillez examiner attentivement toutes les informations avant de soumettre. Assurez-vous que tous les champs requis sont remplis correctement."
+    },
+    "buttons": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "submit": "Soumettre la demande",
+      "submitting": "Soumission en cours..."
+    },
+    "errors": {
+      "firstNameRequired": "Le prénom est requis.",
+      "lastNameRequired": "Le nom de famille est requis.",
+      "emailRequired": "L'e-mail est requis.",
+      "phoneRequired": "Le numéro de téléphone est requis.",
+      "dateOfBirthRequired": "La date de naissance est requise.",
+      "ssnRequired": "Le numéro de sécurité sociale est requis.",
+      "employmentStatusRequired": "Le statut d'emploi est requis.",
+      "annualIncomeRequired": "Le revenu annuel est requis.",
+      "loanAmountRequired": "Le montant du prêt est requis.",
+      "downPaymentRequired": "L'acompte est requis.",
+      "propertyTypeRequired": "Le type de propriété est requis.",
+      "agreeToTermsRequired": "Vous devez accepter les conditions générales.",
+      "agreeToCreditRequired": "Vous devez autoriser une vérification de crédit."
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "title": "Demande soumise avec succès !",
+      "subtitle": "Merci d'avoir fait votre demande de prêt immobilier auprès de la Banque Woodburn.",
+      "applicationId": "ID de la demande : {id}"
+    },
+    "nextSteps": {
+      "title": "Que se passe-t-il ensuite ?",
+      "description": "Voici ce à quoi vous pouvez vous attendre dans les prochains jours :",
       "cards": [
         {
-          "title": "Banque en ligne 24/7",
-          "description": "Accédez à vos comptes à tout moment, n'importe où, avec notre plateforme sécurisée"
+          "title": "Dans les 24 heures",
+          "description": "Vous recevrez un e-mail de confirmation avec les détails de votre demande et les prochaines étapes."
         },
         {
-          "title": "Application mobile",
-          "description": "Gérez vos finances en déplacement avec notre application primée"
+          "title": "Dans les 2-3 jours",
+          "description": "Un agent de crédit vous contactera pour discuter de votre demande et pourra demander des documents supplémentaires."
         },
         {
-          "title": "Support personnalisé",
-          "description": "Obtenez de l'aide quand vous en avez besoin grâce à notre équipe dédiée"
+          "title": "Dans les 5-7 jours",
+          "description": "Vous recevrez une décision préliminaire concernant votre demande de prêt."
         }
       ]
     },
-    "services": {
-      "title": "Nos services",
-      "subtitle": "Des solutions financières complètes pour chaque besoin",
-      "items": [
-        {
-          "title": "Banque personnelle",
-          "description": "Des comptes courants aux comptes d'épargne, nous avons ce qu'il vous faut"
-        },
-        {
-          "title": "Prêts hypothécaires",
-          "description": "Trouvez le prêt immobilier adapté à vos besoins"
-        },
-        {
-          "title": "Investissements",
-          "description": "Planifiez votre avenir avec nos services d'investissement"
-        }
+    "contact": {
+      "title": "Besoin d'aide ?",
+      "description": "Nos spécialistes des prêts sont là pour répondre à toutes vos questions.",
+      "call": {
+        "title": "Appelez-nous",
+        "number": "+33 800 123 4567",
+        "hours": "Du lundi au vendredi, de 8h à 18h CET"
+      },
+      "email": {
+        "title": "Envoyez-nous un e-mail",
+        "address": "pretsimmobiliers@banquewoodburn.com",
+        "responseTime": "Répond généralement dans un délai d'un jour ouvrable"
+      }
+    },
+    "importantInfo": {
+      "title": "Informations importantes",
+      "tips": [
+        "Votre demande n'est pas encore approuvée. L'approbation finale est soumise à un examen de souscription.",
+        "Il pourra vous être demandé de fournir des documents supplémentaires pour vérifier vos informations.",
+        "Les taux d'intérêt sont sujets à changement jusqu'à ce que votre prêt soit bloqué.",
+        "Toutes les approbations de prêt sont conditionnelles et soumises à vérification finale."
       ]
+    },
+    "buttons": {
+      "home": "Retour à l'accueil",
+      "moreInfo": "En savoir plus sur les prêts immobiliers"
     }
+  },
+  "car-loans": {
+    "hero": {
+      "title": "Conduisez la voiture de vos rêves",
+      "subTitle": "Des prêts automobiles flexibles avec des taux compétitifs et un service personnalisé. Obtenez une pré-approbation en quelques minutes.",
+      "cta": "Obtenir une pré-approbation",
+      "imageUrl": "/car-loan-hero.jpg"
+    },
+    "calculator": {
+      "title": "Calculateur de paiements de prêts automobiles",
+      "subTitle": "Calculez vos remboursements et voyez combien vous pouvez vous permettre pour une voiture grâce à notre calculateur de prêts automobiles facile à utiliser.",
+      "cardTitle": "Calculez vos remboursements",
+      "currency": "EUR",
+      "locale": "fr-FR",
+      "max": "Max",
+      "vehiclePrice": {
+        "label": "Prix du véhicule",
+        "default": "35000",
+        "min": "1000",
+        "max": "100000",
+        "step": "500"
+      },
+      "deposit": {
+        "label": "Acompte",
+        "defaultPercentage": "40",
+        "minPercentage": "10",
+        "maxPercentage": "80",
+        "step": "1000"
+      },
+      "loanTerm": {
+        "label": "Durée du prêt",
+        "default": "36",
+        "min": "6",
+        "max": "72",
+        "step": "6",
+        "years": "Mois"
+      },
+      "paymentFrequency": {
+        "visible": "true",
+        "label": "Fréquence de paiement",
+        "monthly": "Mensuel",
+        "fortnightly": "Bimensuel",
+        "weekly": "Hebdomadaire",
+        "default": "monthly"
+      },
+      "vehicleType": {
+        "label": "Type de véhicule",
+        "new": "Véhicule neuf",
+        "used": "Véhicule d'occasion",
+        "refinance": "Refinancer un prêt existant",
+        "default": "new"
+      },
+      "balloonPayment": {
+        "visible": "true",
+        "label": "Paiement ballon",
+        "defaultPercentage": "0",
+        "minPercentage": "0",
+        "maxPercentage": "40",
+        "step": "1000",
+        "paymentMessage": "Plus un paiement ballon de "
+      },
+      "submitButton": "Calculer les paiements",
+      "resultTitle": "Paiements estimés",
+      "installments": "versements",
+      "totalCost": "Coût total",
+      "APR": "TAEG",
+      "resultDescription": "Basé sur vos sélections, le taux d'intérêt estimé est de ",
+      "resultDisclaimer": "Avertissement : Ceci est une estimation et peut varier en fonction de facteurs supplémentaires."
+    },
+    "readyToApply": {
+      "title": "Prêt à postuler ?",
+      "subTitle": "Commencez votre demande en ligne et obtenez une pré-approbation en aussi peu que 24 heures. Notre processus sécurisé est rapide, facile et entièrement confidentiel.",
+      "stats": {
+        "stat1": {
+          "title": "2 min",
+          "subTitle": "Demande"
+        },
+        "stat2": {
+          "title": "24h",
+          "subTitle": "Approbation"
+        },
+        "stat3": {
+          "title": "4.49%",
+          "subTitle": "TAEG de départ"
+        }
+      },
+      "benefits": {
+        "title": "Avantages de la demande",
+        "feature1": "Pas d'impact sur le score de crédit pour la vérification du taux",
+        "feature2": "Pré-approbation valide pendant 60 jours",
+        "feature3": "Magasinez en toute confiance chez n'importe quel concessionnaire",
+        "feature4": "Soutien dédié d'un spécialiste des prêts"
+      },
+      "reviews": {
+        "rating": "4.9/5 Note client",
+        "quote": "Approbation rapide et excellents taux. Le processus était si facile !",
+        "author": "Sarah T., Cliente satisfaite"
+      },
+      "documents": {
+        "title": "Ce dont vous aurez besoin",
+        "item1": "Pièce d'identité valide (Permis de conduire ou Passeport)",
+        "item2": "Preuve de revenu (Fiches de paie ou Déclarations de revenus)",
+        "item3": "Informations sur le véhicule (VIN, Marque, Modèle)"
+      },
+      "applyButton": "Postuler en ligne maintenant",
+      "footer": "Demande sécurisée • Pas de frais cachés • Prise de décision locale"
+    }
+  },
+  "car-loans/apply": {
+    "loading": "Chargement de votre demande...",
+    "header": {
+      "title": "Demande de prêt automobile",
+      "step": "Étape",
+      "of": "sur"
+    },
+    "navigation": {
+      "back": "Retour",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "submit": "Soumettre la demande",
+      "submitting": "Soumission en cours..."
+    },
+    "steps": {
+      "step1": {
+        "title": "Informations personnelles et adresse",
+        "description": "Parlez-nous de vous et de votre lieu de résidence"
+      },
+      "step2": {
+        "title": "Détails de l'emploi et financiers",
+        "description": "Votre situation professionnelle et financière"
+      },
+      "step3": {
+        "title": "Informations sur le véhicule et le prêt",
+        "description": "Détails sur le véhicule et le prêt"
+      },
+      "step4": {
+        "title": "Révision et soumission",
+        "description": "Vérifiez vos informations et soumettez votre demande"
+      }
+    },
+    "personal": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "email": "Adresse e-mail",
+      "phone": "Numéro de téléphone",
+      "dateOfBirth": "Date de naissance",
+      "ssn": "Numéro de sécurité sociale",
+      "ssnPlaceholder": "XXX-XX-XXXX",
+      "driversLicense": "Numéro de permis de conduire",
+      "driversLicenseState": "État du permis",
+      "driversLicenseStatePlaceholder": "CA"
+    },
+    "address": {
+      "title": "Adresse actuelle",
+      "streetAddress": "Numéro et rue",
+      "streetAddressPlaceholder": "123 Rue Principale",
+      "city": "Ville",
+      "state": "État/Province",
+      "zipCode": "Code postal",
+      "yearsAtAddress": "Années à cette adresse",
+      "monthsAtAddress": "Mois supplémentaires",
+      "monthsAtAddressPlaceholder": "0-11",
+      "housingStatus": "Statut du logement",
+      "housingStatusPlaceholder": "Sélectionner le statut",
+      "housingStatusOptions": {
+        "own": "Propriétaire",
+        "rent": "Locataire",
+        "liveWithFamily": "Vit en famille",
+        "other": "Autre"
+      }
+    },
+    "employment": {
+      "status": "Statut d'emploi",
+      "statusPlaceholder": "Sélectionnez le statut d'emploi",
+      "statusOptions": {
+        "employed": "Employé",
+        "selfEmployed": "Travailleur indépendant",
+        "retired": "Retraité",
+        "unemployed": "Sans emploi",
+        "student": "Étudiant",
+        "military": "Militaire"
+      },
+      "employer": "Nom de l'employeur",
+      "jobTitle": "Titre du poste",
+      "yearsAtJob": "Années à l'emploi actuel",
+      "monthsAtJob": "Mois supplémentaires",
+      "monthsAtJobPlaceholder": "0-11",
+      "workPhone": "Téléphone professionnel"
+    },
+    "financial": {
+      "annualIncome": "Revenu annuel",
+      "annualIncomePlaceholder": "65000",
+      "otherIncome": "Autres revenus mensuels",
+      "otherIncomePlaceholder": "0",
+      "monthlyRent": "Paiement mensuel du logement",
+      "monthlyRentPlaceholder": "1200",
+      "monthlyDebts": "Paiements mensuels des dettes",
+      "monthlyDebtsPlaceholder": "400",
+      "creditScore": "Score de crédit estimé",
+      "creditScorePlaceholder": "Sélectionnez une plage",
+      "creditScoreOptions": {
+        "excellent": "Excellent (750+)",
+        "good": "Bon (700-749)",
+        "fair": "Passable (650-699)",
+        "poor": "Faible (Moins de 650)"
+      }
+    },
+    "coApplicant": {
+      "addCoApplicant": "Ajouter un co-demandeur à cette demande",
+      "title": "Informations du co-demandeur",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "ssn": "Numéro de sécurité sociale",
+      "ssnPlaceholder": "XXX-XX-XXXX",
+      "annualIncome": "Revenu annuel"
+    },
+    "vehicle": {
+      "type": "Type de véhicule",
+      "typePlaceholder": "Sélectionnez le type de véhicule",
+      "typeOptions": {
+        "new": "Véhicule neuf",
+        "used": "Véhicule d'occasion",
+        "certified": "Véhicule d'occasion certifié",
+        "refinance": "Refinancer un prêt existant"
+      },
+      "year": "Année",
+      "yearPlaceholder": "2024",
+      "make": "Marque",
+      "makePlaceholder": "Toyota",
+      "model": "Modèle",
+      "modelPlaceholder": "Camry",
+      "mileage": "Kilométrage (si usagé)",
+      "mileagePlaceholder": "25000",
+      "price": "Prix du véhicule",
+      "pricePlaceholder": "32000"
+    },
+    "loan": {
+      "downPayment": "Acompte",
+      "downPaymentPlaceholder": "5000",
+      "tradeInValue": "Valeur d'échange",
+      "tradeInValuePlaceholder": "8000",
+      "amount": "Montant du prêt nécessaire",
+      "amountPlaceholder": "19000",
+      "term": "Durée de prêt préférée",
+      "termPlaceholder": "Sélectionnez la durée du prêt",
+      "termOptions": {
+        "months36": "36 Mois",
+        "months48": "48 Mois",
+        "months60": "60 Mois",
+        "months72": "72 Mois",
+        "months84": "84 Mois"
+      }
+    },
+    "dealer": {
+      "title": "Informations sur le concessionnaire (le cas échéant)",
+      "name": "Nom du concessionnaire",
+      "namePlaceholder": "Ventes automobiles ABC",
+      "city": "Ville du concessionnaire"
+    },
+    "review": {
+      "alert": "Veuillez vérifier vos informations et accepter les conditions ci-dessous pour soumettre votre demande.",
+      "additionalInfo": "Informations supplémentaires (facultatif)",
+      "additionalInfoPlaceholder": "Toute information supplémentaire concernant votre demande..."
+    },
+    "agreements": {
+      "terms": "J'accepte les Conditions générales et la Politique de confidentialité. Je comprends que cette demande ne garantit pas l'approbation du prêt.",
+      "credit": "J'autorise la Banque Woodburn à obtenir mon rapport de crédit et à vérifier les informations fournies dans cette demande.",
+      "contact": "J'accepte d'être contacté par la Banque Woodburn concernant cette demande par téléphone, e-mail ou SMS."
+    },
+    "errors": {
+      "firstNameRequired": "Le prénom est requis",
+      "lastNameRequired": "Le nom de famille est requis",
+      "emailRequired": "L'e-mail est requis",
+      "phoneRequired": "Le numéro de téléphone est requis",
+      "dateOfBirthRequired": "La date de naissance est requise",
+      "ssnRequired": "Le numéro de sécurité sociale est requis",
+      "driversLicenseRequired": "Le permis de conduire est requis",
+      "employmentStatusRequired": "Le statut d'emploi est requis",
+      "annualIncomeRequired": "Le revenu annuel est requis",
+      "vehicleTypeRequired": "Le type de véhicule est requis",
+      "vehiclePriceRequired": "Le prix du véhicule est requis",
+      "loanAmountRequired": "Le montant du prêt est requis",
+      "agreeToTermsRequired": "Vous devez accepter les conditions",
+      "agreeToCreditRequired": "Vous devez accepter la vérification de crédit"
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "title": "Demande soumise avec succès !",
+      "description": "Merci d'avoir choisi la Banque Woodburn pour vos besoins de financement automobile.",
+      "applicationIdPrefix": "ID de la demande :"
+    },
+    "nextSteps": {
+      "title": "Que se passe-t-il ensuite ?",
+      "description": "Voici votre chemin vers le volant",
+      "within1HourCard": {
+        "title": "Dans l'heure",
+        "content": "Vous recevrez une décision de pré-approbation instantanée ou une demande d'informations supplémentaires."
+      },
+      "sameDayCard": {
+        "title": "Le même jour",
+        "content": "Si approuvé, vous recevrez votre lettre de pré-approbation et pourrez commencer à magasiner en toute confiance."
+      },
+      "atPurchaseCard": {
+        "title": "À l'achat",
+        "content": "Apportez votre pré-approbation à n'importe quel concessionnaire et nous nous occuperons des formalités et du financement."
+      }
+    },
+    "preApprovalBenefits": {
+      "title": "Vos avantages de pré-approbation",
+      "description": "Magasinez en toute confiance sachant que vous êtes déjà approuvé",
+      "benefitsList": [
+        "Magasinez en toute confiance chez n'importe quel concessionnaire",
+        "Connaissez votre paiement mensuel exact",
+        "Négociez en tant qu'acheteur au comptant",
+        "Pré-approbation valide pendant 60 jours",
+        "Financement rapide à l'achat",
+        "Soutien dédié d'un spécialiste des prêts"
+      ]
+    },
+    "contactInfo": {
+      "title": "Besoin d'aide ou avez des questions ?",
+      "description": "Nos spécialistes des prêts automobiles sont là pour vous aider",
+      "callUs": {
+        "title": "Appelez-nous",
+        "number": "+33 800 WOODBURN",
+        "hours": "Lun-Ven 8h-19h, Sam 9h-15h"
+      },
+      "emailUs": {
+        "title": "Envoyez-nous un e-mail",
+        "address": "pretsauto@banquewoodburn.com",
+        "response_time": "Nous répondons dans les 2 heures"
+      }
+    },
+    "importantReminders": {
+      "title": "Rappels importants",
+      "remindersList": [
+        "Votre pré-approbation est valide pendant 60 jours à compter d'aujourd'hui",
+        "Évitez d'apporter des modifications importantes à votre crédit pendant cette période",
+        "Apportez votre lettre de pré-approbation lorsque vous magasinez pour des véhicules",
+        "Contactez-nous immédiatement lorsque vous trouvez votre véhicule"
+      ]
+    },
+    "actionButtons": {
+      "returnHome": "Retour à l'accueil",
+      "learnMoreAutoLoans": "En savoir plus sur les prêts automobiles"
+    }
+  },
+  "footer": {
+    "description": "Votre partenaire financier de confiance depuis plus de 50 ans. Nous offrons des solutions bancaires complètes adaptées à vos besoins avec un service à la clientèle exceptionnel et des taux compétitifs.",
+    "phone": "+33 800 WOODBURN",
+    "email": "info@banquewoodburn.com",
+    "sections": {
+      "products": {
+        "title": "Produits",
+        "homeLoans": "Prêts immobiliers",
+        "creditCards": "Cartes de crédit",
+        "carLoans": "Prêts automobiles",
+        "bankAccounts": "Comptes bancaires"
+      },
+      "support": {
+        "title": "Soutien",
+        "contact": "Nous contacter",
+        "help": "Centre d'aide",
+        "security": "Sécurité",
+        "privacy": "Politique de confidentialité"
+      }
+    },
+    "copyright": "© 2025 Banque Woodburn. Tous droits réservés."
   }
 }

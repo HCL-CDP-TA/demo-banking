@@ -5,14 +5,14 @@
     "login": "Log in"
   },
   "loginModal": {
-    "title": "Welcome to Woodburn Bank Pvt Ltd",
+    "title": "Welcome to Woodburn Bank Inc.",
     "tabs": {
       "login": "Log in"
     }
   },
   "home": {
     "hero": {
-      "subtitle": "For over five decades, <highlight>Woodburn Bank Pvt Ltd</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
+      "subtitle": "For over five decades, <highlight>Woodburn Bank Inc.</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community."
     },
     "products": {
       "items": {
@@ -42,15 +42,15 @@
   },
   "home-loans/application-submitted": {
     "header": {
-      "subtitle": "Thank you for applying for a home loan with Woodburn Bank Pvt Ltd."
+      "subtitle": "Thank you for applying for a home loan with Woodburn Bank Inc."
     },
     "contact": {
       "call": {
-        "number": "1800 123 4567",
-        "hours": "Monday-Friday, 9am-6pm IST"
+        "number": "1-800-123-4567",
+        "hours": "Monday-Friday, 9am-6pm EST"
       },
       "email": {
-        "address": "homeloans@woodburnbank.in"
+        "address": "homeloans@woodburnbank.ca"
       }
     },
     "buttons": {
@@ -60,7 +60,7 @@
   "car-loans": {
     "hero": {
       "title": "Drive Your Dream Car",
-      "subTitle": "Flexible car loans with competitive rates and personalised service. Get pre-approved in minutes."
+      "subTitle": "Flexible car loans with competitive rates and personalized service. Get pre-approved in minutes."
     },
     "calculator": {
       "title": "Car Loan Payment Calculator",
@@ -99,7 +99,7 @@
   },
   "car-loans/application-submitted": {
     "successHeader": {
-      "description": "Thank you for choosing Woodburn Bank Pvt Ltd for your car financing needs."
+      "description": "Thank you for choosing Woodburn Bank Inc. for your car financing needs."
     },
     "nextSteps": {
       "within1HourCard": {
@@ -125,10 +125,10 @@
     },
     "contactInfo": {
       "callUs": {
-        "number": "1800 WOODBURN"
+        "number": "1-800-WOODBURN"
       },
       "emailUs": {
-        "address": "carloans@woodburnbank.in"
+        "address": "carloans@woodburnbank.ca"
       }
     },
     "importantReminders": {
@@ -145,17 +145,17 @@
   },
   "footer": {
     "description": "Your trusted financial partner for over 50 years. We provide comprehensive banking solutions tailored to your needs with exceptional customer service and competitive rates.",
-    "phone": "1800 WOODBURN",
-    "email": "info@woodburnbank.in",
+    "phone": "1-800-WOODBURN",
+    "email": "info@woodburnbank.ca",
     "sections": {
       "products": {
         "homeLoans": "Home Loans",
         "carLoans": "Car Loans"
       },
       "support": {
-        "help": "Help Centre"
+        "help": "Help Center"
       }
     },
-    "copyright": "© 2025 Woodburn Bank Pvt Ltd. All rights reserved."
+    "copyright": "© 2025 Woodburn Bank Inc. All rights reserved."
   }
 }

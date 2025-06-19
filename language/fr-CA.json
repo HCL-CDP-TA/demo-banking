@@ -1,0 +1,59 @@
+{
+  "loginModal": {
+    "title": "Bienvenue à la Banque Woodburn Inc.",
+    "placeholders": {
+      "phone": "(555) 123-4567"
+    }
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Depuis plus de cinq décennies, la <highlight>Banque Woodburn Inc.</highlight> offre des solutions financières fiables avec un service personnalisé et un engagement indéfectible envers notre communauté."
+    }
+  },
+  "home-loans": {
+    "calculator": {
+      "loanAmount": {
+        "currency": "CAD",
+        "locale": "fr-CA"
+      }
+    }
+  },
+  "home-loans/application-submitted": {
+    "header": {
+      "subtitle": "Merci d'avoir fait votre demande de prêt immobilier auprès de la Banque Woodburn Inc."
+    },
+    "contact": {
+      "call": {
+        "number": "1-800-123-4567",
+        "hours": "Du lundi au vendredi, de 9h à 18h HNE"
+      },
+      "email": {
+        "address": "pretsimmobiliers@banquewoodburn.ca"
+      }
+    }
+  },
+  "car-loans": {
+    "calculator": {
+      "currency": "CAD",
+      "locale": "fr-CA"
+    }
+  },
+  "car-loans/application-submitted": {
+    "successHeader": {
+      "description": "Merci d'avoir choisi la Banque Woodburn Inc. pour vos besoins de financement automobile."
+    },
+    "contactInfo": {
+      "callUs": {
+        "number": "1-800-WOODBURN"
+      },
+      "emailUs": {
+        "address": "pretsauto@banquewoodburn.ca"
+      }
+    }
+  },
+  "footer": {
+    "phone": "1-800-WOODBURN",
+    "email": "info@banquewoodburn.ca",
+    "copyright": "© 2025 Banque Woodburn Inc. Tous droits réservés."
+  }
+}

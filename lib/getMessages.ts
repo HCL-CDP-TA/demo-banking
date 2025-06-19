@@ -14,8 +14,8 @@ async function loadJson(filePath: string): Promise<any> {
 }
 
 export async function getMessages(brand: string, locale: string) {
-  const defaultLocale = "en" // Default fallback locale
-  const defaultBrand = supportedBrands[0].value // Default brand fallback (first in supportedThemes)
+  const defaultLocale = supportedLocales[0].code // Default fallback locale
+  const defaultBrand = supportedBrands[0].key // Default brand fallback (first in supportedThemes)
 
   // Find the locale configuration from supportedLocales
   const localeConfig =
@@ -25,7 +25,7 @@ export async function getMessages(brand: string, locale: string) {
     throw new Error(`Locale configuration not found for locale: ${locale}`)
   }
 
-  const selectedBrand = supportedBrands.find(supportedBrand => supportedBrand.value === brand)?.value || defaultBrand
+  const selectedBrand = supportedBrands.find(supportedBrand => supportedBrand.key === brand)?.key || defaultBrand
 
   // Resolve fallback chain for the locale (exclude the default locale from the chain)
   const fallbackChain = Array.from(new Set([localeConfig.code, ...(localeConfig.fallbacks || [])])).filter(

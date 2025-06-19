@@ -7,13 +7,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label"
 import { Home, Calculator, CheckCircle, LucideIcon, Phone, ArrowRight, ChevronsRight } from "lucide-react"
 import Hero from "@/components/Hero"
-import getIcon from "@/lib/getIcon"
 import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Link from "next/link"
+import { getIcon } from "@/lib/brandLocaleUtils"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function HomeLoansPage() {
-  const t = useTranslations("homeLoansPage")
+  const t = useTranslations(useSiteContext().getPageNamespace())
   const [interestShown, setInterestShown] = useState(false)
 
   interface CalculatorData {
@@ -136,7 +137,7 @@ export default function HomeLoansPage() {
 
               <Card className="border-slate-200 shadow-sm flex-1 flex flex-col">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-slate-800">
+                  <CardTitle className="flex items-center gap-2">
                     <Calculator className="h-5 w-5" />
                     {t("calculator.cardTitle")}
                   </CardTitle>
@@ -248,7 +249,7 @@ export default function HomeLoansPage() {
                     </div>
 
                     <div className="flex-1 flex flex-col ">
-                      <Button type="button" className="w-full" onClick={() => handleCalculator()}>
+                      <Button type="button" className="w-full cursor-pointer" onClick={handleCalculator}>
                         {t("calculator.submitButton")}
                       </Button>
                     </div>
@@ -277,19 +278,15 @@ export default function HomeLoansPage() {
             </div>
 
             <div className="space-y-8">
-              {/* Why Choose Banner */}
-              <div
-                className="relative rounded-2xl overflow-hidden bg-cover bg-center bg-no-repeat min-h-[400px] flex items-center"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')`,
-                }}>
+              {/* Banner Section - Placeholder for RTP */}
+              <div className="relative rounded-2xl overflow-hidden bg-center bg-no-repeat bg-cover min-h-[400px] flex items-center bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')]">
                 <div className="relative z-10 p-8 text-white">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Home Loans?</h2>
                   <p className="text-lg md:text-xl mb-8 text-slate-200 leading-relaxed">
                     With over 50 years of trusted mortgage expertise, we combine competitive rates with personalised
                     service to make your home ownership dreams a reality.
                   </p>
-                  <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3">
+                  <Button size="lg" className="bg-primary px-8 py-3">
                     <ArrowRight className="h-5 w-5 mr-2" />
                     Learn More About Our Rates
                   </Button>
@@ -300,7 +297,7 @@ export default function HomeLoansPage() {
               <Card>
                 <CardContent className="p-8">
                   <div className="text-center">
-                    <div className="mx-auto mb-4 p-3 bg-green-600 rounded-full w-fit">
+                    <div className="mx-auto mb-4 p-3 bg-primary rounded-full w-fit">
                       <Home className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-slate-800 mb-3">{t("readyToApply.title")}</h3>
@@ -313,13 +310,13 @@ export default function HomeLoansPage() {
                         </Button>
                       </Link>
 
-                      <div className="flex items-center justify-center gap-6 text-sm text-slate-600">
+                      <div className="flex items-center justify-center gap-6 text-sm text-slate-600 pt-4">
                         <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
+                          <CheckCircle className="h-4 w-4 text-primary" />
                           <span>{t("readyToApply.feature1")}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600" />
+                          <CheckCircle className="h-4 w-4 text-primary" />
                           <span>{t("readyToApply.feature2")}</span>
                         </div>
                       </div>

@@ -1,4 +1,3 @@
-// app/[locale]/car-loan-application-submitted/page.jsx
 "use client"
 
 import { useEffect, useState } from "react"
@@ -9,15 +8,17 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Car, Clock, Phone, Mail, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useSiteContext } from "@/lib/SiteContext"
 
 export default function CarLoanApplicationSubmittedPage() {
   const router = useRouter()
   const [applicationId, setApplicationId] = useState("")
-  const t = useTranslations("CarLoanApplicationSubmittedPage") // Initialize useTranslations
+  const { brand, getPageNamespace } = useSiteContext()
+  const t = useTranslations(getPageNamespace())
 
   useEffect(() => {
     // Get application data from localStorage
-    const customerData = JSON.parse(localStorage.getItem("woodburn_customer") || "{}")
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     if (customerData.carLoanApplication?.applicationId) {
       setApplicationId(customerData.carLoanApplication.applicationId)
     } else {
