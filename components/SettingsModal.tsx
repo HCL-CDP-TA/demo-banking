@@ -83,6 +83,27 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     }
   }, [brand.key])
 
+  useEffect(() => {
+    // Listen for changes in customer data after login
+    const handleStorageChange = () => {
+      const updatedCustomerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+      if (updatedCustomerData?.loginData) {
+        setSettings(prev => ({
+          ...prev,
+          firstName: updatedCustomerData.loginData.firstName || "",
+          lastName: updatedCustomerData.loginData.lastName || "",
+          email: updatedCustomerData.loginData.email || "",
+          phone: updatedCustomerData.loginData.phone || "",
+        }))
+      }
+    }
+
+    window.addEventListener("storage", handleStorageChange)
+    return () => {
+      window.removeEventListener("storage", handleStorageChange)
+    }
+  }, [brand.key])
+
   const handleSave = async () => {
     setIsSaving(true)
 

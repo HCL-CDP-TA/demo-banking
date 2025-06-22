@@ -1,0 +1,72 @@
+import db from "./database"
+
+interface CustomerData {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  password: string
+  registrationTime?: string
+}
+
+// Save a new customer to the database
+export const saveCustomer = (customerData: CustomerData): { id?: number; error?: string } => {
+  try {
+    const stmt = db.prepare(`
+      INSERT INTO customers (firstName, lastName, email, phone, password, registrationTime)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `)
+    const result = stmt.run(
+      customerData.firstName,
+      customerData.lastName,
+      customerData.email,
+      customerData.phone,
+      customerData.password, // In production, hash passwords before saving
+      new Date().toISOString(),
+    )
+    return { id: Number(result.lastInsertRowid) } // Convert bigint to number and return the generated user ID
+  } catch (error) {
+    console.error("Error saving customer:", error as Error)
+
+    // Handle specific error types
+    if ((error as Error).message.includes("UNIQUE constraint failed")) {
+      return { error: "A customer with this email already exists." }
+    }
+    if ((error as Error).message.includes("ECONNREFUSED")) {
+      return { error: "Database connection refused. Please check your database server." }
+    }
+    if ((error as Error).message.includes("ETIMEDOUT")) {
+      return { error: "Database connection timed out. Please try again later." }
+    }
+
+    // Generic error message for unexpected issues
+    return { error: "An unexpected error occurred while saving the customer. Please try again later." }
+  }
+}
+
+// Fetch a customer by email
+export const getCustomerByEmail = (email: string): { customer?: CustomerData; error?: string } => {
+  try {
+    const stmt = db.prepare(`
+      SELECT * FROM customers WHERE email = ?
+    `)
+    const customer = stmt.get(email) as CustomerData | undefined
+    if (!customer) {
+      return { error: "No customer found with the provided email." }
+    }
+    return { customer }
+  } catch (error) {
+    console.error("Error fetching customer by email:", error as Error)
+
+    // Handle specific error types
+    if ((error as Error).message.includes("ECONNREFUSED")) {
+      return { error: "Database connection refused. Please check your database server." }
+    }
+    if ((error as Error).message.includes("ETIMEDOUT")) {
+      return { error: "Database connection timed out. Please try again later." }
+    }
+
+    // Generic error message for unexpected issues
+    return { error: "An unexpected error occurred while fetching the customer. Please try again later." }
+  }
+}

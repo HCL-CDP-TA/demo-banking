@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import {
@@ -18,23 +17,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Shield, User, Lock, Mail, Phone } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
-import { saveCustomer, getCustomerByEmail, StoredCustomer } from "@/app/actions/customerActions"
+import { login, register } from "@/app/actions/LoginRegister"
 
 interface LoginModalProps {
   children: React.ReactNode
   onLogin?: () => void
-}
-
-interface Customer {
-  id: number
-  firstName: string
-  lastName: string
-  email: string
-  phone?: string
-  password: string // In production, this should be hashed
-  loginTime?: string
-  registrationTime?: string
-  confirmPassword?: string // Only used during registration
 }
 
 export default function LoginModal({ children, onLogin }: LoginModalProps) {
@@ -49,15 +36,12 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
     password: "",
   })
 
-  const [registerData, setRegisterData] = useState<Customer>({
-    id: 0,
+  const [registerData, setRegisterData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     password: "",
-    loginTime: undefined,
-    registrationTime: undefined,
     confirmPassword: "",
   })
 
@@ -67,29 +51,34 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
     setError("")
 
     try {
-      const customer: StoredCustomer | null = await getCustomerByEmail(loginData.email)
-      if (customer) {
-        const customerData = {
-          id: customer.id,
-          email: customer.email,
-          firstName: customer.firstName,
-          lastName: customer.lastName,
-          phone: customer.phone,
-          loginTime: new Date().toISOString(),
-        }
-        const existingData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
-        localStorage.setItem(`${brand.key}_customer_data`, JSON.stringify({ ...existingData, loginData: customerData }))
-        localStorage.setItem("isLoggedIn", "true")
-        setIsOpen(false)
+      const result = await login(loginData.email, loginData.password)
 
-        if (onLogin) {
-          onLogin()
-        }
-      } else {
-        setError(t("errors.invalidCredentials"))
+      if (!result.success) {
+        console.log("Login error:", result.consoleError || result.error)
+        setError(t(result.error ?? "errors.userNotFound"))
+        return
+      }
+
+      const customerData = {
+        id: result.data?.id,
+        email: result.data?.email,
+        firstName: result.data?.firstName || "",
+        lastName: result.data?.lastName || "",
+        phone: result.data?.phone || "",
+        loginTime: new Date().toISOString(),
+      }
+
+      const existingData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+      localStorage.setItem(`${brand.key}_customer_data`, JSON.stringify({ ...existingData, loginData: customerData }))
+      localStorage.setItem("isLoggedIn", "true")
+
+      setIsOpen(false)
+
+      if (onLogin) {
+        onLogin()
       }
     } catch (error) {
-      console.error("Login failed:", error)
+      console.log("Login failed:", console.error || error)
       setError(t("errors.genericError"))
     } finally {
       setIsLoading(false)
@@ -102,27 +91,34 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
     setError("")
 
     try {
-      if (registerData.password !== registerData.confirmPassword) {
-        setError(t("errors.passwordMismatch"))
-        setIsLoading(false)
+      // Uncomment this if you want to enforce password confirmation
+      // if (registerData.password !== registerData.confirmPassword) {
+      //   setError(t("errors.passwordMismatch"))
+      //   setIsLoading(false)
+      //   return
+      // }
+
+      const result = await register(
+        registerData.email,
+        registerData.password,
+        registerData.firstName,
+        registerData.lastName,
+        registerData.phone,
+      )
+
+      if (!result.success) {
+        console.log("Registration error:", result.consoleError || result.error)
+        setError(t(result.error ?? "errors.genericError"))
         return
       }
 
-      const customerData: StoredCustomer = {
-        id: 0, // Default value for id
+      const updatedCustomerData = {
+        id: result.data?.id,
+        email: result.data?.email,
         firstName: registerData.firstName,
         lastName: registerData.lastName,
-        email: registerData.email,
         phone: registerData.phone || "",
-        password: registerData.password, // In production, hash passwords before saving
-      }
-
-      const userId = await saveCustomer(customerData)
-      const updatedCustomerData = {
-        id: userId,
-        email: registerData.email,
         registrationTime: new Date().toISOString(),
-        customerType: "new",
       }
 
       const existingData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
@@ -164,9 +160,9 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="text-center">
           <div className="mx-auto mb-4 p-3 bg-slate-100 rounded-full w-fit">
-            <Shield className="h-8 w-8 text-slate-700" />
+            <brand.icon className="h-8 w-8 " />
           </div>
-          <DialogTitle className="text-2xl font-bold text-slate-800">{t("title")}</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-center">{brand.label}</DialogTitle>
           <DialogDescription className="text-slate-600">{t("description")}</DialogDescription>
         </DialogHeader>
 
@@ -189,7 +185,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                   {t("fields.email")}
                 </Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="login-email"
                     name="email"
@@ -208,7 +204,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                   {t("fields.password")}
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="login-password"
                     name="password"
@@ -221,15 +217,13 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800" disabled={isLoading}>
+              <Button type="submit" className="w-full cursor-pointer" disabled={isLoading}>
                 {isLoading ? t("buttons.signingIn") : t("buttons.signIn")}
               </Button>
             </form>
 
             <div className="text-center">
-              <button className="text-sm text-slate-600 hover:text-slate-800 hover:underline">
-                {t("links.forgotPassword")}
-              </button>
+              <button className="text-sm hover:underline cursor-pointer">{t("links.forgotPassword")}</button>
             </div>
           </TabsContent>
 
@@ -277,7 +271,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                   {t("fields.email")}
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="register-email"
                     name="email"
@@ -296,7 +290,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                   {t("fields.phone")}
                 </Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="phone"
                     name="phone"
@@ -315,7 +309,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                   {t("fields.password")}
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="register-password"
                     name="password"
@@ -334,7 +328,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                   {t("fields.confirmPassword")}
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
@@ -348,7 +342,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-slate-700 hover:bg-slate-800" disabled={isLoading}>
+              <Button type="submit" className="w-full cursor-pointer" disabled={isLoading}>
                 {isLoading ? t("buttons.creatingAccount") : t("buttons.createAccount")}
               </Button>
             </form>

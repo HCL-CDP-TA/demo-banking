@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+    image: demo-banking
+    container_name: banking-app
+    ports:
+      - "3100:3000"
+    environment:
+      - DATABASE_URL=postgresql://banking:banking123@database:5432/banking_customer
+    depends_on:
+      - database
+    command: ["npm", "run", "start"]
+
+  database:
+    image: postgres:16
+    container_name: banking-database
+    restart: always
+    environment:
+      POSTGRES_USER: banking
+      POSTGRES_PASSWORD: banking123
+      POSTGRES_DB: banking_customer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
