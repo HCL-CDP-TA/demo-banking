@@ -27,14 +27,8 @@ ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm install --omit=dev
 
-# Add bash (needed by wait-for-it.sh)
-RUN apt-get update && apt-get install -y bash
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
-# Copy wait-for-it and make executable
-COPY wait-for-it.sh /app/wait-for-it.sh
-RUN chmod +x /app/wait-for-it.sh
-
-# Copy necessary build artefacts
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static .next/static
 COPY --from=builder /app/public ./public
@@ -48,5 +42,4 @@ COPY --from=builder /app/prisma ./prisma
 # Expose port
 EXPOSE 3000
 
-# Use wait-for-it to delay start until DB ready, then run Next standalone server
-CMD ["/app/wait-for-it.sh", "database:5432", "--", "node", "server.js"]
+CMD ["node", "server.js"]

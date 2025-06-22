@@ -10,7 +10,7 @@ services:
       - DATABASE_URL=postgresql://banking:banking123@database:5432/banking_customer
     depends_on:
       - database
-    command: ["/app/wait-for-it.sh", "database:5432", "--", "npm", "run", "start"]
+    command: ["npm", "run", "start"]
 
   database:
     image: postgres:16
