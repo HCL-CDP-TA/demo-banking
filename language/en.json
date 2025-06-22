@@ -27,12 +27,12 @@
       "confirmPassword": "Confirm Password"
     },
     "placeholders": {
-      "email": "Enter your email",
-      "password": "Enter your password",
-      "firstName": "John",
-      "lastName": "Doe",
-      "phone": "(555) 123-4567",
-      "confirmPassword": "Confirm your password"
+      "email": "",
+      "password": "",
+      "firstName": "",
+      "lastName": "",
+      "phone": "",
+      "confirmPassword": ""
     },
     "buttons": {
       "signIn": "Sign In",
@@ -45,7 +45,11 @@
     },
     "errors": {
       "missingCredentials": "Please enter both email and password",
-      "passwordMismatch": "Passwords do not match"
+      "passwordMismatch": "Passwords do not match",
+      "userNotFound": "No account found with that email",
+      "userExists": "An account with that email already exists",
+      "genericError": "An error occurred. Please try again later.",
+      "connectionError": "Unable to connect to the database"
     }
   },
   "home": {

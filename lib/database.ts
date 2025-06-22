@@ -1,10 +1,9 @@
-import sqlite3 from "better-sqlite3"
-import path from "path"
+import { Pool } from "pg"
 
-// Path to the database file
-const dbPath = path.resolve(process.cwd(), "data/customers.db")
+// Initialize the PostgreSQL connection pool using the DATABASE_URL
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+})
 
-// Initialize the database connection
-const db = sqlite3(dbPath)
-
-export default db
+// Export the pool for querying the database
+export default pool
