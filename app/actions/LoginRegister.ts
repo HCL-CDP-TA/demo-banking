@@ -21,7 +21,19 @@ interface RegisterData {
   phone?: string
 }
 
-export async function login(email: string, password: string): Promise<ActionResult<LoginData>> {
+type RegisterInput = {
+  email: string
+  firstName: string
+  lastName: string
+  password: string
+  phone?: string
+}
+type LoginInput = {
+  email: string
+  password: string
+}
+
+export async function login({ email, password }: LoginInput): Promise<ActionResult<LoginData>> {
   const res = await fetch("/api/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -37,14 +49,13 @@ export async function login(email: string, password: string): Promise<ActionResu
   return { success: true, data } // { success: true, data: { id, email, name } }
 }
 
-export async function register(
-  email: string,
-  firstName: string,
-  lastName: string,
-  password: string,
-  phone?: string,
-): Promise<ActionResult<RegisterData>> {
-  console.log(email, firstName, lastName, password, phone)
+export async function register({
+  email,
+  password,
+  firstName,
+  lastName,
+  phone,
+}: RegisterInput): Promise<ActionResult<RegisterData>> {
   const res = await fetch("/api/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
