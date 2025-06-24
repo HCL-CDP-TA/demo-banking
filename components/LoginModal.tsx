@@ -51,7 +51,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
     setError("")
 
     try {
-      const result = await login(loginData.email, loginData.password)
+      const result = await login({ email: loginData.email, password: loginData.password })
 
       if (!result.success) {
         console.log("Login error:", result.consoleError || result.error)
@@ -98,13 +98,13 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
       //   return
       // }
 
-      const result = await register(
-        registerData.email,
-        registerData.password,
-        registerData.firstName,
-        registerData.lastName,
-        registerData.phone,
-      )
+      const result = await register({
+        email: registerData.email,
+        firstName: registerData.firstName,
+        lastName: registerData.lastName,
+        password: registerData.password,
+        phone: registerData.phone,
+      })
 
       if (!result.success) {
         console.log("Registration error:", result.consoleError || result.error)
