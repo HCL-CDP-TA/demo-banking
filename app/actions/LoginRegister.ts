@@ -39,12 +39,11 @@ export async function login(email: string, password: string): Promise<ActionResu
 
 export async function register(
   email: string,
+  password: string,
   firstName: string,
   lastName: string,
-  password: string,
   phone?: string,
 ): Promise<ActionResult<RegisterData>> {
-  console.log(email, firstName, lastName, password, phone)
   const res = await fetch("/api/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
