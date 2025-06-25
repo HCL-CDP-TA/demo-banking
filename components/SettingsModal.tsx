@@ -20,6 +20,7 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { Settings, User, Bell, Shield, Globe, Save, RefreshCw, UserCog } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 interface SettingsModalProps {
   children: React.ReactNode
@@ -29,6 +30,7 @@ export default function SettingsModal({ children }: SettingsModalProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const { brand } = useSiteContext()
+  const { isCDPTrackingEnabled, setCDPTrackingEnabled } = useCDPTracking()
 
   // Settings state
   const [settings, setSettings] = useState({
@@ -59,10 +61,6 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     overdraftProtection: true,
     autoSave: false,
     roundUpPurchases: false,
-
-    // Demo Settings
-    sourceKey: "",
-    CDPenabled: true,
 
     // Communication Preferences
     preferredContactMethod: "email",
@@ -432,7 +430,7 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                       <UserCog className="h-5 w-5" />
                       CDP Configuration
                     </CardTitle>
-                    <CardDescription>HCL CDP Settings</CardDescription>
+                    <CardDescription>HCL CDP Settings for {brand.label}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -440,20 +438,12 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                         <Label className="text-base">Enable CDP Logging</Label>
                       </div>
                       <div className="flex items-center gap-2">
-                        {settings.CDPenabled && <Badge variant="secondary">Enabled</Badge>}
+                        {isCDPTrackingEnabled && <Badge variant="secondary">Enabled</Badge>}
                         <Switch
-                          checked={settings.CDPenabled}
-                          onCheckedChange={checked => handleSettingChange("CDPenabled", checked)}
+                          checked={isCDPTrackingEnabled}
+                          onCheckedChange={checked => setCDPTrackingEnabled(checked)}
                         />
                       </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="sourceKey">Source Key</Label>
-                      <Input
-                        id="sourceKey"
-                        value={settings.firstName}
-                        onChange={e => handleSettingChange("sourceKey", e.target.value)}
-                      />
                     </div>
                   </CardContent>
                 </Card>

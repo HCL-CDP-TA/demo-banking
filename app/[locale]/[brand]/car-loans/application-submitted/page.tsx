@@ -9,17 +9,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, Car, Clock, Phone, Mail, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function CarLoanApplicationSubmittedPage() {
   const router = useRouter()
   const [applicationId, setApplicationId] = useState("")
-  const { brand, getPageNamespace } = useSiteContext()
-  const t = useTranslations(getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
+  const { track } = useCdp()
 
   useEffect(() => {
     // Get application data from localStorage
     const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     if (customerData.carLoanApplication?.applicationId) {
+      if (isCDPTrackingEnabled) {
+        track({ identifier: t("cdp.conversionEventName"), properties: { ...customerData.carLoanApplication } })
+      }
       setApplicationId(customerData.carLoanApplication.applicationId)
     } else {
       // Redirect if no application found
@@ -29,6 +37,10 @@ export default function CarLoanApplicationSubmittedPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Success Header */}
       <section className="bg-green-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

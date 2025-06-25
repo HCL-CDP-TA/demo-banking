@@ -15,9 +15,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Shield, User, Lock, Mail, Phone } from "lucide-react"
+import { User, Lock, Mail, Phone } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
 import { login, register } from "@/app/actions/LoginRegister"
+import { useCdp } from "hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 interface LoginModalProps {
   children: React.ReactNode
@@ -27,6 +29,8 @@ interface LoginModalProps {
 export default function LoginModal({ children, onLogin }: LoginModalProps) {
   const t = useTranslations("loginModal")
   const { brand } = useSiteContext()
+  const { isCDPTrackingEnabled } = useCDPTracking()
+  const { track, identify } = useCdp()
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
@@ -71,6 +75,12 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
       const existingData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
       localStorage.setItem(`${brand.key}_customer_data`, JSON.stringify({ ...existingData, loginData: customerData }))
       localStorage.setItem("isLoggedIn", "true")
+
+      if (isCDPTrackingEnabled) {
+        identify({
+          identifier: (customerData.id ?? "").toString(),
+        })
+      }
 
       setIsOpen(false)
 
@@ -128,6 +138,16 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
       )
       localStorage.setItem("isLoggedIn", "true")
       setIsOpen(false)
+
+      if (isCDPTrackingEnabled) {
+        identify({
+          identifier: (updatedCustomerData.id ?? "").toString(),
+          properties: {
+            firstName: updatedCustomerData.firstName,
+            lastName: updatedCustomerData.lastName,
+          },
+        })
+      }
 
       if (onLogin) {
         onLogin()

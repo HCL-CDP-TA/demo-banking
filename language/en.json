@@ -53,6 +53,9 @@
     }
   },
   "home": {
+    "cdp": {
+      "pageEventName": "Home"
+    },
     "hero": {
       "title": "Banking Built on <highlight>Trust & Expertise</highlight>",
       "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community.",
@@ -153,6 +156,10 @@
     }
   },
   "credit-cards": {
+    "cdp": {
+      "pageEventName": "Credit Cards",
+      "applyEventName": "credit_card_apply"
+    },
     "hero": {
       "title": "Credit Cards That Reward You",
       "subTitle": "Earn more on every purchase with no annual fees, comprehensive benefits, and the security you expect from a trusted financial institution.",
@@ -245,6 +252,11 @@
     }
   },
   "home-loans": {
+    "cdp": {
+      "pageEventName": "Home Loans",
+      "calculateEventName": "home_loan_calculate",
+      "applyEventName": "home_loan_apply"
+    },
     "hero": {
       "title": "Find Your Dream Home with Ease",
       "subTitle": "Explore flexible home loan options tailored to your needs. Competitive rates, fast approvals, and trusted service.",
@@ -349,6 +361,11 @@
     }
   },
   "home-loans/apply": {
+    "cdp": {
+      "pageEventName": "Home Loans",
+      "stepEventName": "home_loan_application_step",
+      "applyEventName": "home_loan_apply"
+    },
     "loading": "Loading application data...",
     "backButton": "Back",
     "title": "Home Loan Application",
@@ -541,6 +558,10 @@
     }
   },
   "home-loans/application-submitted": {
+    "cdp": {
+      "pageEventName": "Home Loan Submitted",
+      "conversionEventName": "home_loan_conversion"
+    },
     "header": {
       "title": "Application Submitted Successfully!",
       "subtitle": "Thank you for applying for a home loan with Woodburn Bank.",
@@ -597,6 +618,11 @@
     }
   },
   "car-loans": {
+    "cdp": {
+      "pageEventName": "Auto Loans",
+      "stepEventName": "auto_loan_application_step",
+      "applyEventName": "auto_loan_apply"
+    },
     "hero": {
       "title": "Drive Your Dream Car",
       "subTitle": "Flexible auto loans with competitive rates and personalized service. Get pre-approved in minutes.",
@@ -704,6 +730,11 @@
     }
   },
   "car-loans/apply": {
+    "cdp": {
+      "pageEventName": "Auto Loans",
+      "stepEventName": "auto_loan_application_step",
+      "applyEventName": "auto_loan_apply"
+    },
     "loading": "Loading your application...",
     "header": {
       "title": "Auto Loan Application",
@@ -774,8 +805,7 @@
         "selfEmployed": "Self-Employed",
         "retired": "Retired",
         "unemployed": "Unemployed",
-        "student": "Student",
-        "military": "Military"
+        "student": "Student"
       },
       "employer": "Employer Name",
       "jobTitle": "Job Title",
@@ -788,13 +818,11 @@
       "annualIncome": "Annual Income",
       "annualIncomePlaceholder": "65000",
       "otherIncome": "Other Monthly Income",
-      "otherIncomePlaceholder": "0",
       "monthlyRent": "Monthly Housing Payment",
-      "monthlyRentPlaceholder": "1200",
       "monthlyDebts": "Monthly Debt Payments",
-      "monthlyDebtsPlaceholder": "400",
+      "checkingBalance": "Checking Account Balance",
+      "savingsBalance": "Savings Account Balance",
       "creditScore": "Estimated Credit Score",
-      "creditScorePlaceholder": "Select range",
       "creditScoreOptions": {
         "excellent": "Excellent (750+)",
         "good": "Good (700-749)",
@@ -802,17 +830,7 @@
         "poor": "Poor (Below 650)"
       }
     },
-    "coApplicant": {
-      "addCoApplicant": "Add a co-applicant to this application",
-      "title": "Co-Applicant Information",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "phone": "Phone",
-      "ssn": "SSN",
-      "ssnPlaceholder": "XXX-XX-XXXX",
-      "annualIncome": "Annual Income"
-    },
+
     "vehicle": {
       "type": "Vehicle Type",
       "typePlaceholder": "Select vehicle type",
@@ -841,22 +859,23 @@
       "amount": "Loan Amount Needed",
       "amountPlaceholder": "19000",
       "term": "Preferred Loan Term",
-      "termPlaceholder": "Select loan term",
+      "termPlaceholder": "Select Loan Term",
       "termOptions": {
+        "months12": "12 Months",
+        "months24": "24 Months",
         "months36": "36 Months",
         "months48": "48 Months",
-        "months60": "60 Months",
-        "months72": "72 Months",
-        "months84": "84 Months"
+        "months60": "60 Months"
       }
     },
     "dealer": {
       "title": "Dealer Information (if applicable)",
       "name": "Dealer Name",
-      "namePlaceholder": "ABC Auto Sales",
       "city": "Dealer City"
     },
     "review": {
+      "additionalInfoLabel": "Additional Information (Optional)",
+      "additionalInfoLabelPlaceholder": "Any additional information about your application...",
       "alert": "Please review your information and agree to the terms below to submit your application.",
       "additionalInfo": "Additional Information (Optional)",
       "additionalInfoPlaceholder": "Any additional information about your application..."
@@ -884,6 +903,10 @@
     }
   },
   "car-loans/application-submitted": {
+    "cdp": {
+      "pageEventName": "Auto Loan Submitted",
+      "conversionEventName": "auto_loan_conversion"
+    },
     "successHeader": {
       "title": "Application Submitted Successfully!",
       "description": "Thank you for choosing Woodburn Bank for your auto financing needs.",

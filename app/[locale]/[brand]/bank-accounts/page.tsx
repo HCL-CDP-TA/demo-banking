@@ -6,10 +6,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { PiggyBank, Smartphone, Shield, Award, TrendingUp, CheckCircle, CreditCard, Banknote } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
+import { useTranslations } from "next-intl"
+import { CdpPageEvent } from "hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function BankAccountsPage() {
   const [selectedAccount, setSelectedAccount] = useState<string | null>(null)
-  const { brand } = useSiteContext()
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
 
   const handleAccountInterest = (accountType: string) => {
     setSelectedAccount(accountType)
@@ -30,6 +36,10 @@ export default function BankAccountsPage() {
 
   return (
     <>
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={pageNamespace} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Hero Section */}
       <section className="hero-gradient text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

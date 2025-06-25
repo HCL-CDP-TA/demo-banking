@@ -7,9 +7,15 @@ import { useTranslations } from "next-intl"
 import Hero from "@/components/Hero"
 import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent } from "hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function HomePage() {
-  const t = useTranslations(useSiteContext().getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
+
   interface Product {
     title: string
     description: string
@@ -104,6 +110,10 @@ export default function HomePage() {
 
   return (
     <main>
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Hero Section */}
       <Hero
         title={t.rich("hero.title", {
