@@ -8,6 +8,8 @@ services:
       - "3100:3000"
     environment:
       - DATABASE_URL=postgresql://banking:banking123@database:5432/banking_customer
+      - NEXT_PUBLIC_CDP_WRITEKEY=n9wjihaje10vlvbfxe69
+      - NEXT_PUBLIC_CDP_ENDPOINT=https://pl.dev.hxcd.now.hclsoftware.cloud
     depends_on:
       - database
     command: ["npm", "run", "start"]

@@ -3,20 +3,27 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Home, Clock, Phone, Mail, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function HomeLoanApplicationSubmittedPage() {
-  const { brand, getPageNamespace } = useSiteContext()
-  const t = useTranslations(getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
   const router = useRouter()
   const [applicationId, setApplicationId] = useState("")
+  const { track } = useCdp()
 
   useEffect(() => {
     const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+    if (isCDPTrackingEnabled) {
+      track({ identifier: t("cdp.conversionEventName"), properties: { ...customerData.homeLoanApplication } })
+    }
     if (customerData.homeLoanApplication?.applicationId) {
       setApplicationId(customerData.homeLoanApplication.applicationId)
     } else {
@@ -26,6 +33,10 @@ export default function HomeLoanApplicationSubmittedPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={pageNamespace} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Success Header */}
       <section className="bg-green-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -150,7 +161,7 @@ export default function HomeLoanApplicationSubmittedPage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="./home-loans"
+              href="../home-loans"
               className="cursor-pointer flex items-center gap-2 border border-slate-700 px-4 py-2 rounded-lg text-slate-700 hover:bg-slate-100">
               <Home className="h-4 w-4" />
               {t("buttons.moreInfo")}

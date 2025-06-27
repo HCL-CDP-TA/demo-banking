@@ -11,12 +11,16 @@ import { useTranslations } from "next-intl"
 import { Slider } from "@/components/ui/slider"
 import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function CarLoansPage() {
-  const { brand, getPageNamespace } = useSiteContext()
-  const t = useTranslations(getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
   const [interestShown, setInterestShown] = useState(false)
-  const [selectedLoanType, setSelectedLoanType] = useState<string | null>(null)
+  const { track } = useCdp()
 
   interface CalculatorData {
     vehiclePrice: number
@@ -60,6 +64,31 @@ export default function CarLoansPage() {
         prevData.vehicleType as "new" | "used" | "refinance",
       ),
     }))
+
+    if (isCDPTrackingEnabled) {
+      track({
+        identifier: t("cdp.calculateEventName"),
+        properties: {
+          vehiclePrice: calculatorData.vehiclePrice,
+          deposit: calculatorData.deposit,
+          loanTerm: calculatorData.loanTerm,
+          vehicleType: calculatorData.vehicleType,
+          paymentFrequency: calculatorData.paymentFrequency,
+          balloonPayment: calculatorData.balloonPayment,
+          payment: calculateRepayment(
+            calculatorData.vehiclePrice,
+            calculatorData.deposit,
+            calculatorData.loanTerm,
+            calculatorData.balloonPayment,
+            calculatorData.paymentFrequency,
+            calculatorData.vehicleType as "new" | "used" | "refinance",
+          ).toFixed(2),
+          interestRate: calculatorData.interestRate,
+          vehicleTypeLabel: t(`calculator.vehicleType.${calculatorData.vehicleType}`),
+          currency: t("calculator.currency"),
+        },
+      })
+    }
   }
 
   function calculateRepayment(
@@ -140,7 +169,6 @@ export default function CarLoansPage() {
     e.preventDefault()
     setInterestShown(true)
 
-    // Track customer interaction for CDP
     const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     localStorage.setItem(
       `${brand.key}_customer_data`,
@@ -157,25 +185,11 @@ export default function CarLoansPage() {
     )
   }
 
-  const handleLoanInterest = (loanType: string) => {
-    setSelectedLoanType(loanType)
-
-    // Track customer interaction for CDP
-    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
-    localStorage.setItem(
-      `${brand.key}_customer_data`,
-      JSON.stringify({
-        ...customerData,
-        carLoanTypeInterest: {
-          loanType,
-          timestamp: new Date().toISOString(),
-        },
-      }),
-    )
-  }
-
   return (
     <div className="min-h-screen bg-slate-50">
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
       <Hero title={t("hero.title")} subTitle={t("hero.subTitle")} cta={t("hero.cta")} imageUrl={t("hero.imageUrl")} />
 
       {/* Auto Loan Calculator */}
@@ -415,7 +429,7 @@ export default function CarLoansPage() {
                     </div>
 
                     <div className="flex-1 flex flex-col ">
-                      <Button type="button" className="w-full" onClick={handleCalculator}>
+                      <Button type="button" className="w-full cursor-pointer" onClick={handleCalculator}>
                         {t("calculator.submitButton")}
                       </Button>
                     </div>
@@ -570,7 +584,20 @@ export default function CarLoansPage() {
 
                   {/* CTA Button */}
                   <Link href="./car-loans/apply">
-                    <Button size="lg" className="w-full cursor-pointer">
+                    <Button
+                      size="lg"
+                      className="w-full cursor-pointer"
+                      onClick={() => {
+                        if (isCDPTrackingEnabled) {
+                          track({
+                            identifier: t("cdp.applyEventName"),
+                            properties: {
+                              brand: brand.label,
+                              locale: locale.code,
+                            },
+                          })
+                        }
+                      }}>
                       {t("readyToApply.applyButton")}
                     </Button>
                   </Link>

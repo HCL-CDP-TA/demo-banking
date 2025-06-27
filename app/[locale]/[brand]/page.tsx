@@ -7,9 +7,15 @@ import { useTranslations } from "next-intl"
 import Hero from "@/components/Hero"
 import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function HomePage() {
-  const t = useTranslations(useSiteContext().getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
+
   interface Product {
     title: string
     description: string
@@ -34,7 +40,7 @@ export default function HomePage() {
       title: t("products.items.item1.title"),
       description: t("products.items.item1.description"),
       icon: getIcon(t("products.items.item1.icon")),
-      link: "/home-loans",
+      link: "./home-loans",
       features: [
         t("products.items.item1.features.feature1"),
         t("products.items.item1.features.feature2"),
@@ -45,7 +51,7 @@ export default function HomePage() {
       title: t("products.items.item2.title"),
       description: t("products.items.item2.description"),
       icon: getIcon(t("products.items.item2.icon")),
-      link: "/credit-cards",
+      link: "./credit-cards",
       features: [
         t("products.items.item2.features.feature1"),
         t("products.items.item2.features.feature2"),
@@ -56,7 +62,7 @@ export default function HomePage() {
       title: t("products.items.item3.title"),
       description: t("products.items.item3.description"),
       icon: getIcon(t("products.items.item3.icon")),
-      link: "/personal-loans",
+      link: "./car-loans",
       features: [
         t("products.items.item3.features.feature1"),
         t("products.items.item3.features.feature2"),
@@ -104,6 +110,10 @@ export default function HomePage() {
 
   return (
     <main>
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Hero Section */}
       <Hero
         title={t.rich("hero.title", {

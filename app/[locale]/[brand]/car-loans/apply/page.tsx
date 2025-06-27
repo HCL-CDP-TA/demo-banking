@@ -12,8 +12,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Car, User, DollarSign, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
+import { Car, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 // Initial form state
 const initialFormData = {
@@ -69,15 +71,6 @@ const initialFormData = {
   loanAmount: "",
   loanTerm: "",
 
-  // Co-applicant Information
-  hasCoApplicant: false,
-  coFirstName: "",
-  coLastName: "",
-  coEmail: "",
-  coPhone: "",
-  coSSN: "",
-  coAnnualIncome: "",
-
   // Additional Information
   additionalInfo: "",
 
@@ -91,8 +84,11 @@ const initialFormData = {
 }
 
 export default function CarLoanApplicationPage() {
-  const { getPageNamespace, brand } = useSiteContext()
-  const t = useTranslations(getPageNamespace())
+  const { getPageNamespace, brand, locale } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { track } = useCdp()
+  const { isCDPTrackingEnabled } = useCDPTracking()
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -163,30 +159,31 @@ export default function CarLoanApplicationPage() {
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {}
 
-    switch (step) {
-      case 1:
-        if (!formData.firstName) newErrors.firstName = t("errors.firstNameRequired")
-        if (!formData.lastName) newErrors.lastName = t("errors.lastNameRequired")
-        if (!formData.email) newErrors.email = t("errors.emailRequired")
-        if (!formData.phone) newErrors.phone = t("errors.phoneRequired")
-        if (!formData.dateOfBirth) newErrors.dateOfBirth = t("errors.dateOfBirthRequired")
-        if (!formData.ssn) newErrors.ssn = t("errors.ssnRequired")
-        if (!formData.driversLicense) newErrors.driversLicense = t("errors.driversLicenseRequired")
-        break
-      case 2:
-        if (!formData.employmentStatus) newErrors.employmentStatus = t("errors.employmentStatusRequired")
-        if (!formData.annualIncome) newErrors.annualIncome = t("errors.annualIncomeRequired")
-        break
-      case 3:
-        if (!formData.vehicleType) newErrors.vehicleType = t("errors.vehicleTypeRequired")
-        if (!formData.vehiclePrice) newErrors.vehiclePrice = t("errors.vehiclePriceRequired")
-        if (!formData.loanAmount) newErrors.loanAmount = t("errors.loanAmountRequired")
-        break
-      case 4:
-        if (!formData.agreeToTerms) newErrors.agreeToTerms = t("errors.agreeToTermsRequired")
-        if (!formData.agreeToCredit) newErrors.agreeToCredit = t("errors.agreeToCreditRequired")
-        break
-    }
+    //
+    // switch (step) {
+    //   case 1:
+    //     if (!formData.firstName) newErrors.firstName = t("errors.firstNameRequired")
+    //     if (!formData.lastName) newErrors.lastName = t("errors.lastNameRequired")
+    //     if (!formData.email) newErrors.email = t("errors.emailRequired")
+    //     if (!formData.phone) newErrors.phone = t("errors.phoneRequired")
+    //     if (!formData.dateOfBirth) newErrors.dateOfBirth = t("errors.dateOfBirthRequired")
+    //     if (!formData.ssn) newErrors.ssn = t("errors.ssnRequired")
+    //     if (!formData.driversLicense) newErrors.driversLicense = t("errors.driversLicenseRequired")
+    //     break
+    //   case 2:
+    //     if (!formData.employmentStatus) newErrors.employmentStatus = t("errors.employmentStatusRequired")
+    //     if (!formData.annualIncome) newErrors.annualIncome = t("errors.annualIncomeRequired")
+    //     break
+    //   case 3:
+    //     if (!formData.vehicleType) newErrors.vehicleType = t("errors.vehicleTypeRequired")
+    //     if (!formData.vehiclePrice) newErrors.vehiclePrice = t("errors.vehiclePriceRequired")
+    //     if (!formData.loanAmount) newErrors.loanAmount = t("errors.loanAmountRequired")
+    //     break
+    //   case 4:
+    //     if (!formData.agreeToTerms) newErrors.agreeToTerms = t("errors.agreeToTermsRequired")
+    //     if (!formData.agreeToCredit) newErrors.agreeToCredit = t("errors.agreeToCreditRequired")
+    //     break
+    // }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -194,6 +191,15 @@ export default function CarLoanApplicationPage() {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
+      if (isCDPTrackingEnabled) {
+        const nonEmptyFormData = Object.fromEntries(Object.entries(formData).filter(([_, value]) => value !== ""))
+
+        track({
+          identifier: `${t("cdp.stepEventName")}_${currentStep}`,
+          properties: { brand: brand.key, locale: locale.code, ...nonEmptyFormData },
+        })
+      }
+
       saveFormData(formData) // Save data when going to the next step
       setCurrentStep(prev => Math.min(prev + 1, totalSteps))
     }
@@ -265,6 +271,10 @@ export default function CarLoanApplicationPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={pageNamespace} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Header */}
       <section className="bg-white border-b py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -308,7 +318,7 @@ export default function CarLoanApplicationPage() {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName">{t("personal.firstName")} *</Label>
+                      <Label htmlFor="firstName">{t("personal.firstName")} </Label>
                       <Input
                         id="firstName"
                         value={formData.firstName}
@@ -318,7 +328,7 @@ export default function CarLoanApplicationPage() {
                       {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName">{t("personal.lastName")} *</Label>
+                      <Label htmlFor="lastName">{t("personal.lastName")} </Label>
                       <Input
                         id="lastName"
                         value={formData.lastName}
@@ -331,7 +341,7 @@ export default function CarLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">{t("personal.email")} *</Label>
+                      <Label htmlFor="email">{t("personal.email")} </Label>
                       <Input
                         id="email"
                         type="email"
@@ -342,7 +352,7 @@ export default function CarLoanApplicationPage() {
                       {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone">{t("personal.phone")} *</Label>
+                      <Label htmlFor="phone">{t("personal.phone")} </Label>
                       <Input
                         id="phone"
                         type="tel"
@@ -356,7 +366,7 @@ export default function CarLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="dateOfBirth">{t("personal.dateOfBirth")} *</Label>
+                      <Label htmlFor="dateOfBirth">{t("personal.dateOfBirth")} </Label>
                       <Input
                         id="dateOfBirth"
                         type="date"
@@ -367,7 +377,7 @@ export default function CarLoanApplicationPage() {
                       {errors.dateOfBirth && <p className="text-sm text-red-600">{errors.dateOfBirth}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="ssn">{t("personal.ssn")} *</Label>
+                      <Label htmlFor="ssn">{t("personal.ssn")} </Label>
                       <Input
                         id="ssn"
                         value={formData.ssn}
@@ -381,7 +391,7 @@ export default function CarLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="driversLicense">{t("personal.driversLicense")} *</Label>
+                      <Label htmlFor="driversLicense">{t("personal.driversLicense")} </Label>
                       <Input
                         id="driversLicense"
                         value={formData.driversLicense}
@@ -401,14 +411,14 @@ export default function CarLoanApplicationPage() {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-slate-800">{t("address.sectionTitle")}</h3>
+                    <h3 className="text-lg font-semibold text-slate-800">{t("address.title")}</h3>
                     <div className="space-y-2">
-                      <Label htmlFor="address">{t("address.street")}</Label>
+                      <Label htmlFor="address">{t("address.streetAddress")}</Label>
                       <Input
                         id="address"
                         value={formData.address}
                         onChange={e => handleInputChange("address", e.target.value)}
-                        placeholder={t("address.streetPlaceholder")}
+                        placeholder={t("address.streetAddressPlaceholder")}
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -494,21 +504,29 @@ export default function CarLoanApplicationPage() {
               {currentStep === 2 && (
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <Label>{t("employment.employmentStatus")} *</Label>
+                    <Label>{t("employment.status")} </Label>
                     <Select
                       value={formData.employmentStatus}
                       onValueChange={value => handleInputChange("employmentStatus", value)}>
                       <SelectTrigger className={errors.employmentStatus ? "border-red-500" : ""}>
-                        <SelectValue placeholder={t("employment.employmentStatusPlaceholder")} />
+                        <SelectValue placeholder={t("employment.statusPlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="employed">{t("employment.employmentStatusOptions.employed")}</SelectItem>
-                        <SelectItem value="self-employed">
-                          {t("employment.employmentStatusOptions.selfEmployed")}
+                        <SelectItem value={t("employment.statusOptions.employed")}>
+                          {t("employment.statusOptions.employed")}
                         </SelectItem>
-                        <SelectItem value="retired">{t("employment.employmentStatusOptions.retired")}</SelectItem>
-                        <SelectItem value="unemployed">{t("employment.employmentStatusOptions.unemployed")}</SelectItem>
-                        <SelectItem value="student">{t("employment.employmentStatusOptions.student")}</SelectItem>
+                        <SelectItem value={t("employment.statusOptions.selfEmployed")}>
+                          {t("employment.statusOptions.selfEmployed")}
+                        </SelectItem>
+                        <SelectItem value={t("employment.statusOptions.retired")}>
+                          {t("employment.statusOptions.retired")}
+                        </SelectItem>
+                        <SelectItem value={t("employment.statusOptions.unemployed")}>
+                          {t("employment.statusOptions.unemployed")}
+                        </SelectItem>
+                        <SelectItem value={t("employment.statusOptions.student")}>
+                          {t("employment.statusOptions.student")}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.employmentStatus && <p className="text-sm text-red-600">{errors.employmentStatus}</p>}
@@ -550,7 +568,6 @@ export default function CarLoanApplicationPage() {
                         type="number"
                         value={formData.monthsAtJob}
                         onChange={e => handleInputChange("monthsAtJob", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                     <div className="space-y-2">
@@ -566,25 +583,23 @@ export default function CarLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="annualIncome">{t("employment.annualIncome")} *</Label>
+                      <Label htmlFor="annualIncome">{t("financial.annualIncome")} </Label>
                       <Input
                         id="annualIncome"
                         type="number"
                         value={formData.annualIncome}
                         onChange={e => handleInputChange("annualIncome", e.target.value)}
-                        placeholder="75000"
                         className={errors.annualIncome ? "border-red-500" : ""}
                       />
                       {errors.annualIncome && <p className="text-sm text-red-600">{errors.annualIncome}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="otherIncome">{t("employment.otherIncome")}</Label>
+                      <Label htmlFor="otherIncome">{t("financial.otherIncome")}</Label>
                       <Input
                         id="otherIncome"
                         type="number"
                         value={formData.otherIncome}
                         onChange={e => handleInputChange("otherIncome", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                   </div>
@@ -597,7 +612,6 @@ export default function CarLoanApplicationPage() {
                         type="number"
                         value={formData.monthlyDebts}
                         onChange={e => handleInputChange("monthlyDebts", e.target.value)}
-                        placeholder="500"
                       />
                     </div>
                     <div className="space-y-2">
@@ -607,7 +621,6 @@ export default function CarLoanApplicationPage() {
                         type="number"
                         value={formData.checkingBalance}
                         onChange={e => handleInputChange("checkingBalance", e.target.value)}
-                        placeholder="5000"
                       />
                     </div>
                     <div className="space-y-2">
@@ -616,8 +629,7 @@ export default function CarLoanApplicationPage() {
                         id="savingsBalance"
                         type="number"
                         value={formData.savingsBalance}
-                        onChange={e => handleInputChange("savingsBalance", e.target.value)}
-                        placeholder="15000"
+                        onChange={e => handleInputChange("financial.savingsBalance", e.target.value)}
                       />
                     </div>
                   </div>
@@ -628,7 +640,6 @@ export default function CarLoanApplicationPage() {
                       type="number"
                       value={formData.creditScore}
                       onChange={e => handleInputChange("creditScore", e.target.value)}
-                      placeholder="720"
                     />
                   </div>
                 </div>
@@ -638,16 +649,16 @@ export default function CarLoanApplicationPage() {
               {currentStep === 3 && (
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <Label>{t("vehicle.vehicleType")} *</Label>
+                    <Label>{t("vehicle.type")} </Label>
                     <Select
                       value={formData.vehicleType}
                       onValueChange={value => handleInputChange("vehicleType", value)}>
                       <SelectTrigger className={errors.vehicleType ? "border-red-500" : ""}>
-                        <SelectValue placeholder={t("vehicle.vehicleTypePlaceholder")} />
+                        <SelectValue placeholder={t("vehicle.typePlaceholder")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="new">{t("vehicle.vehicleTypeOptions.new")}</SelectItem>
-                        <SelectItem value="used">{t("vehicle.vehicleTypeOptions.used")}</SelectItem>
+                        <SelectItem value="new">{t("vehicle.typeOptions.new")}</SelectItem>
+                        <SelectItem value="used">{t("vehicle.typeOptions.used")}</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.vehicleType && <p className="text-sm text-red-600">{errors.vehicleType}</p>}
@@ -655,203 +666,122 @@ export default function CarLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="vehicleYear">{t("vehicle.vehicleYear")}</Label>
+                      <Label htmlFor="vehicleYear">{t("vehicle.year")}</Label>
                       <Input
                         id="vehicleYear"
                         type="number"
                         value={formData.vehicleYear}
                         onChange={e => handleInputChange("vehicleYear", e.target.value)}
-                        placeholder="2023"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="vehicleMake">{t("vehicle.vehicleMake")}</Label>
+                      <Label htmlFor="vehicleMake">{t("vehicle.make")}</Label>
                       <Input
                         id="vehicleMake"
                         value={formData.vehicleMake}
                         onChange={e => handleInputChange("vehicleMake", e.target.value)}
-                        placeholder="Honda"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="vehicleModel">{t("vehicle.vehicleModel")}</Label>
+                      <Label htmlFor="vehicleModel">{t("vehicle.model")}</Label>
                       <Input
                         id="vehicleModel"
                         value={formData.vehicleModel}
                         onChange={e => handleInputChange("vehicleModel", e.target.value)}
-                        placeholder="Civic"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="vehicleMileage">{t("vehicle.vehicleMileage")}</Label>
+                      <Label htmlFor="vehicleMileage">{t("vehicle.mileage")}</Label>
                       <Input
                         id="vehicleMileage"
                         type="number"
                         value={formData.vehicleMileage}
                         onChange={e => handleInputChange("vehicleMileage", e.target.value)}
-                        placeholder="15000"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="vehiclePrice">{t("vehicle.vehiclePrice")} *</Label>
+                      <Label htmlFor="vehiclePrice">{t("vehicle.price")} </Label>
                       <Input
                         id="vehiclePrice"
                         type="number"
                         value={formData.vehiclePrice}
                         onChange={e => handleInputChange("vehiclePrice", e.target.value)}
-                        placeholder="25000"
                         className={errors.vehiclePrice ? "border-red-500" : ""}
                       />
                       {errors.vehiclePrice && <p className="text-sm text-red-600">{errors.vehiclePrice}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="downPayment">{t("vehicle.downPayment")}</Label>
+                      <Label htmlFor="downPayment">{t("loan.downPayment")}</Label>
                       <Input
                         id="downPayment"
                         type="number"
                         value={formData.downPayment}
                         onChange={e => handleInputChange("downPayment", e.target.value)}
-                        placeholder="5000"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="loanAmount">{t("loan.loanAmount")} *</Label>
+                      <Label htmlFor="loanAmount">{t("loan.amount")} </Label>
                       <Input
                         id="loanAmount"
                         type="number"
                         value={formData.loanAmount}
                         onChange={e => handleInputChange("loanAmount", e.target.value)}
-                        placeholder="20000"
                         className={errors.loanAmount ? "border-red-500" : ""}
                       />
                       {errors.loanAmount && <p className="text-sm text-red-600">{errors.loanAmount}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="loanTerm">{t("loan.loanTerm")}</Label>
-                      <Input
-                        id="loanTerm"
-                        type="number"
-                        value={formData.loanTerm}
-                        onChange={e => handleInputChange("loanTerm", e.target.value)}
-                        placeholder="60"
-                      />
+                      <Label>{t("loan.term")}</Label>
+                      <Select value={formData.loanTerm} onValueChange={value => handleInputChange("loanTerm", value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder={t("loan.termPlaceholder")} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="12">{t("loan.termOptions.months12")}</SelectItem>
+                          <SelectItem value="24">{t("loan.termOptions.months24")}</SelectItem>
+                          <SelectItem value="36">{t("loan.termOptions.months36")}</SelectItem>
+                          <SelectItem value="48">{t("loan.termOptions.months48")}</SelectItem>
+                          <SelectItem value="60">{t("loan.termOptions.months60")}</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="tradeInValue">{t("vehicle.tradeInValue")}</Label>
+                      <Label htmlFor="tradeInValue">{t("loan.tradeInValue")}</Label>
                       <Input
                         id="tradeInValue"
                         type="number"
                         value={formData.tradeInValue}
                         onChange={e => handleInputChange("tradeInValue", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="dealerName">{t("vehicle.dealerName")}</Label>
+                      <Label htmlFor="dealerName">{t("dealer.name")}</Label>
                       <Input
                         id="dealerName"
                         value={formData.dealerName}
                         onChange={e => handleInputChange("dealerName", e.target.value)}
-                        placeholder="ABC Auto"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="dealerCity">{t("vehicle.dealerCity")}</Label>
+                    <Label htmlFor="dealerCity">{t("dealer.city")}</Label>
                     <Input
                       id="dealerCity"
                       value={formData.dealerCity}
                       onChange={e => handleInputChange("dealerCity", e.target.value)}
-                      placeholder="Los Angeles"
                     />
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="hasCoApplicant"
-                        checked={formData.hasCoApplicant}
-                        onCheckedChange={checked => handleInputChange("hasCoApplicant", checked)}
-                      />
-                      <Label htmlFor="hasCoApplicant">{t("coApplicant.hasCoApplicant")}</Label>
-                    </div>
-
-                    {formData.hasCoApplicant && (
-                      <>
-                        <h3 className="text-lg font-semibold text-slate-800">{t("coApplicant.coApplicantInfo")}</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="coFirstName">{t("coApplicant.coFirstName")}</Label>
-                            <Input
-                              id="coFirstName"
-                              value={formData.coFirstName}
-                              onChange={e => handleInputChange("coFirstName", e.target.value)}
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="coLastName">{t("coApplicant.coLastName")}</Label>
-                            <Input
-                              id="coLastName"
-                              value={formData.coLastName}
-                              onChange={e => handleInputChange("coLastName", e.target.value)}
-                            />
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="coEmail">{t("coApplicant.coEmail")}</Label>
-                            <Input
-                              id="coEmail"
-                              type="email"
-                              value={formData.coEmail}
-                              onChange={e => handleInputChange("coEmail", e.target.value)}
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="coPhone">{t("coApplicant.coPhone")}</Label>
-                            <Input
-                              id="coPhone"
-                              type="tel"
-                              value={formData.coPhone}
-                              onChange={e => handleInputChange("coPhone", e.target.value)}
-                            />
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="coSSN">{t("coApplicant.coSSN")}</Label>
-                            <Input
-                              id="coSSN"
-                              value={formData.coSSN}
-                              onChange={e => handleInputChange("coSSN", e.target.value)}
-                              placeholder={t("coApplicant.coSSNPlaceholder")}
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="coAnnualIncome">{t("coApplicant.coAnnualIncome")}</Label>
-                            <Input
-                              id="coAnnualIncome"
-                              type="number"
-                              value={formData.coAnnualIncome}
-                              onChange={e => handleInputChange("coAnnualIncome", e.target.value)}
-                              placeholder="50000"
-                            />
-                          </div>
-                        </div>
-                      </>
-                    )}
                   </div>
                 </div>
               )}
@@ -865,12 +795,12 @@ export default function CarLoanApplicationPage() {
                   </Alert>
 
                   <div className="space-y-2">
-                    <Label htmlFor="additionalInfo">{t("additionalInfo.label")}</Label>
+                    <Label htmlFor="additionalInfo">{t("review.additionalInfoLabel")}</Label>
                     <Textarea
                       id="additionalInfo"
                       value={formData.additionalInfo}
                       onChange={e => handleInputChange("additionalInfo", e.target.value)}
-                      placeholder={t("additionalInfo.placeholder")}
+                      placeholder={t("review.additionalInfoLabelPlaceholder")}
                       rows={4}
                     />
                   </div>
@@ -922,13 +852,13 @@ export default function CarLoanApplicationPage() {
                   variant="outline"
                   onClick={handlePrevious}
                   disabled={currentStep === 1}
-                  className="flex items-center gap-2">
+                  className="flex items-center gap-2 cursor-pointer">
                   <ArrowLeft className="h-4 w-4" />
                   {t("navigation.back")}
                 </Button>
 
                 {currentStep < totalSteps ? (
-                  <Button onClick={handleNext} className="flex items-center gap-2 bg-slate-700 hover:bg-slate-800">
+                  <Button onClick={handleNext} className="flex items-center gap-2 cursor-pointer">
                     {t("navigation.next")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
@@ -936,7 +866,7 @@ export default function CarLoanApplicationPage() {
                   <Button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700">
+                    className="flex items-center gap-2 cursor-pointer">
                     {isSubmitting ? t("navigation.submitting") : t("navigation.submit")}
                     <CheckCircle className="h-4 w-4" />
                   </Button>

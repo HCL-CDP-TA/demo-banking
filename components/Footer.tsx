@@ -1,11 +1,11 @@
 "use client"
-import { Landmark, Phone, Mail } from "lucide-react"
+import { Phone, Mail } from "lucide-react"
 import { useTranslations } from "next-intl"
 import NavLink from "./common/NavLink"
 import { useSiteContext } from "@/lib/SiteContext"
 
 const Footer = () => {
-  const { brand, locale } = useSiteContext()
+  const { brand, getFullPath } = useSiteContext()
   const t = useTranslations("footer")
 
   return (
@@ -37,16 +37,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">{t("sections.products.title")}</h3>
             <ul className="space-y-2 text-slate-300">
               <li>
-                <NavLink href="/home-loans">{t("sections.products.homeLoans")}</NavLink>
+                <NavLink href={getFullPath("/home-loans")}>{t("sections.products.homeLoans")}</NavLink>
               </li>
               <li>
-                <NavLink href="/credit-cards">{t("sections.products.creditCards")}</NavLink>
+                <NavLink href={getFullPath("/credit-cards")}>{t("sections.products.creditCards")}</NavLink>
               </li>
               <li>
-                <NavLink href="/personal-loans">{t("sections.products.carLoans")}</NavLink>
-              </li>
-              <li>
-                <NavLink href="/bank-accounts">{t("sections.products.bankAccounts")}</NavLink>
+                <NavLink href={getFullPath("/car-loans")}>{t("sections.products.carLoans")}</NavLink>
               </li>
             </ul>
           </div>
@@ -56,16 +53,16 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">{t("sections.support.title")}</h3>
             <ul className="space-y-2 text-slate-300">
               <li>
-                <NavLink href="/contact">{t("sections.support.contact")}</NavLink>
+                <NavLink href="#">{t("sections.support.contact")}</NavLink>
               </li>
               <li>
-                <NavLink href="/help">{t("sections.support.help")}</NavLink>
+                <NavLink href="#">{t("sections.support.help")}</NavLink>
               </li>
               <li>
-                <NavLink href="/security">{t("sections.support.security")}</NavLink>
+                <NavLink href="#">{t("sections.support.security")}</NavLink>
               </li>
               <li>
-                <NavLink href="/privacy">{t("sections.support.privacy")}</NavLink>
+                <NavLink href="#">{t("sections.support.privacy")}</NavLink>
               </li>
             </ul>
           </div>

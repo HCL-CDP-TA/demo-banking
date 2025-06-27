@@ -8,10 +8,15 @@ import { useTranslations } from "next-intl"
 import Hero from "@/components/Hero"
 import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function CreditCardsPage() {
-  const { brand, getPageNamespace } = useSiteContext()
-  const t = useTranslations(getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
+  const { track } = useCdp()
   const [selectedCard, setSelectedCard] = useState<string | null>(null)
 
   const handleCardInterest = (cardType: string) => {
@@ -115,6 +120,9 @@ export default function CreditCardsPage() {
 
   return (
     <>
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
       <Hero title={t("hero.title")} subTitle={t("hero.subTitle")} cta={t("hero.cta")} imageUrl={t("hero.imageUrl")} />
 
       {/* Credit Cards */}
@@ -150,7 +158,13 @@ export default function CreditCardsPage() {
                       ))}
                     </ul>
 
-                    <Button className="w-full">{card.ctaText}</Button>
+                    <Button
+                      className="w-full cursor-pointer"
+                      onClick={() => {
+                        track({ identifier: t("cdp.applyEventName"), properties: { card: card.title } })
+                      }}>
+                      {card.ctaText}
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

@@ -14,6 +14,8 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Home, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 // Initial form state
 const initialFormData = {
@@ -74,8 +76,11 @@ const initialFormData = {
 }
 
 export default function HomeLoanApplicationPage() {
-  const { brand, getPageNamespace } = useSiteContext()
-  const t = useTranslations(getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { track } = useCdp()
+  const { isCDPTrackingEnabled } = useCDPTracking()
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -146,29 +151,29 @@ export default function HomeLoanApplicationPage() {
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {}
 
-    switch (step) {
-      case 1:
-        if (!formData.firstName) newErrors.firstName = t("errors.firstNameRequired")
-        if (!formData.lastName) newErrors.lastName = t("errors.lastNameRequired")
-        if (!formData.email) newErrors.email = t("errors.emailRequired")
-        if (!formData.phone) newErrors.phone = t("errors.phoneRequired")
-        if (!formData.dateOfBirth) newErrors.dateOfBirth = t("errors.dateOfBirthRequired")
-        if (!formData.ssn) newErrors.ssn = t("errors.ssnRequired")
-        break
-      case 2:
-        if (!formData.employmentStatus) newErrors.employmentStatus = t("errors.employmentStatusRequired")
-        if (!formData.annualIncome) newErrors.annualIncome = t("errors.annualIncomeRequired")
-        break
-      case 3:
-        if (!formData.loanAmount) newErrors.loanAmount = t("errors.loanAmountRequired")
-        if (!formData.downPayment) newErrors.downPayment = t("errors.downPaymentRequired")
-        if (!formData.propertyType) newErrors.propertyType = t("errors.propertyTypeRequired")
-        break
-      case 4:
-        if (!formData.agreeToTerms) newErrors.agreeToTerms = t("errors.agreeToTermsRequired")
-        if (!formData.agreeToCredit) newErrors.agreeToCredit = t("errors.agreeToCreditRequired")
-        break
-    }
+    // switch (step) {
+    //   case 1:
+    //     if (!formData.firstName) newErrors.firstName = t("errors.firstNameRequired")
+    //     if (!formData.lastName) newErrors.lastName = t("errors.lastNameRequired")
+    //     if (!formData.email) newErrors.email = t("errors.emailRequired")
+    //     if (!formData.phone) newErrors.phone = t("errors.phoneRequired")
+    //     if (!formData.dateOfBirth) newErrors.dateOfBirth = t("errors.dateOfBirthRequired")
+    //     if (!formData.ssn) newErrors.ssn = t("errors.ssnRequired")
+    //     break
+    //   case 2:
+    //     if (!formData.employmentStatus) newErrors.employmentStatus = t("errors.employmentStatusRequired")
+    //     if (!formData.annualIncome) newErrors.annualIncome = t("errors.annualIncomeRequired")
+    //     break
+    //   case 3:
+    //     if (!formData.loanAmount) newErrors.loanAmount = t("errors.loanAmountRequired")
+    //     if (!formData.downPayment) newErrors.downPayment = t("errors.downPaymentRequired")
+    //     if (!formData.propertyType) newErrors.propertyType = t("errors.propertyTypeRequired")
+    //     break
+    //   case 4:
+    //     if (!formData.agreeToTerms) newErrors.agreeToTerms = t("errors.agreeToTermsRequired")
+    //     if (!formData.agreeToCredit) newErrors.agreeToCredit = t("errors.agreeToCreditRequired")
+    //     break
+    // }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -176,6 +181,15 @@ export default function HomeLoanApplicationPage() {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
+      if (isCDPTrackingEnabled) {
+        const nonEmptyFormData = Object.fromEntries(Object.entries(formData).filter(([_, value]) => value !== ""))
+
+        track({
+          identifier: `${t("cdp.stepEventName")}_${currentStep}`,
+          properties: { brand: brand.key, locale: locale.code, ...nonEmptyFormData },
+        })
+      }
+
       saveFormData(formData) // Save data when going to the next step
       setCurrentStep(prev => Math.min(prev + 1, totalSteps))
     }
@@ -247,6 +261,10 @@ export default function HomeLoanApplicationPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
+
       {/* Header */}
       <section className="bg-white border-b py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -288,7 +306,7 @@ export default function HomeLoanApplicationPage() {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName">{t("form.firstName.label")} *</Label>
+                      <Label htmlFor="firstName">{t("form.firstName.label")} </Label>
                       <Input
                         id="firstName"
                         value={formData.firstName}
@@ -298,7 +316,7 @@ export default function HomeLoanApplicationPage() {
                       {errors.firstName && <p className="text-sm text-red-600">{errors.firstName}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName">{t("form.lastName.label")} *</Label>
+                      <Label htmlFor="lastName">{t("form.lastName.label")} </Label>
                       <Input
                         id="lastName"
                         value={formData.lastName}
@@ -311,7 +329,7 @@ export default function HomeLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">{t("form.email.label")} *</Label>
+                      <Label htmlFor="email">{t("form.email.label")} </Label>
                       <Input
                         id="email"
                         type="email"
@@ -322,7 +340,7 @@ export default function HomeLoanApplicationPage() {
                       {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="phone">{t("form.phone.label")} *</Label>
+                      <Label htmlFor="phone">{t("form.phone.label")} </Label>
                       <Input
                         id="phone"
                         type="tel"
@@ -336,7 +354,7 @@ export default function HomeLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="dateOfBirth">{t("form.dateOfBirth.label")} *</Label>
+                      <Label htmlFor="dateOfBirth">{t("form.dateOfBirth.label")} </Label>
                       <Input
                         id="dateOfBirth"
                         type="date"
@@ -347,12 +365,11 @@ export default function HomeLoanApplicationPage() {
                       {errors.dateOfBirth && <p className="text-sm text-red-600">{errors.dateOfBirth}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="ssn">{t("form.ssn.label")} *</Label>
+                      <Label htmlFor="ssn">{t("form.ssn.label")} </Label>
                       <Input
                         id="ssn"
                         value={formData.ssn}
                         onChange={e => handleInputChange("ssn", e.target.value)}
-                        placeholder={t("form.ssn.placeholder")}
                         className={errors.ssn ? "border-red-500" : ""}
                       />
                       {errors.ssn && <p className="text-sm text-red-600">{errors.ssn}</p>}
@@ -383,7 +400,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.dependents}
                         onChange={e => handleInputChange("dependents", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                   </div>
@@ -394,7 +410,7 @@ export default function HomeLoanApplicationPage() {
               {currentStep === 2 && (
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <Label>{t("form.employmentStatus.label")} *</Label>
+                    <Label>{t("form.employmentStatus.label")} </Label>
                     <Select
                       value={formData.employmentStatus}
                       onValueChange={value => handleInputChange("employmentStatus", value)}>
@@ -448,7 +464,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.monthsAtJob}
                         onChange={e => handleInputChange("monthsAtJob", e.target.value)}
-                        placeholder={t("form.monthsAtJob.placeholder")}
                       />
                     </div>
                     <div className="space-y-2">
@@ -464,13 +479,12 @@ export default function HomeLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="annualIncome">{t("form.annualIncome.label")} *</Label>
+                      <Label htmlFor="annualIncome">{t("form.annualIncome.label")} </Label>
                       <Input
                         id="annualIncome"
                         type="number"
                         value={formData.annualIncome}
                         onChange={e => handleInputChange("annualIncome", e.target.value)}
-                        placeholder="75000"
                         className={errors.annualIncome ? "border-red-500" : ""}
                       />
                       {errors.annualIncome && <p className="text-sm text-red-600">{errors.annualIncome}</p>}
@@ -482,7 +496,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.otherIncome}
                         onChange={e => handleInputChange("otherIncome", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                   </div>
@@ -495,7 +508,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.monthlyRent}
                         onChange={e => handleInputChange("monthlyRent", e.target.value)}
-                        placeholder="1500"
                       />
                     </div>
                     <div className="space-y-2">
@@ -505,7 +517,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.monthlyDebts}
                         onChange={e => handleInputChange("monthlyDebts", e.target.value)}
-                        placeholder="500"
                       />
                     </div>
                   </div>
@@ -518,7 +529,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.checkingBalance}
                         onChange={e => handleInputChange("checkingBalance", e.target.value)}
-                        placeholder="5000"
                       />
                     </div>
                     <div className="space-y-2">
@@ -528,7 +538,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.savingsBalance}
                         onChange={e => handleInputChange("savingsBalance", e.target.value)}
-                        placeholder="15000"
                       />
                     </div>
                     <div className="space-y-2">
@@ -538,7 +547,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.retirementBalance}
                         onChange={e => handleInputChange("retirementBalance", e.target.value)}
-                        placeholder="50000"
                       />
                     </div>
                   </div>
@@ -550,25 +558,23 @@ export default function HomeLoanApplicationPage() {
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="loanAmount">{t("form.loanAmount.label")} *</Label>
+                      <Label htmlFor="loanAmount">{t("form.loanAmount.label")} </Label>
                       <Input
                         id="loanAmount"
                         type="number"
                         value={formData.loanAmount}
                         onChange={e => handleInputChange("loanAmount", e.target.value)}
-                        placeholder="350000"
                         className={errors.loanAmount ? "border-red-500" : ""}
                       />
                       {errors.loanAmount && <p className="text-sm text-red-600">{errors.loanAmount}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="downPayment">{t("form.downPayment.label")} *</Label>
+                      <Label htmlFor="downPayment">{t("form.downPayment.label")} </Label>
                       <Input
                         id="downPayment"
                         type="number"
                         value={formData.downPayment}
                         onChange={e => handleInputChange("downPayment", e.target.value)}
-                        placeholder="70000"
                         className={errors.downPayment ? "border-red-500" : ""}
                       />
                       {errors.downPayment && <p className="text-sm text-red-600">{errors.downPayment}</p>}
@@ -577,7 +583,7 @@ export default function HomeLoanApplicationPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label>{t("form.propertyType.label")} *</Label>
+                      <Label>{t("form.propertyType.label")} </Label>
                       <Select
                         value={formData.propertyType}
                         onValueChange={value => handleInputChange("propertyType", value)}>
@@ -636,7 +642,6 @@ export default function HomeLoanApplicationPage() {
                         id="propertyAddress"
                         value={formData.propertyAddress}
                         onChange={e => handleInputChange("propertyAddress", e.target.value)}
-                        placeholder={t("form.propertyAddress.streetPlaceholder")}
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -774,7 +779,7 @@ export default function HomeLoanApplicationPage() {
                 </Button>
 
                 {currentStep < totalSteps ? (
-                  <Button onClick={handleNext} className="flex items-center gap-2 bg-slate-700 hover:bg-slate-800">
+                  <Button onClick={handleNext} className="flex items-center gap-2 cursor-pointer">
                     {t("buttons.next")}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
@@ -782,7 +787,7 @@ export default function HomeLoanApplicationPage() {
                   <Button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700">
+                    className="flex items-center gap-2 cursor-pointer">
                     {isSubmitting ? t("buttons.submitting") : t("buttons.submit")}
                     <CheckCircle className="h-4 w-4" />
                   </Button>

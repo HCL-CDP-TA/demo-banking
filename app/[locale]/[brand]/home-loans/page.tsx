@@ -12,10 +12,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Link from "next/link"
 import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
+import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function HomeLoansPage() {
-  const t = useTranslations(useSiteContext().getPageNamespace())
+  const { brand, locale, getPageNamespace } = useSiteContext()
+  const pageNamespace = getPageNamespace()
+  const t = useTranslations(pageNamespace)
+  const { isCDPTrackingEnabled } = useCDPTracking()
   const [interestShown, setInterestShown] = useState(false)
+  const { track } = useCdp()
 
   interface CalculatorData {
     loanAmount: number
@@ -86,6 +92,27 @@ export default function HomeLoansPage() {
         prevData.paymentFrequency,
       ),
     }))
+
+    if (isCDPTrackingEnabled) {
+      track({
+        identifier: t("cdp.calculateEventName"),
+        properties: {
+          loanAmount: calculatorData.loanAmount,
+          interestRate: calculatorData.interestRate / 100,
+          loanTerm: calculatorData.loanTerm,
+          paymentFrequency: calculatorData.paymentFrequency,
+          monthlyPayments: calculateRepayment(
+            calculatorData.loanAmount,
+            calculatorData.interestRate / 100,
+            calculatorData.loanTerm,
+            calculatorData.paymentFrequency,
+          ).toFixed(2),
+          currency: t("calculator.loanAmount.currency"),
+          brand: brand.label,
+          locale: locale.code,
+        },
+      })
+    }
   }
 
   function calculateRepayment(
@@ -118,6 +145,9 @@ export default function HomeLoansPage() {
 
   return (
     <>
+      {isCDPTrackingEnabled && (
+        <CdpPageEvent pageName={t("cdp.pageEventName")} pageProperties={{ brand: brand.label, locale: locale.code }} />
+      )}
       <Hero
         title={t("hero.title")}
         subTitle={t("hero.subTitle")}
@@ -304,7 +334,20 @@ export default function HomeLoansPage() {
                     <p className="text-slate-600 mb-6 leading-relaxed">{t("readyToApply.subTitle")}</p>
                     <div className="space-y-4">
                       <Link href="./home-loans/apply">
-                        <Button size="lg" className="w-full cursor-pointer">
+                        <Button
+                          size="lg"
+                          className="w-full cursor-pointer"
+                          onClick={() => {
+                            if (isCDPTrackingEnabled) {
+                              track({
+                                identifier: t("cdp.applyEventName"),
+                                properties: {
+                                  brand: brand.label,
+                                  locale: locale.code,
+                                },
+                              })
+                            }
+                          }}>
                           {t("readyToApply.applyButton")}
                           <ChevronsRight className="h-5 w-5 mr-2" />
                         </Button>

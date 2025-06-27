@@ -9,12 +9,13 @@ import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 import NavLink from "./common/NavLink"
 import NavControls from "./NavControls"
-
 import { useSiteContext } from "@/lib/SiteContext"
+import { useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 
 const Navigation = () => {
   const t = useTranslations("navigation")
   const { brand, getFullPath } = useSiteContext()
+  const { logout, isReady } = useCdp()
 
   const navigation = [
     { name: t("homeLoans"), href: getFullPath("/home-loans") },
@@ -46,6 +47,10 @@ const Navigation = () => {
     }
 
     setIsLoggedIn(false) // Update state immediately
+
+    //Track logout event to CDP
+    console.log("Tracking logout event to CDP", isReady)
+    logout()
   }
 
   const handleLogin = () => {
