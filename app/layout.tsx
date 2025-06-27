@@ -2,15 +2,15 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { SiteProvider } from "@/lib/SiteContext"
-import { CdpClientWrapper, HclCdpConfig } from "hclcdp-web-sdk-react"
+import { CdpClientWrapper, HclCdpConfig } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 
 const inter = Inter({ subsets: ["latin"] })
 
 const config: HclCdpConfig = {
   writeKey: process.env.NEXT_PUBLIC_CDP_WRITEKEY || "",
   inactivityTimeout: 10,
-  enableSessionLogging: false,
-  enableUserLogoutLogging: false,
+  enableSessionLogging: true,
+  enableUserLogoutLogging: true,
   cdpEndpoint: process.env.NEXT_PUBLIC_CDP_ENDPOINT || "",
   destinations: [],
 }

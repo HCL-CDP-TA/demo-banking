@@ -14,7 +14,7 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Home, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
-import { CdpPageEvent, useCdp } from "hclcdp-web-sdk-react"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 // Initial form state
@@ -370,7 +370,6 @@ export default function HomeLoanApplicationPage() {
                         id="ssn"
                         value={formData.ssn}
                         onChange={e => handleInputChange("ssn", e.target.value)}
-                        placeholder={t("form.ssn.placeholder")}
                         className={errors.ssn ? "border-red-500" : ""}
                       />
                       {errors.ssn && <p className="text-sm text-red-600">{errors.ssn}</p>}
@@ -401,7 +400,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.dependents}
                         onChange={e => handleInputChange("dependents", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                   </div>
@@ -466,7 +464,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.monthsAtJob}
                         onChange={e => handleInputChange("monthsAtJob", e.target.value)}
-                        placeholder={t("form.monthsAtJob.placeholder")}
                       />
                     </div>
                     <div className="space-y-2">
@@ -488,7 +485,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.annualIncome}
                         onChange={e => handleInputChange("annualIncome", e.target.value)}
-                        placeholder="75000"
                         className={errors.annualIncome ? "border-red-500" : ""}
                       />
                       {errors.annualIncome && <p className="text-sm text-red-600">{errors.annualIncome}</p>}
@@ -500,7 +496,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.otherIncome}
                         onChange={e => handleInputChange("otherIncome", e.target.value)}
-                        placeholder="0"
                       />
                     </div>
                   </div>
@@ -513,7 +508,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.monthlyRent}
                         onChange={e => handleInputChange("monthlyRent", e.target.value)}
-                        placeholder="1500"
                       />
                     </div>
                     <div className="space-y-2">
@@ -523,7 +517,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.monthlyDebts}
                         onChange={e => handleInputChange("monthlyDebts", e.target.value)}
-                        placeholder="500"
                       />
                     </div>
                   </div>
@@ -536,7 +529,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.checkingBalance}
                         onChange={e => handleInputChange("checkingBalance", e.target.value)}
-                        placeholder="5000"
                       />
                     </div>
                     <div className="space-y-2">
@@ -546,7 +538,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.savingsBalance}
                         onChange={e => handleInputChange("savingsBalance", e.target.value)}
-                        placeholder="15000"
                       />
                     </div>
                     <div className="space-y-2">
@@ -556,7 +547,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.retirementBalance}
                         onChange={e => handleInputChange("retirementBalance", e.target.value)}
-                        placeholder="50000"
                       />
                     </div>
                   </div>
@@ -574,7 +564,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.loanAmount}
                         onChange={e => handleInputChange("loanAmount", e.target.value)}
-                        placeholder="350000"
                         className={errors.loanAmount ? "border-red-500" : ""}
                       />
                       {errors.loanAmount && <p className="text-sm text-red-600">{errors.loanAmount}</p>}
@@ -586,7 +575,6 @@ export default function HomeLoanApplicationPage() {
                         type="number"
                         value={formData.downPayment}
                         onChange={e => handleInputChange("downPayment", e.target.value)}
-                        placeholder="70000"
                         className={errors.downPayment ? "border-red-500" : ""}
                       />
                       {errors.downPayment && <p className="text-sm text-red-600">{errors.downPayment}</p>}
@@ -654,7 +642,6 @@ export default function HomeLoanApplicationPage() {
                         id="propertyAddress"
                         value={formData.propertyAddress}
                         onChange={e => handleInputChange("propertyAddress", e.target.value)}
-                        placeholder={t("form.propertyAddress.streetPlaceholder")}
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

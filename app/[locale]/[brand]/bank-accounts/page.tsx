@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { PiggyBank, Smartphone, Shield, Award, TrendingUp, CheckCircle, CreditCard, Banknote } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
 import { useTranslations } from "next-intl"
-import { CdpPageEvent } from "hclcdp-web-sdk-react"
+import { CdpPageEvent } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function BankAccountsPage() {

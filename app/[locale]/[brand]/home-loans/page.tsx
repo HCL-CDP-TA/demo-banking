@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Link from "next/link"
 import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
-import { CdpPageEvent, useCdp } from "hclcdp-web-sdk-react"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function HomeLoansPage() {

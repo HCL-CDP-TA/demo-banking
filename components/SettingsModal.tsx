@@ -18,9 +18,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
-import { Settings, User, Bell, Shield, Globe, Save, RefreshCw, UserCog } from "lucide-react"
+import { Settings, User, Bell, Shield, Globe, Save, RefreshCw, UserCog, FileText } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { format } from "date-fns" // Install date-fns for date formatting
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 
 interface SettingsModalProps {
   children: React.ReactNode
@@ -67,6 +69,21 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     timezone: "America/New_York",
   })
 
+  // State for CDP SDK data
+  const [cdpData, setCdpData] = useState({
+    userId: "",
+    deviceId: "",
+    sessionId: "",
+    lastActivityTimestamp: "",
+    sessionStartTimestamp: "",
+  })
+
+  // State for loan application data
+  const [loanData, setLoanData] = useState({
+    carLoanApplication: null,
+    homeLoanApplication: null,
+  })
+
   useEffect(() => {
     // Load customer data from local storage if it exists
     const storedCustomerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
@@ -102,26 +119,55 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     }
   }, [brand.key])
 
+  useEffect(() => {
+    // Load CDP SDK data from local storage
+    const userId = localStorage.getItem("hclcdp_user_id") || "Not logged in"
+    const deviceId = localStorage.getItem("hclcdp_device_id") || "Not available"
+    const sessionData = JSON.parse(localStorage.getItem("hclcdp_session") || "{}")
+
+    setCdpData({
+      userId,
+      deviceId,
+      sessionId: sessionData.sessionId || "Not available",
+      lastActivityTimestamp: sessionData.lastActivityTimestamp
+        ? format(new Date(sessionData.lastActivityTimestamp), "PPpp")
+        : "Not available",
+      sessionStartTimestamp: sessionData.sessionStartTimestamp
+        ? format(new Date(sessionData.sessionStartTimestamp), "PPpp")
+        : "Not available",
+    })
+  }, [brand.key])
+
+  useEffect(() => {
+    if (isOpen) {
+      // Load loan application data from local storage when the modal is opened
+      const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+      setLoanData({
+        carLoanApplication: customerData.carLoanApplication || null,
+        homeLoanApplication: customerData.homeLoanApplication || null,
+      })
+    }
+  }, [isOpen, brand.key])
+
   const handleSave = async () => {
     setIsSaving(true)
 
     // Simulate saving process
     setTimeout(() => {
-      // Save to localStorage for demo purposes
-      localStorage.setItem(`${brand.key}_settings`, JSON.stringify(settings))
+      // localStorage.setItem(`${brand.key}_settings`, JSON.stringify(settings))
 
       // Track settings change for CDP
-      const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
-      localStorage.setItem(
-        `${brand.key}_customer_data`,
-        JSON.stringify({
-          ...customerData,
-          settingsUpdated: {
-            timestamp: new Date().toISOString(),
-            preferences: settings,
-          },
-        }),
-      )
+      // const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+      // localStorage.setItem(
+      //   `${brand.key}_customer_data`,
+      //   JSON.stringify({
+      //     ...customerData,
+      //     settingsUpdated: {
+      //       timestamp: new Date().toISOString(),
+      //       preferences: settings,
+      //     },
+      //   }),
+      // )
 
       setIsSaving(false)
       setIsOpen(false)
@@ -132,6 +178,39 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     setSettings(prev => ({
       ...prev,
       [key]: value,
+    }))
+  }
+
+  const clearCdpData = () => {
+    localStorage.removeItem("hclcdp_user_id")
+    localStorage.removeItem("hclcdp_device_id")
+    localStorage.removeItem("hclcdp_session")
+    setCdpData({
+      userId: "Not logged in",
+      deviceId: "Not available",
+      sessionId: "Not available",
+      lastActivityTimestamp: "Not available",
+      sessionStartTimestamp: "Not available",
+    })
+  }
+
+  const clearCarLoanData = () => {
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+    delete customerData.carLoanApplication
+    localStorage.setItem(`${brand.key}_customer_data`, JSON.stringify(customerData))
+    setLoanData(prev => ({
+      ...prev,
+      carLoanApplication: null,
+    }))
+  }
+
+  const clearHomeLoanData = () => {
+    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+    delete customerData.homeLoanApplication
+    localStorage.setItem(`${brand.key}_customer_data`, JSON.stringify(customerData))
+    setLoanData(prev => ({
+      ...prev,
+      homeLoanApplication: null,
     }))
   }
 
@@ -156,21 +235,21 @@ export default function SettingsModal({ children }: SettingsModalProps) {
         <div className="flex-1 overflow-hidden">
           <Tabs defaultValue="profile" className="h-full flex flex-col">
             <TabsList className="grid w-full grid-cols-4 flex-shrink-0">
-              <TabsTrigger value="profile" className="flex items-center gap-2">
+              <TabsTrigger value="profile" className="flex items-center gap-2 cursor-pointer">
                 <User className="h-4 w-4" />
                 Profile
               </TabsTrigger>
-              <TabsTrigger value="notifications" className="flex items-center gap-2">
+              <TabsTrigger value="notifications" className="flex items-center gap-2 cursor-pointer">
                 <Bell className="h-4 w-4" />
                 Notifications
               </TabsTrigger>
-              <TabsTrigger value="security" className="flex items-center gap-2">
-                <Shield className="h-4 w-4" />
-                Security
-              </TabsTrigger>
-              <TabsTrigger value="demo" className="flex items-center gap-2">
+              <TabsTrigger value="demo" className="flex items-center gap-2 cursor-pointer">
                 <UserCog className="h-4 w-4" />
-                Demo Settings
+                CDP Demo Settings
+              </TabsTrigger>
+              <TabsTrigger value="loanData" className="flex items-center gap-2 cursor-pointer">
+                <FileText className="h-4 w-4" />
+                Loan Application Data
               </TabsTrigger>
             </TabsList>
 
@@ -430,7 +509,6 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                       <UserCog className="h-5 w-5" />
                       CDP Configuration
                     </CardTitle>
-                    <CardDescription>HCL CDP Settings for {brand.label}</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -438,13 +516,55 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                         <Label className="text-base">Enable CDP Logging</Label>
                       </div>
                       <div className="flex items-center gap-2">
-                        {isCDPTrackingEnabled && <Badge variant="secondary">Enabled</Badge>}
+                        {isCDPTrackingEnabled && <Badge>Enabled</Badge>}
                         <Switch
+                          className="cursor-pointer"
                           checked={isCDPTrackingEnabled}
                           onCheckedChange={checked => setCDPTrackingEnabled(checked)}
                         />
                       </div>
                     </div>
+                    <div className="text-xs">
+                      <p className="text-slate-600">
+                        Enabling this option allows customer data to be logged for HCL CDP tracking using the CDP SDK.
+                        This setting takes effect immediately in this browser only, persists between sessions and
+                        applies exclusively to the selected brand, {brand.label}.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <UserCog className="h-5 w-5" />
+                      CDP SDK
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>User ID</Label>
+                      <p className="text-sm text-slate-600">{cdpData.userId}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Device ID</Label>
+                      <p className="text-sm text-slate-600">{cdpData.deviceId}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Session ID</Label>
+                      <p className="text-sm text-slate-600">{cdpData.sessionId}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Last Activity Timestamp</Label>
+                      <p className="text-sm text-slate-600">{cdpData.lastActivityTimestamp}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Session Start Timestamp</Label>
+                      <p className="text-sm text-slate-600">{cdpData.sessionStartTimestamp}</p>
+                    </div>
+                    <Button variant="outline" onClick={clearCdpData} className="cursor-pointer">
+                      Clear CDP SDK Data
+                    </Button>
                   </CardContent>
                 </Card>
 
@@ -532,6 +652,84 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                   </CardContent>
                 </Card> */}
               </TabsContent>
+
+              {/* Loan Application Data */}
+              <TabsContent value="loanData" className="space-y-6 mt-0">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <FileText className="h-5 w-5" />
+                      Loan Application Data
+                    </CardTitle>
+                    <CardDescription>
+                      View and manage loan application data stored in local storage for {brand.label}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Car Loan Application */}
+                    <div className="space-y-2">
+                      <Label>Car Loan Application</Label>
+                      {loanData.carLoanApplication ? (
+                        <Accordion type="single" collapsible>
+                          <AccordionItem value="carLoan">
+                            <AccordionTrigger className="cursor-pointer">View Details</AccordionTrigger>
+                            <AccordionContent>
+                              <ul className="space-y-2">
+                                {Object.entries(loanData.carLoanApplication).map(([key, value]) => (
+                                  <li key={key} className="flex justify-between">
+                                    <span className="font-medium">{key}:</span>
+                                    <span>{String(value)}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                      ) : (
+                        <p className="text-sm text-slate-600">Not available</p>
+                      )}
+                      <Button
+                        variant="outline"
+                        onClick={clearCarLoanData}
+                        className="cursor-pointer"
+                        disabled={!loanData.carLoanApplication}>
+                        Clear Car Loan Application Data
+                      </Button>
+                    </div>
+
+                    {/* Home Loan Application */}
+                    <div className="space-y-2">
+                      <Label>Home Loan Application</Label>
+                      {loanData.homeLoanApplication ? (
+                        <Accordion type="single" collapsible>
+                          <AccordionItem value="homeLoan">
+                            <AccordionTrigger className="cursor-pointer">View Details</AccordionTrigger>
+                            <AccordionContent>
+                              <ul className="space-y-2">
+                                {Object.entries(loanData.homeLoanApplication).map(([key, value]) => (
+                                  <li key={key} className="flex justify-between">
+                                    <span className="font-medium">{key}:</span>
+                                    <span>{String(value)}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                      ) : (
+                        <p className="text-sm text-slate-600">Not available</p>
+                      )}
+                      <Button
+                        variant="outline"
+                        onClick={clearHomeLoanData}
+                        className="cursor-pointer"
+                        disabled={!loanData.homeLoanApplication}>
+                        Clear Home Loan Application Data
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             </div>
           </Tabs>
         </div>
@@ -545,7 +743,10 @@ export default function SettingsModal({ children }: SettingsModalProps) {
               <RefreshCw className="h-4 w-4" />
               Reset to Defaults
             </Button>
-            <Button onClick={handleSave} disabled={isSaving} className="cursor-pointer flex items-center gap-2">
+            <Button
+              onClick={() => setIsSaving(false)}
+              disabled={isSaving}
+              className="cursor-pointer flex items-center gap-2">
               <Save className="h-4 w-4" />
               {isSaving ? "Saving..." : "Save Changes"}
             </Button>

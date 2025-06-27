@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl"
 import { Slider } from "@/components/ui/slider"
 import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
-import { CdpPageEvent, useCdp } from "hclcdp-web-sdk-react"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function CarLoansPage() {
@@ -82,7 +82,7 @@ export default function CarLoansPage() {
             calculatorData.balloonPayment,
             calculatorData.paymentFrequency,
             calculatorData.vehicleType as "new" | "used" | "refinance",
-          ),
+          ).toFixed(2),
           interestRate: calculatorData.interestRate,
           vehicleTypeLabel: t(`calculator.vehicleType.${calculatorData.vehicleType}`),
           currency: t("calculator.currency"),

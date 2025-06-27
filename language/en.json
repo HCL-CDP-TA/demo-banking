@@ -405,12 +405,11 @@
         "label": "Date of Birth"
       },
       "ssn": {
-        "label": "Social Security Number",
-        "placeholder": "XXX-XX-XXXX"
+        "label": "Social Security Number"
       },
       "maritalStatus": {
+        "placeholder": "Select your Marital Status",
         "label": "Marital Status",
-        "placeholder": "Select your marital status",
         "options": {
           "single": "Single",
           "married": "Married",
@@ -442,8 +441,7 @@
         "label": "Years at Current Job"
       },
       "monthsAtJob": {
-        "label": "Months at Current Job",
-        "placeholder": "0"
+        "label": "Months at Current Job"
       },
       "workPhone": {
         "label": "Work Phone"
@@ -620,7 +618,7 @@
   "car-loans": {
     "cdp": {
       "pageEventName": "Auto Loans",
-      "stepEventName": "auto_loan_application_step",
+      "calculateEventName": "auto_loan_calculate",
       "applyEventName": "auto_loan_apply"
     },
     "hero": {

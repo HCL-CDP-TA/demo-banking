@@ -18,7 +18,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { User, Lock, Mail, Phone } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
 import { login, register } from "@/app/actions/LoginRegister"
-import { useCdp } from "hclcdp-web-sdk-react"
+import { useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 interface LoginModalProps {

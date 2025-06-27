@@ -14,7 +14,7 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Car, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
-import { CdpPageEvent, useCdp } from "hclcdp-web-sdk-react"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 // Initial form state

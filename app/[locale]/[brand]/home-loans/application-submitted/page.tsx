@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, Home, Clock, Phone, Mail, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
-import { CdpPageEvent, useCdp } from "hclcdp-web-sdk-react"
+import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 
 export default function HomeLoanApplicationSubmittedPage() {
