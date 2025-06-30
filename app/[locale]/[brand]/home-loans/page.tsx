@@ -14,6 +14,7 @@ import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { usePageMeta } from "@/lib/hooks/usePageMeta"
 
 export default function HomeLoansPage() {
   const { brand, locale, getPageNamespace } = useSiteContext()
@@ -22,6 +23,8 @@ export default function HomeLoansPage() {
   const { isCDPTrackingEnabled } = useCDPTracking()
   const [interestShown, setInterestShown] = useState(false)
   const { track } = useCdp()
+
+  usePageMeta(t("meta.title"), t("meta.description"))
 
   interface CalculatorData {
     loanAmount: number

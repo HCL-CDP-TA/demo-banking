@@ -10,6 +10,7 @@ import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { usePageMeta } from "@/lib/hooks/usePageMeta"
 
 export default function CreditCardsPage() {
   const { brand, locale, getPageNamespace } = useSiteContext()
@@ -19,22 +20,7 @@ export default function CreditCardsPage() {
   const { track } = useCdp()
   const [selectedCard, setSelectedCard] = useState<string | null>(null)
 
-  const handleCardInterest = (cardType: string) => {
-    setSelectedCard(cardType)
-
-    // Track customer interaction for CDP
-    const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
-    localStorage.setItem(
-      `${brand.key}_customer_data`,
-      JSON.stringify({
-        ...customerData,
-        creditCardInterest: {
-          cardType,
-          timestamp: new Date().toISOString(),
-        },
-      }),
-    )
-  }
+  usePageMeta(t("meta.title"), t("meta.description"))
 
   interface Card {
     title: string

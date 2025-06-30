@@ -56,6 +56,10 @@
     "cdp": {
       "pageEventName": "Home"
     },
+    "meta": {
+      "title": "Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
+    },
     "hero": {
       "title": "Banking Built on <highlight>Trust & Expertise</highlight>",
       "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community.",
@@ -160,6 +164,10 @@
       "pageEventName": "Credit Cards",
       "applyEventName": "credit_card_apply"
     },
+    "meta": {
+      "title": "Credit Cards - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
+    },
     "hero": {
       "title": "Credit Cards That Reward You",
       "subTitle": "Earn more on every purchase with no annual fees, comprehensive benefits, and the security you expect from a trusted financial institution.",
@@ -256,6 +264,10 @@
       "pageEventName": "Home Loans",
       "calculateEventName": "home_loan_calculate",
       "applyEventName": "home_loan_apply"
+    },
+    "meta": {
+      "title": "Home Loans - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
     },
     "hero": {
       "title": "Find Your Dream Home with Ease",
@@ -365,6 +377,10 @@
       "pageEventName": "Home Loans",
       "stepEventName": "home_loan_application_step",
       "applyEventName": "home_loan_apply"
+    },
+    "meta": {
+      "title": "Home Loan Application - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
     },
     "loading": "Loading application data...",
     "backButton": "Back",
@@ -560,6 +576,10 @@
       "pageEventName": "Home Loan Submitted",
       "conversionEventName": "home_loan_conversion"
     },
+    "meta": {
+      "title": "Application Submitted - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
+    },
     "header": {
       "title": "Application Submitted Successfully!",
       "subtitle": "Thank you for applying for a home loan with Woodburn Bank.",
@@ -620,6 +640,10 @@
       "pageEventName": "Auto Loans",
       "calculateEventName": "auto_loan_calculate",
       "applyEventName": "auto_loan_apply"
+    },
+    "meta": {
+      "title": "Auto Loans - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
     },
     "hero": {
       "title": "Drive Your Dream Car",
@@ -732,6 +756,10 @@
       "pageEventName": "Auto Loans",
       "stepEventName": "auto_loan_application_step",
       "applyEventName": "auto_loan_apply"
+    },
+    "meta": {
+      "title": "Auto Loan Application - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
     },
     "loading": "Loading your application...",
     "header": {
@@ -904,6 +932,10 @@
     "cdp": {
       "pageEventName": "Auto Loan Submitted",
       "conversionEventName": "auto_loan_conversion"
+    },
+    "meta": {
+      "title": "Application Submitted - Woodburn Bank - Trusted Financial Solutions",
+      "description": "Experience personalized banking with Woodburn Bank. From home loans to credit cards, we offer a range of financial products designed to meet your needs."
     },
     "successHeader": {
       "title": "Application Submitted Successfully!",
