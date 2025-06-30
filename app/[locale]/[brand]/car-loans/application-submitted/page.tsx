@@ -11,6 +11,7 @@ import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { usePageMeta } from "@/lib/hooks/usePageMeta"
 
 export default function CarLoanApplicationSubmittedPage() {
   const router = useRouter()
@@ -20,6 +21,8 @@ export default function CarLoanApplicationSubmittedPage() {
   const t = useTranslations(pageNamespace)
   const { isCDPTrackingEnabled } = useCDPTracking()
   const { track } = useCdp()
+
+  usePageMeta(t("meta.title"), t("meta.description"))
 
   useEffect(() => {
     // Get application data from localStorage

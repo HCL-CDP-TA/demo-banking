@@ -9,6 +9,7 @@ import { getIcon } from "@/lib/brandLocaleUtils"
 import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { usePageMeta } from "@/lib/hooks/usePageMeta"
 
 export default function HomePage() {
   const { brand, locale, getPageNamespace } = useSiteContext()
@@ -16,6 +17,7 @@ export default function HomePage() {
   const t = useTranslations(pageNamespace)
   const { isCDPTrackingEnabled } = useCDPTracking()
 
+  usePageMeta(t("meta.title"), t("meta.description"))
   interface Product {
     title: string
     description: string

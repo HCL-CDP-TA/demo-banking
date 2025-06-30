@@ -13,6 +13,7 @@ import Link from "next/link"
 import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { usePageMeta } from "@/lib/hooks/usePageMeta"
 
 export default function CarLoansPage() {
   const { brand, locale, getPageNamespace } = useSiteContext()
@@ -21,6 +22,8 @@ export default function CarLoansPage() {
   const { isCDPTrackingEnabled } = useCDPTracking()
   const [interestShown, setInterestShown] = useState(false)
   const { track } = useCdp()
+
+  usePageMeta(t("meta.title"), t("meta.description"))
 
   interface CalculatorData {
     vehiclePrice: number

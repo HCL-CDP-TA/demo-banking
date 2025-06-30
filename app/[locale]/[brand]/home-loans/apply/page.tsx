@@ -16,6 +16,7 @@ import { Home, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide
 import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
+import { usePageMeta } from "@/lib/hooks/usePageMeta"
 
 // Initial form state
 const initialFormData = {
@@ -87,6 +88,8 @@ export default function HomeLoanApplicationPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState(initialFormData)
   const [isLoading, setIsLoading] = useState(true)
+
+  usePageMeta(t("meta.title"), t("meta.description"))
 
   // Function to save data to localStorage
   const saveFormData = (dataToSave: typeof initialFormData) => {
