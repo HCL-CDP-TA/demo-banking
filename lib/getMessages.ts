@@ -4,7 +4,7 @@ import { supportedLocales } from "@/i18n/locales"
 import { supportedBrands } from "@/i18n/brands"
 import deepmerge from "deepmerge"
 
-async function loadJson(filePath: string): Promise<any> {
+async function loadJson(filePath: string): Promise<Record<string, unknown>> {
   try {
     const data = await fs.readFile(filePath, "utf-8")
     return JSON.parse(data)

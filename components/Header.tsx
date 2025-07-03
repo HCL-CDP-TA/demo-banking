@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { Menu, User, X } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import LoginModal from "./LoginModal"
 import { Button } from "./ui/button"
@@ -12,7 +12,7 @@ import NavControls from "./NavControls"
 import { useSiteContext } from "@/lib/SiteContext"
 import { useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 
-const Navigation = () => {
+const Header = () => {
   const t = useTranslations("navigation")
   const { brand, getFullPath } = useSiteContext()
   const { logout, isReady } = useCdp()
@@ -27,15 +27,15 @@ const Navigation = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // Function to check login status
-  const checkLoginStatus = () => {
+  const checkLoginStatus = useCallback(() => {
     const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
     setIsLoggedIn(!!customerData?.loginData?.email)
-  }
+  }, [brand.key])
 
   // Check login status on component mount
   useEffect(() => {
     checkLoginStatus()
-  }, [brand.key])
+  }, [checkLoginStatus])
 
   const handleLogout = () => {
     const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
@@ -72,7 +72,7 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-              {navigation.map((item, index) => (
+              {navigation.map(item => (
                 <NavLink key={item.name} href={item.href}>
                   {item.name}
                 </NavLink>
@@ -143,4 +143,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default Header

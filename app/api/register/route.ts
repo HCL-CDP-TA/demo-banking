@@ -32,8 +32,12 @@ export async function POST(req: Request) {
       },
       { status: 201 },
     )
-  } catch (error: any) {
-    console.error("Register API error:", error)
-    return NextResponse.json({ error: "errors.genericError", consoleError: error.message }, { status: 500 })
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Register API error:", error)
+      return NextResponse.json({ error: "errors.genericError", consoleError: error.message }, { status: 500 })
+    }
+    console.error("Register API unknown error:", error)
+    return NextResponse.json({ error: "errors.genericError" }, { status: 500 })
   }
 }

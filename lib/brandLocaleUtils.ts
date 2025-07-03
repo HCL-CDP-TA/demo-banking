@@ -3,7 +3,7 @@ import { supportedBrands, type SupportedBrand } from "@/i18n/brands"
 import { supportedLocales, type SupportedLocale } from "@/i18n/locales"
 
 export const resolvePathContext = (pathname: string): { locale: SupportedLocale; brand: SupportedBrand } => {
-  const [_, locale, brand] = pathname.split("/")
+  const [, locale, brand] = pathname.split("/")
   const matchedBrand = supportedBrands.find(b => b.key === brand) || supportedBrands[0]
   const matchedLocale = supportedLocales.find(l => l.code === locale) || supportedLocales[0]
   return { locale: matchedLocale, brand: matchedBrand }

@@ -1,8 +1,8 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { notFound } from "next/navigation"
 import { routing } from "@/i18n/routing"
+import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import Navigation from "@/components/Navigation"
 import { getMessages } from "@/lib/getMessages"
 import { supportedBrands } from "@/i18n/brands"
 import { supportedLocales } from "@/i18n/locales"
@@ -34,7 +34,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div className="min-h-screen bg-slate-50">
-        <Navigation />
+        <Header />
         {children}
         <Footer />
       </div>

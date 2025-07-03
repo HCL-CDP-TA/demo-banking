@@ -32,7 +32,7 @@ export default function HomeLoanApplicationSubmittedPage() {
     } else {
       // router.push(".//home-loans")
     }
-  }, [router])
+  }, [router, brand.key, isCDPTrackingEnabled, t, track])
 
   return (
     <div className="min-h-screen bg-slate-50">
