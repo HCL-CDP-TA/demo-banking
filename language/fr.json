@@ -1,8 +1,5 @@
 {
   "navigation": {
-    "homeLoans": "Prêts immobiliers",
-    "creditCards": "Cartes de crédit",
-    "carLoans": "Prêts automobiles",
     "login": "Connexion",
     "themeHeader": "Sélectionner la marque",
     "themeTooltip": "Changer de marque",
@@ -10,6 +7,20 @@
     "localeTooltip": "Changer de langue",
     "settings": "Paramètres"
   },
+  "products": [
+    {
+      "label": "Prêts immobiliers",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Cartes de crédit",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Prêts automobiles",
+      "href": "/car-loans"
+    }
+  ],
   "loginModal": {
     "title": "Bienvenue à la Banque Woodburn",
     "description": "Connectez-vous à votre compte ou créez-en un nouveau pour commencer",

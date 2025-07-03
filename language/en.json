@@ -1,8 +1,5 @@
 {
   "navigation": {
-    "homeLoans": "Home Loans",
-    "creditCards": "Credit Cards",
-    "carLoans": "Auto Loans",
     "login": "Login",
     "logout": "Logout",
     "themeHeader": "Select Brand",
@@ -11,6 +8,20 @@
     "localeTooltip": "Change Locale",
     "settings": "Settings"
   },
+  "products": [
+    {
+      "label": "Home Loans",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Credit Cards",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Auto Loans",
+      "href": "/car-loans"
+    }
+  ],
   "loginModal": {
     "title": "Welcome to Woodburn Bank",
     "description": "Sign in to your account or create a new one to get started",
@@ -1004,11 +1015,7 @@
     "email": "info@woodburnbank.com",
     "sections": {
       "products": {
-        "title": "Products",
-        "homeLoans": "Home Loans",
-        "creditCards": "Credit Cards",
-        "carLoans": "Auto Loans",
-        "bankAccounts": "Bank Accounts"
+        "title": "Products"
       },
       "support": {
         "title": "Support",

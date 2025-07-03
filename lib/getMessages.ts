@@ -32,18 +32,14 @@ export async function getMessages(brand: string, locale: string) {
     fallbackLocale => fallbackLocale !== defaultLocale,
   )
 
-  // console.log("Fallback Chain:", fallbackChain)
-
   // Load the base translations (en.json)
   const baseTranslations = await loadJson(path.resolve(process.cwd(), `language/${defaultLocale}.json`))
-  // console.log("Base Translations:", baseTranslations)
 
   // Load locale-specific translations (excluding the base translations)
   const localeTranslations = await Promise.all(
     fallbackChain.map(async fallbackLocale => {
       const filePath = path.resolve(process.cwd(), `language/${fallbackLocale}.json`)
       const translations = await loadJson(filePath)
-      // console.log(`Loaded locale translations for ${fallbackLocale}:`, translations)
       return translations
     }),
   )
@@ -53,7 +49,6 @@ export async function getMessages(brand: string, locale: string) {
     [defaultLocale, ...fallbackChain].map(async fallbackLocale => {
       const filePath = path.resolve(process.cwd(), `language/${selectedBrand}/${fallbackLocale}.json`)
       const translations = await loadJson(filePath)
-      // console.log(`Loaded brand translations for ${selectedBrand}/${fallbackLocale}:`, translations)
       return translations
     }),
   )

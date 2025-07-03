@@ -1,8 +1,21 @@
 {
   "navigation": {
-    "carLoans": "Car Loans",
     "login": "Log in"
   },
+  "products": [
+    {
+      "label": "Home Loans",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Credit Cards",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Car Loans",
+      "href": "/car-loans"
+    }
+  ],
   "loginModal": {
     "title": "Welcome to Woodburn Bank Pty Ltd",
     "tabs": {
@@ -14,7 +27,7 @@
   },
   "home": {
     "hero": {
-      "subtitle": "For over five decades, <highlight>Woodburn Bank Pty Ltd</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
     },
     "trustNumbers": {
       "items": {
@@ -263,10 +276,6 @@
     "phone": "1800 WOODBURN",
     "email": "info@woodburnbank.com.au",
     "sections": {
-      "products": {
-        "carLoans": "Car Loans",
-        "homeLoans": "Home Loans"
-      },
       "support": {
         "help": "Help Centre"
       }
