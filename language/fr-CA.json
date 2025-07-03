@@ -5,9 +5,23 @@
       "phone": "(555) 123-4567"
     }
   },
+  "products": [
+    {
+      "label": "Prêts immobiliers",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Cartes de crédit",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Prêts automobiles",
+      "href": "/car-loans"
+    }
+  ],
   "home": {
     "hero": {
-      "subtitle": "Depuis plus de cinq décennies, la <highlight>Banque Woodburn Inc.</highlight> offre des solutions financières fiables avec un service personnalisé et un engagement indéfectible envers notre communauté."
+      "subtitle": "Depuis plus de cinq décennies, la <highlight>Banque Woodburn</highlight> offre des solutions financières fiables avec un service personnalisé et un engagement indéfectible envers notre communauté."
     }
   },
   "home-loans": {

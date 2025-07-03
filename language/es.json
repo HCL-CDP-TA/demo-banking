@@ -1,8 +1,5 @@
 {
   "navigation": {
-    "homeLoans": "Préstamos hipotecarios",
-    "creditCards": "Tarjetas de crédito",
-    "carLoans": "Préstamos para coches",
     "login": "Iniciar sesión",
     "themeHeader": "Seleccionar marca",
     "themeTooltip": "Cambiar marca",
@@ -10,6 +7,20 @@
     "localeTooltip": "Cambiar idioma",
     "settings": "Configuración"
   },
+  "products": [
+    {
+      "label": "Préstamos hipotecarios",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Tarjetas de crédito",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Préstamos para coches",
+      "href": "/car-loans"
+    }
+  ],
   "loginModal": {
     "title": "Bienvenido al Banco Woodburn",
     "description": "Inicie sesión en su cuenta o cree una nueva para comenzar",
@@ -941,11 +952,7 @@
     "email": "info@bancowoodburn.com",
     "sections": {
       "products": {
-        "title": "Productos",
-        "homeLoans": "Préstamos hipotecarios",
-        "creditCards": "Tarjetas de crédito",
-        "carLoans": "Préstamos para coches",
-        "bankAccounts": "Cuentas bancarias"
+        "title": "Productos"
       },
       "support": {
         "title": "Soporte",

@@ -1,8 +1,5 @@
 {
   "navigation": {
-    "homeLoans": "Hypothekendarlehen",
-    "creditCards": "Kreditkarten",
-    "carLoans": "Autokredite",
     "login": "Anmelden",
     "themeHeader": "Marke auswählen",
     "themeTooltip": "Marke wechseln",
@@ -10,6 +7,20 @@
     "localeTooltip": "Sprache wechseln",
     "settings": "Einstellungen"
   },
+  "products": [
+    {
+      "label": "Hypothekendarlehen",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Kreditkarten",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Autokredite",
+      "href": "/car-loans"
+    }
+  ],
   "loginModal": {
     "title": "Willkommen bei der Woodburn Bank",
     "description": "Melden Sie sich bei Ihrem Konto an oder erstellen Sie ein neues, um loszulegen",
@@ -952,10 +963,7 @@
     "sections": {
       "products": {
         "title": "Produkte",
-        "homeLoans": "Hypothekendarlehen",
-        "creditCards": "Kreditkarten",
-        "carLoans": "Autokredite",
-        "bankAccounts": "Bankkonten"
+        "homeLoans": "Hypothekendarlehen"
       },
       "support": {
         "title": "Support",

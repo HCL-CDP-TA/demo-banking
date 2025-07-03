@@ -14,15 +14,11 @@ import { useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 
 const Header = () => {
   const t = useTranslations("navigation")
+
+  const navItems = useTranslations().raw("products") as Array<{ label: string; href: string }>
+
   const { brand, getFullPath } = useSiteContext()
-  const { logout, isReady } = useCdp()
-
-  const navigation = [
-    { name: t("homeLoans"), href: getFullPath("/home-loans") },
-    { name: t("creditCards"), href: getFullPath("/credit-cards") },
-    { name: t("carLoans"), href: getFullPath("/car-loans") },
-  ]
-
+  const { logout } = useCdp()
   const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -35,7 +31,7 @@ const Header = () => {
   // Check login status on component mount
   useEffect(() => {
     checkLoginStatus()
-  }, [checkLoginStatus])
+  }, [brand.key, checkLoginStatus])
 
   const handleLogout = () => {
     const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
@@ -49,7 +45,6 @@ const Header = () => {
     setIsLoggedIn(false) // Update state immediately
 
     //Track logout event to CDP
-    console.log("Tracking logout event to CDP", isReady)
     logout()
   }
 
@@ -72,9 +67,9 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-              {navigation.map(item => (
-                <NavLink key={item.name} href={item.href}>
-                  {item.name}
+              {navItems.map(item => (
+                <NavLink key={item.label} href={getFullPath(item.href)}>
+                  {item.label}
                 </NavLink>
               ))}
             </div>
@@ -103,7 +98,7 @@ const Header = () => {
             <NavControls />
             <Button
               onClick={() => setIsOpen(!isOpen)}
-              className="cursor-pointer inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-800 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-slate-500">
+              className="cursor-pointer inline-flex items-center justify-center p-2 rounded-md  focus:outline-none focus:ring-2 focus:ring-inset ">
               {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
             </Button>
           </div>
@@ -112,13 +107,13 @@ const Header = () => {
         {/* Mobile Navigation */}
         <div className={cn("md:hidden", isOpen ? "block" : "hidden")}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navigation.map(item => (
+            {navItems.map(item => (
               <Link
-                key={item.name}
+                key={item.label}
                 href={item.href}
                 className="text-[var(--secondary-foreground)] hover:text-[var(--primary)] block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsOpen(false)}>
-                {item.name}
+                {item.label}
               </Link>
             ))}
             <div className="pt-4">

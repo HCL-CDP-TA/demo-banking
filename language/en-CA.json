@@ -4,15 +4,28 @@
     "carLoans": "Car Loans",
     "login": "Log in"
   },
+  "products": [
+    {
+      "label": "Home Loans",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Credit Cards",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Car Loans",
+      "href": "/car-loans"
+    }
+  ],
   "loginModal": {
-    "title": "Welcome to Woodburn Bank Inc.",
     "tabs": {
       "login": "Log in"
     }
   },
   "home": {
     "hero": {
-      "subtitle": "For over five decades, <highlight>Woodburn Bank Inc.</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community."
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalized service and unwavering commitment to our community."
     },
     "products": {
       "items": {
@@ -148,10 +161,6 @@
     "phone": "1-800-WOODBURN",
     "email": "info@woodburnbank.ca",
     "sections": {
-      "products": {
-        "homeLoans": "Home Loans",
-        "carLoans": "Car Loans"
-      },
       "support": {
         "help": "Help Center"
       }

@@ -1,18 +1,31 @@
 {
   "navigation": {
-    "homeLoans": "Mortgages",
-    "carLoans": "Car Loans",
     "login": "Log in"
   },
+  "products": [
+    {
+      "label": "Mortgages",
+      "href": "/home-loans"
+    },
+    {
+      "label": "Credit Cards",
+      "href": "/credit-cards"
+    },
+    {
+      "label": "Car Loans",
+      "href": "/car-loans"
+    }
+  ],
+
   "loginModal": {
-    "title": "Welcome to Woodburn Bank plc",
+    "title": "Welcome to Woodburn Bank",
     "tabs": {
       "login": "Log in"
     }
   },
   "home": {
     "hero": {
-      "subtitle": "For over five decades, <highlight>Woodburn Bank plc</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
+      "subtitle": "For over five decades, <highlight>Woodburn Bank</highlight> has provided reliable financial solutions with personalised service and unwavering commitment to our community."
     },
     "trustNumbers": {
       "items": {
@@ -174,10 +187,6 @@
     "phone": "0800 0WOODBURN",
     "email": "info@woodburnbank.co.uk",
     "sections": {
-      "products": {
-        "carLoans": "Car Loans",
-        "homeLoans": "Mortgages"
-      },
       "support": {
         "help": "Help Centre"
       }
