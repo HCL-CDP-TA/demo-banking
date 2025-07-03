@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl" // Import useTranslations
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, Car, Clock, Phone, Mail, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
@@ -36,7 +35,7 @@ export default function CarLoanApplicationSubmittedPage() {
       // Redirect if no application found
       // router.push("./car-loans")
     }
-  }, [router])
+  }, [router, brand.key, isCDPTrackingEnabled, t, track])
 
   return (
     <div className="min-h-screen bg-slate-50">

@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react"
@@ -18,7 +17,6 @@ export default function CreditCardsPage() {
   const t = useTranslations(pageNamespace)
   const { isCDPTrackingEnabled } = useCDPTracking()
   const { track } = useCdp()
-  const [selectedCard, setSelectedCard] = useState<string | null>(null)
 
   usePageMeta(t("meta.title"), t("meta.description"))
 

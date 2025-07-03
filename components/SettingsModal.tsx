@@ -149,30 +149,30 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     }
   }, [isOpen, brand.key])
 
-  const handleSave = async () => {
-    setIsSaving(true)
+  // const handleSave = async () => {
+  //   setIsSaving(true)
 
-    // Simulate saving process
-    setTimeout(() => {
-      // localStorage.setItem(`${brand.key}_settings`, JSON.stringify(settings))
+  //   // Simulate saving process
+  //   setTimeout(() => {
+  //     // localStorage.setItem(`${brand.key}_settings`, JSON.stringify(settings))
 
-      // Track settings change for CDP
-      // const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
-      // localStorage.setItem(
-      //   `${brand.key}_customer_data`,
-      //   JSON.stringify({
-      //     ...customerData,
-      //     settingsUpdated: {
-      //       timestamp: new Date().toISOString(),
-      //       preferences: settings,
-      //     },
-      //   }),
-      // )
+  //     // Track settings change for CDP
+  //     // const customerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
+  //     // localStorage.setItem(
+  //     //   `${brand.key}_customer_data`,
+  //     //   JSON.stringify({
+  //     //     ...customerData,
+  //     //     settingsUpdated: {
+  //     //       timestamp: new Date().toISOString(),
+  //     //       preferences: settings,
+  //     //     },
+  //     //   }),
+  //     // )
 
-      setIsSaving(false)
-      setIsOpen(false)
-    }, 1000)
-  }
+  //     setIsSaving(false)
+  //     setIsOpen(false)
+  //   }, 1000)
+  // }
 
   const handleSettingChange = (key: string, value: unknown) => {
     setSettings(prev => ({

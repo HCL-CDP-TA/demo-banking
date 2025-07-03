@@ -139,12 +139,12 @@ export default function CarLoanApplicationPage() {
     }
 
     loadSavedData()
-  }, []) // Empty dependency array means this runs once on mount
+  })
 
   const totalSteps = 4
   const progress = (currentStep / totalSteps) * 100
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | number | boolean) => {
     setFormData(prev => ({
       ...prev,
       [field]: value,
@@ -162,31 +162,30 @@ export default function CarLoanApplicationPage() {
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {}
 
-    //
-    // switch (step) {
-    //   case 1:
-    //     if (!formData.firstName) newErrors.firstName = t("errors.firstNameRequired")
-    //     if (!formData.lastName) newErrors.lastName = t("errors.lastNameRequired")
-    //     if (!formData.email) newErrors.email = t("errors.emailRequired")
-    //     if (!formData.phone) newErrors.phone = t("errors.phoneRequired")
-    //     if (!formData.dateOfBirth) newErrors.dateOfBirth = t("errors.dateOfBirthRequired")
-    //     if (!formData.ssn) newErrors.ssn = t("errors.ssnRequired")
-    //     if (!formData.driversLicense) newErrors.driversLicense = t("errors.driversLicenseRequired")
-    //     break
-    //   case 2:
-    //     if (!formData.employmentStatus) newErrors.employmentStatus = t("errors.employmentStatusRequired")
-    //     if (!formData.annualIncome) newErrors.annualIncome = t("errors.annualIncomeRequired")
-    //     break
-    //   case 3:
-    //     if (!formData.vehicleType) newErrors.vehicleType = t("errors.vehicleTypeRequired")
-    //     if (!formData.vehiclePrice) newErrors.vehiclePrice = t("errors.vehiclePriceRequired")
-    //     if (!formData.loanAmount) newErrors.loanAmount = t("errors.loanAmountRequired")
-    //     break
-    //   case 4:
-    //     if (!formData.agreeToTerms) newErrors.agreeToTerms = t("errors.agreeToTermsRequired")
-    //     if (!formData.agreeToCredit) newErrors.agreeToCredit = t("errors.agreeToCreditRequired")
-    //     break
-    // }
+    switch (step) {
+      case 1:
+        // if (!formData.firstName) newErrors.firstName = t("errors.firstNameRequired")
+        // if (!formData.lastName) newErrors.lastName = t("errors.lastNameRequired")
+        // if (!formData.email) newErrors.email = t("errors.emailRequired")
+        // if (!formData.phone) newErrors.phone = t("errors.phoneRequired")
+        // if (!formData.dateOfBirth) newErrors.dateOfBirth = t("errors.dateOfBirthRequired")
+        // if (!formData.ssn) newErrors.ssn = t("errors.ssnRequired")
+        // if (!formData.driversLicense) newErrors.driversLicense = t("errors.driversLicenseRequired")
+        break
+      case 2:
+        // if (!formData.employmentStatus) newErrors.employmentStatus = t("errors.employmentStatusRequired")
+        // if (!formData.annualIncome) newErrors.annualIncome = t("errors.annualIncomeRequired")
+        break
+      case 3:
+        // if (!formData.vehicleType) newErrors.vehicleType = t("errors.vehicleTypeRequired")
+        // if (!formData.vehiclePrice) newErrors.vehiclePrice = t("errors.vehiclePriceRequired")
+        if (!formData.loanAmount) newErrors.loanAmount = t("errors.loanAmountRequired")
+        break
+      case 4:
+        // if (!formData.agreeToTerms) newErrors.agreeToTerms = t("errors.agreeToTermsRequired")
+        // if (!formData.agreeToCredit) newErrors.agreeToCredit = t("errors.agreeToCreditRequired")
+        break
+    }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -195,7 +194,7 @@ export default function CarLoanApplicationPage() {
   const handleNext = () => {
     if (validateStep(currentStep)) {
       if (isCDPTrackingEnabled) {
-        const nonEmptyFormData = Object.fromEntries(Object.entries(formData).filter(([_, value]) => value !== ""))
+        const nonEmptyFormData = Object.fromEntries(Object.entries(formData).filter(([, value]) => value !== ""))
 
         track({
           identifier: `${t("cdp.stepEventName")}_${currentStep}`,

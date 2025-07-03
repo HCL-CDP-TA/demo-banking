@@ -30,7 +30,7 @@ export default function LoginModal({ children, onLogin }: LoginModalProps) {
   const t = useTranslations("loginModal")
   const { brand } = useSiteContext()
   const { isCDPTrackingEnabled } = useCDPTracking()
-  const { track, identify } = useCdp()
+  const { identify } = useCdp()
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")

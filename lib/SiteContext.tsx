@@ -5,8 +5,8 @@ import { useRouter, usePathname } from "next/navigation"
 import { SupportedBrand, supportedBrands } from "@/i18n/brands"
 import { SupportedLocale, supportedLocales } from "@/i18n/locales"
 
-const brandKeys = supportedBrands.map(b => b.key)
-const localeCodes = supportedLocales.map(l => l.code)
+// const brandKeys = supportedBrands.map(b => b.key)
+// const localeCodes = supportedLocales.map(l => l.code)
 
 interface SiteContextType {
   brand: SupportedBrand
@@ -36,7 +36,7 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<SupportedLocale>(supportedLocales[0])
 
   useEffect(() => {
-    const [_, localeCode, brandKey] = pathname.split("/")
+    const [, localeCode, brandKey] = pathname.split("/")
     const matchedBrand = supportedBrands.find(b => b.key === brandKey)
     const matchedLocale = supportedLocales.find(l => l.code === localeCode)
 
@@ -45,13 +45,13 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
   }, [pathname])
 
   const setBrand = (brandKey: string) => {
-    const [_, localeCode, _brandKey, ...rest] = pathname.split("/")
+    const [, localeCode, , ...rest] = pathname.split("/")
     const newPath = `/${localeCode}/${brandKey}${rest.length ? "/" + rest.join("/") : ""}`
     router.push(newPath)
   }
 
   const setLocale = (localeCode: string) => {
-    const [_, _localeCode, brandKey, ...rest] = pathname.split("/")
+    const [, , brandKey, ...rest] = pathname.split("/")
     const newPath = `/${localeCode}/${brandKey}${rest.length ? "/" + rest.join("/") : ""}`
     router.push(newPath)
   }

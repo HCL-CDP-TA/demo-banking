@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { ChevronsRight } from "lucide-react"
-import parse, { domToReact, Element } from "html-react-parser"
 import React, { ReactNode } from "react"
 
 type HeroProps = {

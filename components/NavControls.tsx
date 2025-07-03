@@ -19,7 +19,7 @@ import SettingsModal from "./SettingsModal"
 export default function NavControls() {
   const t = useTranslations("navigation")
 
-  const { brand, locale, setBrand, setLocale, getFullPath } = useSiteContext()
+  const { brand, locale, setBrand, setLocale } = useSiteContext()
 
   const switchLocale = (newLocale: string) => {
     setLocale(newLocale)
