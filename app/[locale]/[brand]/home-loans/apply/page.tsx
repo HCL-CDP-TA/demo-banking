@@ -122,6 +122,7 @@ export default function HomeLoanApplicationPage() {
             agreeToCredit: false,
             agreeToContact: false,
           }))
+          console.log("Loaded saved application data:", customerData.homeLoanApplication)
         }
       } catch (error) {
         console.error("Failed to load saved application data:", error)
@@ -131,7 +132,7 @@ export default function HomeLoanApplicationPage() {
     }
 
     loadSavedData()
-  })
+  }, [brand.key])
 
   const totalSteps = 4
   const progress = (currentStep / totalSteps) * 100
@@ -184,17 +185,21 @@ export default function HomeLoanApplicationPage() {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      if (isCDPTrackingEnabled) {
-        const nonEmptyFormData = Object.fromEntries(Object.entries(formData).filter(([, value]) => value !== ""))
+      try {
+        if (isCDPTrackingEnabled) {
+          const nonEmptyFormData = Object.fromEntries(Object.entries(formData).filter(([, value]) => value !== ""))
 
-        track({
-          identifier: `${t("cdp.stepEventName")}_${currentStep}`,
-          properties: { brand: brand.key, locale: locale.code, ...nonEmptyFormData },
-        })
+          track({
+            identifier: `${t("cdp.stepEventName")}_${currentStep}`,
+            properties: { brand: brand.key, locale: locale.code, ...nonEmptyFormData },
+          })
+        }
+
+        saveFormData(formData) // Save data when going to the next step
+        setCurrentStep(prev => Math.min(prev + 1, totalSteps))
+      } catch (error) {
+        console.error("Error during step transition:", error)
       }
-
-      saveFormData(formData) // Save data when going to the next step
-      setCurrentStep(prev => Math.min(prev + 1, totalSteps))
     }
   }
 

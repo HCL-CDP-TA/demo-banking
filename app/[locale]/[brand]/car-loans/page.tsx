@@ -168,6 +168,20 @@ export default function CarLoansPage() {
     return (loanAmount * adjustedRate * factor) / (factor - 1)
   }
 
+  function handleLearnMoreClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault() // Prevent default link behavior
+
+    try {
+      track({ identifier: t("cdp.learnMoreEventName") })
+    } catch (error) {
+      console.error("Error tracking Learn More event:", error)
+    }
+
+    const loanTypesSection = document.getElementById("loan-types-section")
+    if (loanTypesSection) {
+      loanTypesSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
   const handleCalculatorSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setInterestShown(true)
@@ -202,6 +216,14 @@ export default function CarLoansPage() {
             <div className="h-full flex flex-col">
               <h2 className="text-3xl font-bold text-slate-800 mb-6">{t("calculator.title")}</h2>
               <p className="text-slate-600 mb-8 text-lg">{t("calculator.subTitle")}</p>
+              <p className="text-slate-600 mb-8 text-lg">
+                <a
+                  href="#loan-types-section"
+                  onClick={handleLearnMoreClick}
+                  className="text-primary font-semibold hover:underline">
+                  {t("calculator.learnMore")}
+                </a>
+              </p>
 
               <Card className="border-slate-200 shadow-sm flex-1 flex flex-col">
                 <CardHeader>
@@ -613,77 +635,38 @@ export default function CarLoansPage() {
         </div>
       </section>
 
-      {/* Auto Loan Features */}
-      {/* <section className="bg-white py-16">
+      {/* Vehicle Types */}
+      <section id="vehicle-types-section" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">Auto Loan Benefits</h2>
-            <p className="text-xl text-slate-600">
-              Experience the advantages of financing your vehicle with Woodburn Bank
-            </p>
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">{t("vehicleTypes.title")}</h2>
+            <p className="text-xl text-slate-600">{t("vehicleTypes.description")}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="mx-auto mb-4 p-4 bg-slate-100 rounded-full w-fit">
-                <TrendingDown className="h-8 w-8 text-slate-700" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-slate-800">Competitive Rates</h3>
-              <p className="text-slate-600 text-sm">
-                Rates starting at 4.49% APR for qualified borrowers with flexible terms up to 84 months
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="mx-auto mb-4 p-4 bg-slate-100 rounded-full w-fit">
-                <Zap className="h-8 w-8 text-slate-700" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-slate-800">Fast Approval</h3>
-              <p className="text-slate-600 text-sm">
-                Get pre-approved in minutes and receive funding within 24 hours of approval
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="mx-auto mb-4 p-4 bg-slate-100 rounded-full w-fit">
-                <Shield className="h-8 w-8 text-slate-700" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-slate-800">No Hidden Fees</h3>
-              <p className="text-slate-600 text-sm">
-                No application fees, prepayment penalties, or hidden charges throughout your loan
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="mx-auto mb-4 p-4 bg-slate-100 rounded-full w-fit">
-                <Users className="h-8 w-8 text-slate-700" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-slate-800">Expert Support</h3>
-              <p className="text-slate-600 text-sm">
-                Dedicated auto loan specialists to guide you through every step of the process
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {["item1", "item2", "item3"].map((key, index) => (
+              <Card key={index} className="card-hover border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-slate-800">{t(`vehicleTypes.items.${key}.title`)}</CardTitle>
+                  <CardDescription className="text-slate-600">
+                    {t(`vehicleTypes.items.${key}.description`)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 text-sm mb-6">
+                    {["feature1", "feature2", "feature3", "feature4"].map((featureKey, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <span className="text-slate-600">{t(`vehicleTypes.items.${key}.features.${featureKey}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
-      </section> */}
-
-      {/* CTA Section */}
-      {/* <section className="bg-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Drive Away Today?</h2>
-          <p className="text-xl mb-8 text-slate-300 max-w-2xl mx-auto">
-            Get pre-approved for your auto loan and shop with confidence at any dealership
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-3">
-              Apply for Auto Loan
-            </Button>
-            <Button size="lg" variant="outline" className="px-8 py-3">
-              Calculate Your Payment
-            </Button>
-          </div>
-        </div>
-      </section> */}
+      </section>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -25,6 +25,10 @@ export default function HomeLoansPage() {
   const { track } = useCdp()
 
   usePageMeta(t("meta.title"), t("meta.description"))
+
+  useEffect(() => {
+    track({ identifier: t("cdp.acquireEventName") })
+  }, [t, track])
 
   interface CalculatorData {
     loanAmount: number
@@ -146,6 +150,43 @@ export default function HomeLoansPage() {
     return (principal * adjustedRate * factor) / (factor - 1)
   }
 
+  const validateDropdownValue = (value: string): boolean => {
+    const validValues = ["weekly", "fortnightly", "monthly"]
+    return validValues.includes(value)
+  }
+
+  const handleDropdownChange = (newValue: "weekly" | "fortnightly" | "monthly") => {
+    console.log(`Dropdown value change triggered: ${newValue}`)
+    if (!validateDropdownValue(newValue)) {
+      console.error(`Invalid dropdown value: ${newValue}`)
+      return
+    }
+    setCalculatorData(prevData => {
+      console.log(`Previous calculator data:`, prevData)
+      const updatedData: CalculatorData = {
+        ...prevData,
+        paymentFrequency: newValue,
+      }
+      console.log(`Updated calculator data:`, updatedData)
+      return updatedData
+    })
+  }
+
+  function handleLearnMoreClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault() // Prevent default link behavior
+
+    try {
+      track({ identifier: t("cdp.learnMoreEventName") })
+    } catch (error) {
+      console.error("Error tracking Learn More event:", error)
+    }
+
+    const loanTypesSection = document.getElementById("loan-types-section")
+    if (loanTypesSection) {
+      loanTypesSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <>
       {isCDPTrackingEnabled && (
@@ -166,6 +207,12 @@ export default function HomeLoansPage() {
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-slate-800 mb-6">{t("calculator.title")}</h2>
                 <p className="text-slate-600 mb-8 text-lg">{t("calculator.description")}</p>
+                <a
+                  href="#loan-types-section"
+                  onClick={handleLearnMoreClick}
+                  className="text-primary font-semibold hover:underline">
+                  {t("calculator.learnMore")}
+                </a>
               </div>
 
               <Card className="border-slate-200 shadow-sm flex-1 flex flex-col">
@@ -259,15 +306,7 @@ export default function HomeLoansPage() {
                       <Label htmlFor="paymentFrequency" className="text-slate-700 py-3 ">
                         {t("calculator.paymentFrequency.label")}
                       </Label>
-                      <Select
-                        value={calculatorData.paymentFrequency}
-                        onValueChange={value => {
-                          setCalculatorData({
-                            ...calculatorData,
-                            paymentFrequency: value as "weekly" | "fortnightly" | "monthly",
-                          })
-                          setInterestShown(false)
-                        }}>
+                      <Select value={calculatorData.paymentFrequency} onValueChange={handleDropdownChange}>
                         <SelectTrigger className="w-full cursor-pointer">
                           <SelectValue>
                             {t(`calculator.paymentFrequency.${calculatorData.paymentFrequency}`)}
@@ -384,7 +423,7 @@ export default function HomeLoansPage() {
       </section>
 
       {/* Loan Types */}
-      <section className="bg-white py-16">
+      <section id="loan-types-section" className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">{t("loanTypes.title")}</h2>

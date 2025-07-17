@@ -273,8 +273,10 @@
   "home-loans": {
     "cdp": {
       "pageEventName": "Home Loans",
-      "calculateEventName": "home_loan_calculate",
-      "applyEventName": "home_loan_apply"
+      "acquireEventName": "Mortgage_Acquire",
+      "calculateEventName": "Mortgage_Consider",
+      "applyEventName": "Mortgage_Intent",
+      "learnMoreEventName": "Mortgage_Interest"
     },
     "meta": {
       "title": "Home Loans - Woodburn Bank - Trusted Financial Solutions",
@@ -290,6 +292,7 @@
       "title": "Home Loan Payment Calculator",
       "description": "Estimate your payments and find the best loan option for your budget.",
       "cardTitle": "Calculate Your Loan",
+      "learnMore": "Learn more about our mortgage products",
       "loanAmount": {
         "label": "Loan Amount",
         "default": "300000",
@@ -585,7 +588,7 @@
   "home-loans/application-submitted": {
     "cdp": {
       "pageEventName": "Home Loan Submitted",
-      "conversionEventName": "home_loan_conversion"
+      "conversionEventName": "Mortgage_Convert"
     },
     "meta": {
       "title": "Application Submitted - Woodburn Bank - Trusted Financial Solutions",
@@ -649,8 +652,10 @@
   "car-loans": {
     "cdp": {
       "pageEventName": "Auto Loans",
-      "calculateEventName": "auto_loan_calculate",
-      "applyEventName": "auto_loan_apply"
+      "acquireEventName": "CarLoan_Acquire",
+      "calculateEventName": "CarLoan_Consider",
+      "applyEventName": "CarLoan_Intent",
+      "learnMoreEventName": "CarLoan_Interest"
     },
     "meta": {
       "title": "Auto Loans - Woodburn Bank - Trusted Financial Solutions",
@@ -665,6 +670,7 @@
     "calculator": {
       "title": "Auto Loan Payment Calculator",
       "subTitle": "Calculate your repayments and see how much car you can afford with our easy-to-use auto loan calculator.",
+      "learnMore": "Learn more about our car loans",
       "cardTitle": "Calculate Your Repayments",
       "currency": "USD",
       "locale": "en-US",
@@ -760,6 +766,42 @@
       },
       "applyButton": "Apply Online Now",
       "footer": "Secure application • No hidden fees • Local decision making"
+    },
+    "vehicleTypes": {
+      "title": "Financing for Every Vehicle",
+      "description": "From brand new to certified pre-owned, we finance all types of vehicles",
+      "items": {
+        "item1": {
+          "title": "New Vehicles",
+          "description": "Finance your brand new car, truck, or SUV with our lowest rates",
+          "features": {
+            "feature1": "Rates as low as 4.49% APR",
+            "feature2": "Terms up to 84 months",
+            "feature3": "Finance up to 100% of MSRP",
+            "feature4": "Manufacturer incentives eligible"
+          }
+        },
+        "item2": {
+          "title": "Used Vehicles",
+          "description": "Great rates on quality pre-owned vehicles from any dealer or private party",
+          "features": {
+            "feature1": "Competitive used car rates",
+            "feature2": "Finance vehicles up to 10 years old",
+            "feature3": "Dealer or private party purchases",
+            "feature4": "Pre-approval available"
+          }
+        },
+        "item3": {
+          "title": "Refinancing",
+          "description": "Lower your monthly payment by refinancing your existing auto loan",
+          "features": {
+            "feature1": "Potentially lower your rate",
+            "feature2": "Reduce monthly payments",
+            "feature3": "No prepayment penalties",
+            "feature4": "Quick and easy process"
+          }
+        }
+      }
     }
   },
   "car-loans/apply": {
