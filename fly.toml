@@ -2,6 +2,9 @@ app = 'banking-industry'
 primary_region = 'syd'
 
 [build]
+  [build.args]
+    NEXT_PUBLIC_CDP_WRITEKEY = "n9wjihaje10vlvbfxe69"
+    NEXT_PUBLIC_CDP_ENDPOINT = "https://pl.dev.hxcd.now.hclsoftware.cloud"
 
 [deploy]
   release_command = 'npx prisma migrate deploy'
