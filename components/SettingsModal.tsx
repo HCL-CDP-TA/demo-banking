@@ -84,6 +84,10 @@ export default function SettingsModal({ children }: SettingsModalProps) {
     homeLoanApplication: null,
   })
 
+  // State for writekey override
+  const [writekeyOverride, setWritekeyOverride] = useState("")
+  const [envWritekey, setEnvWritekey] = useState("")
+
   useEffect(() => {
     // Load customer data from local storage if it exists
     const storedCustomerData = JSON.parse(localStorage.getItem(`${brand.key}_customer_data`) || "{}")
@@ -146,6 +150,19 @@ export default function SettingsModal({ children }: SettingsModalProps) {
         carLoanApplication: customerData.carLoanApplication || null,
         homeLoanApplication: customerData.homeLoanApplication || null,
       })
+
+      // Load writekey override from cookie
+      const cookieName = `${brand.key}_cdp_writekey_override`
+      const cookieValue = document.cookie
+        .split("; ")
+        .find(row => row.startsWith(`${cookieName}=`))
+        ?.split("=")[1]
+
+      const storedOverride = cookieValue ? decodeURIComponent(cookieValue) : ""
+      setWritekeyOverride(storedOverride)
+
+      // Set the environment writekey (this would normally come from process.env but we'll simulate it)
+      setEnvWritekey(process.env.NEXT_PUBLIC_CDP_WRITEKEY || "Not configured")
     }
   }, [isOpen, brand.key])
 
@@ -508,6 +525,7 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                     <CardTitle className="flex items-center gap-2">
                       <UserCog className="h-5 w-5" />
                       CDP Configuration
+                      {writekeyOverride && <Badge variant="outline">Override Active</Badge>}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -531,6 +549,78 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                         applies exclusively to the selected brand, {brand.label}.
                       </p>
                     </div>
+
+                    <Separator />
+
+                    <div className="space-y-4">
+                      <h4 className="font-medium">Writekey Configuration</h4>
+                      <div className="space-y-2">
+                        <Label>Current Environment Writekey</Label>
+                        <p className="text-sm text-slate-600 font-mono bg-slate-50 p-2 rounded border break-all">
+                          {envWritekey}
+                        </p>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="writekey-override">Writekey Override</Label>
+                        <Input
+                          id="writekey-override"
+                          type="text"
+                          placeholder="Enter writekey to override environment setting"
+                          value={writekeyOverride}
+                          onChange={e => setWritekeyOverride(e.target.value)}
+                          className="font-mono"
+                        />
+                        <p className="text-xs text-slate-500">
+                          Leave empty to use the environment writekey. Override takes effect after page refresh.
+                        </p>
+                      </div>
+                      {writekeyOverride && (
+                        <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline" className="bg-yellow-100">
+                              Active Override
+                            </Badge>
+                            <span className="text-sm text-yellow-800">Using custom writekey</span>
+                          </div>
+                          <p className="text-xs text-yellow-700 mt-1 font-mono break-all">{writekeyOverride}</p>
+                        </div>
+                      )}
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            // Set cookie with 1 year expiration
+                            const cookieName = `${brand.key}_cdp_writekey_override`
+                            const cookieValue = encodeURIComponent(writekeyOverride)
+                            const expiryDate = new Date()
+                            expiryDate.setFullYear(expiryDate.getFullYear() + 1)
+                            document.cookie = `${cookieName}=${cookieValue}; expires=${expiryDate.toUTCString()}; path=/`
+                            // Show a temporary success message or trigger a page refresh notification
+                          }}
+                          className="cursor-pointer">
+                          Save Override
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setWritekeyOverride("")
+                            // Remove cookie by setting expiry to past date
+                            const cookieName = `${brand.key}_cdp_writekey_override`
+                            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`
+                          }}
+                          className="cursor-pointer">
+                          Clear Override
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            window.location.reload()
+                          }}
+                          className="cursor-pointer">
+                          Refresh Page
+                        </Button>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -542,6 +632,17 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>Active Writekey</Label>
+                      <p className="text-sm text-slate-600 font-mono bg-slate-50 p-2 rounded border break-all">
+                        {writekeyOverride || envWritekey}
+                        {writekeyOverride && (
+                          <Badge className="ml-2" variant="outline">
+                            Override
+                          </Badge>
+                        )}
+                      </p>
+                    </div>
                     <div className="space-y-2">
                       <Label>User ID</Label>
                       <p className="text-sm text-slate-600">{cdpData.userId}</p>
