@@ -2,6 +2,9 @@ services:
   app:
     build:
       context: .
+      args:
+        NEXT_PUBLIC_CDP_WRITEKEY: n9wjihaje10vlvbfxe69
+        NEXT_PUBLIC_CDP_ENDPOINT: https://pl.dev.hxcd.now.hclsoftware.cloud
     image: demo-banking
     container_name: banking-app
     ports:

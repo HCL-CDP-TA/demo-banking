@@ -10,6 +10,14 @@ RUN npm install
 # Copy full app code
 COPY . .
 
+# Build arguments for environment variables
+ARG NEXT_PUBLIC_CDP_WRITEKEY
+ARG NEXT_PUBLIC_CDP_ENDPOINT
+
+# Set environment variables for build
+ENV NEXT_PUBLIC_CDP_WRITEKEY=$NEXT_PUBLIC_CDP_WRITEKEY
+ENV NEXT_PUBLIC_CDP_ENDPOINT=$NEXT_PUBLIC_CDP_ENDPOINT
+
 # Generate Prisma Client **WITH binaries** matching the Docker runtime
 RUN npx prisma generate
 
