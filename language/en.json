@@ -384,6 +384,14 @@
       "description": "Apply online or speak with a loan expert today to get started.",
       "applyButton": "Apply Now",
       "speakButton": "Speak to an Expert"
+    },
+    "defaultOffer": {
+      "title": "Why Choose Our Home Loans?",
+      "description": "Flexible home loan options tailored to your needs",
+      "copy": "With over 50 years of trusted mortgage expertise, we combine competitive rates with personalised service to make your home ownership dreams a reality.",
+      "image": "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+      "cta": "Learn More About Our Rates",
+      "link": "#learn-more"
     }
   },
   "home-loans/apply": {
@@ -802,6 +810,14 @@
           }
         }
       }
+    },
+    "defaultOffer": {
+      "title": "Drive Your Dream Car Today",
+      "description": "Flexible auto loans with competitive rates",
+      "copy": "Get pre-approved in minutes with our competitive auto loan rates and flexible terms. Whether it's a new or used vehicle, we'll help you drive away with confidence.",
+      "image": "/car-loan-hero.jpg",
+      "cta": "Get Pre-Approved",
+      "link": "#get-preapproved"
     }
   },
   "car-loans/apply": {

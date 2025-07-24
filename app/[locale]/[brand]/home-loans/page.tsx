@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Home, Calculator, CheckCircle, LucideIcon, Phone, ArrowRight, ChevronsRight } from "lucide-react"
+import { Home, Calculator, CheckCircle, LucideIcon, Phone, ChevronsRight } from "lucide-react"
 import Hero from "@/components/Hero"
 import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -15,6 +15,7 @@ import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 import { usePageMeta } from "@/lib/hooks/usePageMeta"
+import Offers from "@/components/interact/Offers"
 
 export default function HomeLoansPage() {
   const { brand, locale, getPageNamespace } = useSiteContext()
@@ -22,6 +23,7 @@ export default function HomeLoansPage() {
   const t = useTranslations(pageNamespace)
   const { isCDPTrackingEnabled } = useCDPTracking()
   const [interestShown, setInterestShown] = useState(false)
+  const [offerRefreshKey, setOfferRefreshKey] = useState(0)
   const { track } = useCdp()
 
   usePageMeta(t("meta.title"), t("meta.description"))
@@ -29,6 +31,16 @@ export default function HomeLoansPage() {
   useEffect(() => {
     track({ identifier: t("cdp.acquireEventName") })
   }, [t, track])
+
+  // Refresh offers every 10 seconds to show updated personalized content
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("Refreshing offers...") // Debug log
+      setOfferRefreshKey(prev => prev + 1)
+    }, 10000) // 10 seconds
+
+    return () => clearInterval(interval)
+  }, [])
 
   interface CalculatorData {
     loanAmount: number
@@ -156,18 +168,15 @@ export default function HomeLoansPage() {
   }
 
   const handleDropdownChange = (newValue: "weekly" | "fortnightly" | "monthly") => {
-    console.log(`Dropdown value change triggered: ${newValue}`)
     if (!validateDropdownValue(newValue)) {
       console.error(`Invalid dropdown value: ${newValue}`)
       return
     }
     setCalculatorData(prevData => {
-      console.log(`Previous calculator data:`, prevData)
       const updatedData: CalculatorData = {
         ...prevData,
         paymentFrequency: newValue,
       }
-      console.log(`Updated calculator data:`, updatedData)
       return updatedData
     })
   }
@@ -350,20 +359,8 @@ export default function HomeLoansPage() {
             </div>
 
             <div className="space-y-8">
-              {/* Banner Section - Placeholder for RTP */}
-              <div className="relative rounded-2xl overflow-hidden bg-center bg-no-repeat bg-cover min-h-[400px] flex items-center bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')]">
-                <div className="relative z-10 p-8 text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our Home Loans?</h2>
-                  <p className="text-lg md:text-xl mb-8 text-slate-200 leading-relaxed">
-                    With over 50 years of trusted mortgage expertise, we combine competitive rates with personalised
-                    service to make your home ownership dreams a reality.
-                  </p>
-                  <Button size="lg" className="bg-primary px-8 py-3">
-                    <ArrowRight className="h-5 w-5 mr-2" />
-                    Learn More About Our Rates
-                  </Button>
-                </div>
-              </div>
+              {/* Dynamic Offers Section - Real-time personalized offers */}
+              <Offers interactionPoint="home-loans" pageNamespace="home-loans" refreshTrigger={offerRefreshKey} />
 
               {/* Apply Online */}
               <Card>
