@@ -164,8 +164,6 @@ export default function SettingsModal({ children }: SettingsModalProps) {
 
       // Set the environment script URL
       setEnvScript(process.env.NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT || "Not configured")
-
-      // Load script settings from localStorage
     }
   }, [isOpen, brand.key])
 
@@ -262,10 +260,6 @@ export default function SettingsModal({ children }: SettingsModalProps) {
               <TabsTrigger value="demo" className="flex items-center gap-2 cursor-pointer">
                 <UserCog className="h-4 w-4" />
                 CDP Settings
-              </TabsTrigger>
-              <TabsTrigger value="script" className="flex items-center gap-2 cursor-pointer">
-                <FileText className="h-4 w-4" />
-                Discover Script CDP Settings
               </TabsTrigger>
               <TabsTrigger value="script" className="flex items-center gap-2 cursor-pointer">
                 <FileText className="h-4 w-4" />
@@ -563,6 +557,103 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                     </div>
                   </CardContent>
                 </Card> */}
+              </TabsContent>
+
+              {/* Script Settings */}
+              <TabsContent value="script" className="space-y-6 mt-0">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <FileText className="h-5 w-5" />
+                      Discover Script Settings
+                    </CardTitle>
+                    <CardDescription>
+                      Configure script injection settings for the Discover analytics script
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Script Toggle */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label htmlFor="script-enabled">Enable Script Injection</Label>
+                          <p className="text-sm text-muted-foreground">
+                            Allow the Discover analytics script to be injected into page headers
+                          </p>
+                        </div>
+                        <Switch id="script-enabled" checked={scriptEnabled} onCheckedChange={setScriptEnabled} />
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    {/* Environment Script URL */}
+                    <div className="space-y-2">
+                      <Label>Environment Script URL</Label>
+                      <div className="p-3 bg-gray-50 rounded-md">
+                        <p className="text-sm font-mono text-gray-700 break-all">{envScript}</p>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Set via NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT environment variable
+                      </p>
+                    </div>
+
+                    {/* Script Override */}
+                    <div className="space-y-2">
+                      <Label htmlFor="script-override">Script URL Override</Label>
+                      <Input
+                        id="script-override"
+                        value={scriptOverride}
+                        onChange={e => setScriptOverride(e.target.value)}
+                        placeholder="https://example.com/custom-discover.js"
+                        className="font-mono text-sm"
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        Override the environment script URL with a custom one (optional)
+                      </p>
+                      {scriptOverride && (
+                        <div className="flex items-center gap-2 p-2 bg-yellow-50 rounded-md">
+                          <div className="flex flex-col gap-1">
+                            <Badge variant="secondary" className="w-fit bg-yellow-100 text-yellow-800">
+                              Active Override
+                            </Badge>
+                            <span className="text-sm text-yellow-800">Using custom script URL</span>
+                          </div>
+                          <p className="text-xs text-yellow-700 mt-1 font-mono break-all">{scriptOverride}</p>
+                        </div>
+                      )}
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            // Save script settings to localStorage
+                            localStorage.setItem("discover_script_enabled", scriptEnabled.toString())
+                            localStorage.setItem("discover_script_override", scriptOverride)
+                            // Dispatch custom event to notify ScriptInjector
+                            window.dispatchEvent(new CustomEvent("discover-script-settings-changed"))
+                            // Changes apply immediately with Next.js Script component
+                          }}
+                          className="cursor-pointer">
+                          Save Script Settings
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setScriptOverride("")
+                            setScriptEnabled(true)
+                            // Clear localStorage
+                            localStorage.removeItem("discover_script_override")
+                            localStorage.setItem("discover_script_enabled", "true")
+                            // Dispatch custom event to notify ScriptInjector
+                            window.dispatchEvent(new CustomEvent("discover-script-settings-changed"))
+                          }}
+                          className="cursor-pointer">
+                          Clear Override
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
 
               {/* Script Settings */}
