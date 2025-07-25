@@ -7,14 +7,21 @@ export default function ScriptInjector() {
   const [scriptConfig, setScriptConfig] = useState<{
     enabled: boolean
     url: string | null
+    initialized: boolean
   }>({
     enabled: true,
     url: null,
+    initialized: false,
   })
-  const [isInitialized, setIsInitialized] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    console.log("Config", process.env.NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT)
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+
     const updateScriptConfig = () => {
       // Check if script injection is enabled (default: true)
       const isScriptEnabled = localStorage.getItem("discover_script_enabled") !== "false"
@@ -29,14 +36,14 @@ export default function ScriptInjector() {
         overrideScript,
         defaultScript,
         scriptUrl,
+        isMounted,
       })
 
       setScriptConfig({
         enabled: isScriptEnabled,
         url: scriptUrl || null,
+        initialized: true,
       })
-
-      setIsInitialized(true)
     }
 
     // Initial load
@@ -62,16 +69,27 @@ export default function ScriptInjector() {
       window.removeEventListener("storage", handleStorageChange)
       window.removeEventListener("discover-script-settings-changed", handleSettingsChange)
     }
-  }, [])
+  }, [isMounted])
 
-  // Don't render script if disabled or no URL
-  if (!scriptConfig.enabled || !scriptConfig.url) {
-    // Only show warning after component has been initialized to avoid false warnings
-    if (isInitialized && !scriptConfig.url) {
-      console.warn(
-        "No discover script URL configured. Set NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT or use override in settings.",
-      )
-    }
+  // Don't render anything during SSR or before initialization
+  if (!isMounted || !scriptConfig.initialized) {
+    return null
+  }
+
+  // Don't render script if disabled
+  if (!scriptConfig.enabled) {
+    return null
+  }
+
+  // Show warning if no URL configured but only when enabled and initialized
+  if (!scriptConfig.url) {
+    console.warn(
+      "Discover script is enabled but no URL configured.",
+      "Environment variable NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT:",
+      process.env.NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT,
+      "Override from localStorage:",
+      localStorage.getItem("discover_script_override"),
+    )
     return null
   }
 
@@ -79,9 +97,6 @@ export default function ScriptInjector() {
     <Script
       src={scriptConfig.url}
       strategy="afterInteractive"
-      onLoad={() => {
-        console.log(`Discover script loaded successfully: ${scriptConfig.url}`)
-      }}
       onError={() => {
         console.error(`Failed to load discover script: ${scriptConfig.url}`)
       }}

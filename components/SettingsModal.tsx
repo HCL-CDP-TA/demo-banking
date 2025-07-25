@@ -17,10 +17,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
-import { Settings, User, Save, RefreshCw, UserCog, FileText } from "lucide-react"
+import { Settings, User, UserCog, FileText } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
-import { format } from "date-fns"
+import { format } from "date-fns" // Install date-fns for date formatting
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 
 interface SettingsModalProps {
@@ -29,7 +29,6 @@ interface SettingsModalProps {
 
 export default function SettingsModal({ children }: SettingsModalProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
   const { brand } = useSiteContext()
   const { isCDPTrackingEnabled, setCDPTrackingEnabled } = useCDPTracking()
 
@@ -473,90 +472,6 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                     </Button>
                   </CardContent>
                 </Card>
-
-                {/* <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <CreditCard className="h-5 w-5" />
-                      Banking Preferences
-                    </CardTitle>
-                    <CardDescription>Customize your banking experience and account settings</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="space-y-2">
-                      <Label>Default Account</Label>
-                      <Select
-                        value={settings.defaultAccount}
-                        onValueChange={value => handleSettingChange("defaultAccount", value)}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="checking">Primary Checking</SelectItem>
-                          <SelectItem value="savings">High-Yield Savings</SelectItem>
-                          <SelectItem value="premium">Premium Checking</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Statement Frequency</Label>
-                      <Select
-                        value={settings.statementFrequency}
-                        onValueChange={value => handleSettingChange("statementFrequency", value)}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="monthly">Monthly</SelectItem>
-                          <SelectItem value="quarterly">Quarterly</SelectItem>
-                          <SelectItem value="annually">Annually</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <Separator />
-
-                    <div className="space-y-4">
-                      <h4 className="font-medium">Account Features</h4>
-
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-0.5">
-                          <Label className="text-base">Overdraft Protection</Label>
-                          <p className="text-sm text-slate-600">
-                            Automatically transfer from savings to cover overdrafts
-                          </p>
-                        </div>
-                        <Switch
-                          checked={settings.overdraftProtection}
-                          onCheckedChange={checked => handleSettingChange("overdraftProtection", checked)}
-                        />
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-0.5">
-                          <Label className="text-base">Auto-Save</Label>
-                          <p className="text-sm text-slate-600">Automatically save a percentage of deposits</p>
-                        </div>
-                        <Switch
-                          checked={settings.autoSave}
-                          onCheckedChange={checked => handleSettingChange("autoSave", checked)}
-                        />
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-0.5">
-                          <Label className="text-base">Round-Up Purchases</Label>
-                          <p className="text-sm text-slate-600">Round up purchases and save the change</p>
-                        </div>
-                        <Switch
-                          checked={settings.roundUpPurchases}
-                          onCheckedChange={checked => handleSettingChange("roundUpPurchases", checked)}
-                        />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card> */}
               </TabsContent>
 
               {/* Script Settings */}
@@ -581,7 +496,20 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                             Allow the Discover analytics script to be injected into page headers
                           </p>
                         </div>
-                        <Switch id="script-enabled" checked={scriptEnabled} onCheckedChange={setScriptEnabled} />
+                        <div className="flex items-center gap-2">
+                          {scriptEnabled && <Badge>Enabled</Badge>}
+                          <Switch
+                            id="script-enabled"
+                            checked={scriptEnabled}
+                            onCheckedChange={checked => {
+                              setScriptEnabled(checked)
+                              // Save immediately to localStorage like CDP setting
+                              localStorage.setItem("discover_script_enabled", checked.toString())
+                              // Dispatch custom event to notify ScriptInjector
+                              window.dispatchEvent(new CustomEvent("discover-script-settings-changed"))
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
 
@@ -605,7 +533,7 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                         id="script-override"
                         value={scriptOverride}
                         onChange={e => setScriptOverride(e.target.value)}
-                        placeholder="https://example.com/custom-discover.js"
+                        placeholder="eg https://example.com/custom-discover.js"
                         className="font-mono text-sm"
                       />
                       <p className="text-xs text-muted-foreground">
@@ -626,112 +554,14 @@ export default function SettingsModal({ children }: SettingsModalProps) {
                         <Button
                           variant="outline"
                           onClick={() => {
-                            // Save script settings to localStorage
-                            localStorage.setItem("discover_script_enabled", scriptEnabled.toString())
+                            // Save only the script override URL (toggle saves immediately)
                             localStorage.setItem("discover_script_override", scriptOverride)
                             // Dispatch custom event to notify ScriptInjector
                             window.dispatchEvent(new CustomEvent("discover-script-settings-changed"))
                             // Changes apply immediately with Next.js Script component
                           }}
                           className="cursor-pointer">
-                          Save Script Settings
-                        </Button>
-                        <Button
-                          variant="outline"
-                          onClick={() => {
-                            setScriptOverride("")
-                            setScriptEnabled(true)
-                            // Clear localStorage
-                            localStorage.removeItem("discover_script_override")
-                            localStorage.setItem("discover_script_enabled", "true")
-                            // Dispatch custom event to notify ScriptInjector
-                            window.dispatchEvent(new CustomEvent("discover-script-settings-changed"))
-                          }}
-                          className="cursor-pointer">
-                          Clear Override
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              {/* Script Settings */}
-              <TabsContent value="script" className="space-y-6 mt-0">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <FileText className="h-5 w-5" />
-                      Discover Script Settings
-                    </CardTitle>
-                    <CardDescription>
-                      Configure script injection settings for the Discover analytics script
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {/* Script Toggle */}
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-0.5">
-                          <Label htmlFor="script-enabled">Enable Script Injection</Label>
-                          <p className="text-sm text-muted-foreground">
-                            Allow the Discover analytics script to be injected into page headers
-                          </p>
-                        </div>
-                        <Switch id="script-enabled" checked={scriptEnabled} onCheckedChange={setScriptEnabled} />
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    {/* Environment Script URL */}
-                    <div className="space-y-2">
-                      <Label>Environment Script URL</Label>
-                      <div className="p-3 bg-gray-50 rounded-md">
-                        <p className="text-sm font-mono text-gray-700 break-all">{envScript}</p>
-                      </div>
-                      <p className="text-xs text-muted-foreground">
-                        Set via NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT environment variable
-                      </p>
-                    </div>
-
-                    {/* Script Override */}
-                    <div className="space-y-2">
-                      <Label htmlFor="script-override">Script URL Override</Label>
-                      <Input
-                        id="script-override"
-                        value={scriptOverride}
-                        onChange={e => setScriptOverride(e.target.value)}
-                        placeholder="https://example.com/custom-discover.js"
-                        className="font-mono text-sm"
-                      />
-                      <p className="text-xs text-muted-foreground">
-                        Override the environment script URL with a custom one (optional)
-                      </p>
-                      {scriptOverride && (
-                        <div className="flex items-center gap-2 p-2 bg-yellow-50 rounded-md">
-                          <div className="flex flex-col gap-1">
-                            <Badge variant="secondary" className="w-fit bg-yellow-100 text-yellow-800">
-                              Active Override
-                            </Badge>
-                            <span className="text-sm text-yellow-800">Using custom script URL</span>
-                          </div>
-                          <p className="text-xs text-yellow-700 mt-1 font-mono break-all">{scriptOverride}</p>
-                        </div>
-                      )}
-                      <div className="flex gap-2">
-                        <Button
-                          variant="outline"
-                          onClick={() => {
-                            // Save script settings to localStorage
-                            localStorage.setItem("discover_script_enabled", scriptEnabled.toString())
-                            localStorage.setItem("discover_script_override", scriptOverride)
-                            // Dispatch custom event to notify ScriptInjector
-                            window.dispatchEvent(new CustomEvent("discover-script-settings-changed"))
-                            // Changes apply immediately with Next.js Script component
-                          }}
-                          className="cursor-pointer">
-                          Save Script Settings
+                          Save Override
                         </Button>
                         <Button
                           variant="outline"
@@ -836,10 +666,10 @@ export default function SettingsModal({ children }: SettingsModalProps) {
 
         <div className="flex justify-between pt-6 border-t flex-shrink-0">
           <Button variant="outline" onClick={() => setIsOpen(false)} className="cursor-pointer">
-            Cancel
+            Close
           </Button>
           <div className="flex gap-2">
-            <Button variant="outline" className="cursor-pointer flex items-center gap-2">
+            {/* <Button variant="outline" className="cursor-pointer flex items-center gap-2">
               <RefreshCw className="h-4 w-4" />
               Reset to Defaults
             </Button>
@@ -849,7 +679,7 @@ export default function SettingsModal({ children }: SettingsModalProps) {
               className="cursor-pointer flex items-center gap-2">
               <Save className="h-4 w-4" />
               {isSaving ? "Saving..." : "Save Changes"}
-            </Button>
+            </Button> */}
           </div>
         </div>
       </DialogContent>
