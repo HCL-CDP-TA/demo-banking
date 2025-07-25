@@ -13,15 +13,14 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
-import { Settings, User, Save, RefreshCw, UserCog, FileText, CreditCard } from "lucide-react"
+import { Settings, User, Save, RefreshCw, UserCog, FileText } from "lucide-react"
 import { useSiteContext } from "@/lib/SiteContext"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
-import { format } from "date-fns" // Install date-fns for date formatting
+import { format } from "date-fns"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 
 interface SettingsModalProps {
