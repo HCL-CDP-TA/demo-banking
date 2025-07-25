@@ -14,7 +14,6 @@ import { useSiteContext } from "@/lib/SiteContext"
 import { CdpPageEvent, useCdp } from "@hcl-cdp-ta/hclcdp-web-sdk-react"
 import { useCDPTracking } from "@/lib/hooks/useCDPTracking"
 import { usePageMeta } from "@/lib/hooks/usePageMeta"
-import Offers from "@/components/interact/Offers"
 
 export default function CarLoansPage() {
   const { brand, locale, getPageNamespace } = useSiteContext()
