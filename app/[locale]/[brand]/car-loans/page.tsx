@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -21,24 +21,9 @@ export default function CarLoansPage() {
   const t = useTranslations(pageNamespace)
   const { isCDPTrackingEnabled } = useCDPTracking()
   const [interestShown, setInterestShown] = useState(false)
-  const [offerRefreshKey, setOfferRefreshKey] = useState(0)
   const { track } = useCdp()
 
   usePageMeta(t("meta.title"), t("meta.description"))
-
-  useEffect(() => {
-    track({ identifier: t("cdp.acquireEventName") })
-  }, [t, track])
-
-  // Refresh offers every 10 seconds to show updated personalized content
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("Refreshing offers...") // Debug log
-      setOfferRefreshKey(prev => prev + 1)
-    }, 10000) // 10 seconds
-
-    return () => clearInterval(interval)
-  }, [])
 
   interface CalculatorData {
     vehiclePrice: number
@@ -649,9 +634,6 @@ export default function CarLoansPage() {
           </div>
         </div>
       </section>
-
-      {/* Dynamic Offers Section - Real-time personalized offers */}
-      <Offers interactionPoint="car-loans" pageNamespace="car-loans" refreshTrigger={offerRefreshKey} />
 
       {/* Vehicle Types */}
       <section id="vehicle-types-section" className="py-16">
