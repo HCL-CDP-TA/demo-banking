@@ -164,6 +164,8 @@ export default function SettingsModal({ children }: SettingsModalProps) {
 
       // Set the environment script URL
       setEnvScript(process.env.NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT || "Not configured")
+
+      // Load script settings from localStorage
     }
   }, [isOpen, brand.key])
 
@@ -260,6 +262,10 @@ export default function SettingsModal({ children }: SettingsModalProps) {
               <TabsTrigger value="demo" className="flex items-center gap-2 cursor-pointer">
                 <UserCog className="h-4 w-4" />
                 CDP Settings
+              </TabsTrigger>
+              <TabsTrigger value="script" className="flex items-center gap-2 cursor-pointer">
+                <FileText className="h-4 w-4" />
+                Discover Script CDP Settings
               </TabsTrigger>
               <TabsTrigger value="script" className="flex items-center gap-2 cursor-pointer">
                 <FileText className="h-4 w-4" />
