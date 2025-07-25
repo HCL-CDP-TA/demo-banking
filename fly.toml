@@ -5,7 +5,7 @@ primary_region = 'syd'
   [build.args]
     NEXT_PUBLIC_CDP_WRITEKEY = "n9wjihaje10vlvbfxe69"
     NEXT_PUBLIC_CDP_ENDPOINT = "https://pl.dev.hxcd.now.hclsoftware.cloud"
-    NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT = "js/discover.js"
+    NEXT_PUBLIC_DISCOVER_DEFAULT_SCRIPT = "/js/discover.js"
 
 [deploy]
   release_command = 'npx prisma migrate deploy'
