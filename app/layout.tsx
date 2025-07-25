@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { SiteProvider } from "@/lib/SiteContext"
 import CdpProvider from "@/components/CdpProvider"
+import StatusPopover from "@/components/StatusPopover"
+import ScriptInjector from "@/components/ScriptInjector"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -15,9 +17,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <ScriptInjector />
+      </head>
       <body className={inter.className}>
         <SiteProvider>
           <CdpProvider>{children}</CdpProvider>
+          <StatusPopover />
         </SiteProvider>
       </body>
     </html>
